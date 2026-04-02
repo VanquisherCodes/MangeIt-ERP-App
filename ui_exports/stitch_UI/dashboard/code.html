@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;700;800&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "tertiary-fixed-dim": "#7bd0ff",
+              "on-tertiary-container": "#003e55",
+              "on-secondary": "#233144",
+              "surface-bright": "#33394c",
+              "surface": "#0c1324",
+              "on-primary": "#003824",
+              "outline": "#86948a",
+              "error-container": "#93000a",
+              "on-error": "#690005",
+              "on-primary-fixed-variant": "#005236",
+              "on-tertiary": "#00354a",
+              "surface-container-lowest": "#070d1f",
+              "tertiary": "#7bd0ff",
+              "on-secondary-container": "#abb9d1",
+              "surface-container-highest": "#2e3447",
+              "surface-container-low": "#151b2d",
+              "secondary-fixed": "#d5e3fc",
+              "on-primary-fixed": "#002113",
+              "background": "#0c1324",
+              "tertiary-fixed": "#c4e7ff",
+              "tertiary-container": "#19aee8",
+              "surface-tint": "#4edea3",
+              "inverse-primary": "#006c49",
+              "on-surface-variant": "#bbcabf",
+              "secondary": "#b9c7df",
+              "secondary-container": "#3c4a5e",
+              "surface-container-high": "#23293c",
+              "inverse-surface": "#dce1fb",
+              "on-error-container": "#ffdad6",
+              "on-tertiary-fixed": "#001e2c",
+              "on-primary-container": "#00422b",
+              "primary": "#4edea3",
+              "on-secondary-fixed-variant": "#3a485b",
+              "on-surface": "#dce1fb",
+              "inverse-on-surface": "#2a3043",
+              "on-background": "#dce1fb",
+              "primary-fixed-dim": "#4edea3",
+              "on-secondary-fixed": "#0d1c2e",
+              "primary-container": "#10b981",
+              "surface-container": "#191f31",
+              "on-tertiary-fixed-variant": "#004c69",
+              "error": "#ffb4ab",
+              "surface-variant": "#2e3447",
+              "surface-dim": "#0c1324",
+              "primary-fixed": "#6ffbbe",
+              "outline-variant": "#3c4a42",
+              "secondary-fixed-dim": "#b9c7df"
+            },
+            fontFamily: {
+              "headline": ["Manrope"],
+              "body": ["Inter"],
+              "label": ["Inter"]
+            },
+            borderRadius: {"DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem"},
+          },
+        },
+      }
+    </script>
+<style>
+        .glass-card {
+            background: rgba(46, 52, 71, 0.2);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface text-on-surface font-body selection:bg-primary/30 min-h-screen pb-24">
+<!-- TopAppBar Component -->
+<header class="fixed top-0 w-full z-50 bg-[#0c1324]/80 backdrop-blur-lg shadow-[0_4px_30px_rgba(0,0,0,0.1)]">
+<div class="flex justify-between items-center px-6 h-16 w-full">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-full overflow-hidden border-2 border-primary/20">
+<img alt="Profile" class="w-full h-full object-cover" data-alt="professional portrait of a sophisticated person in a modern office with soft blue and green ambient lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD5mp2zjh3PNpPBaIBB_ZS6OQQzOaAP5J8O2UKpVVdi7xnAKTp05jHsky1DcPjdPQQ3THkDMG1dTZ3zD0BiNbkW3zub7hxYLuT_PRRPebkAJFfv60rp6IazVmxtbK3Nvo-qK9Yaj-vbW70WhPNnvE1SB87VS3DTbF7Khq4f4PWQLEuGKWxoZtX3Cm6xKc_ApVxqXAiBEaWn1_lymljK1EfurXmb1mjgo82D6sj_n8bmQOjGWM-guOLhPnAK9yh5NGgaWUjX_R2ynWLt"/>
+</div>
+<h1 class="text-xl font-black text-primary tracking-tighter font-headline">ManageIt</h1>
+</div>
+<div class="flex items-center gap-3">
+<button class="w-10 h-10 flex items-center justify-center rounded-xl hover:bg-primary/10 transition-colors active:scale-95 duration-200 text-on-surface">
+<span class="material-symbols-outlined">search</span>
+</button>
+</div>
+</div>
+</header>
+<main class="pt-24 px-6 max-w-7xl mx-auto space-y-10">
+<!-- Welcome Section -->
+<section class="flex flex-col md:flex-row justify-between items-end gap-6">
+<div>
+<p class="text-tertiary font-label uppercase tracking-[0.2em] text-xs mb-2">Academic Curator Access</p>
+<h2 class="text-4xl md:text-5xl font-extrabold font-headline tracking-tight text-on-surface">Good Morning, Alexander.</h2>
+</div>
+<div class="flex items-center gap-4">
+<div class="glass-card px-6 py-3 rounded-full border border-outline-variant/20 flex items-center gap-4">
+<span class="text-primary font-headline text-2xl font-bold tracking-tight">€4,850.00</span>
+<span class="text-on-surface-variant text-xs uppercase font-label tracking-widest">Budget Remaining</span>
+</div>
+<button class="bg-primary text-on-primary font-bold px-6 py-3 rounded-xl shadow-lg shadow-primary/20 active:scale-95 transition-all">
+                    Request Funds
+                </button>
+</div>
+</section>
+<!-- Bento Grid Dashboard -->
+<div class="grid grid-cols-1 md:grid-cols-12 gap-6">
+<!-- Tasks Summary (Large Bento) -->
+<div class="md:col-span-8 glass-card rounded-full p-8 border border-outline-variant/10">
+<div class="flex justify-between items-center mb-8">
+<h3 class="text-xl font-headline font-bold text-on-surface">Active Tasks</h3>
+<span class="text-primary text-sm font-label uppercase tracking-widest">3 In Progress</span>
+</div>
+<div class="space-y-4">
+<!-- Task Item -->
+<div class="flex items-center justify-between p-5 bg-surface-container/50 rounded-xl hover:bg-surface-container-highest transition-colors group">
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">assignment_turned_in</span>
+<div>
+<h4 class="font-bold text-on-surface group-hover:text-primary transition-colors">Review Semester Curriculum</h4>
+<p class="text-on-surface-variant text-sm">Due in 2 days • Research Dept.</p>
+</div>
+</div>
+<span class="px-3 py-1 bg-primary-container text-on-primary-container text-[10px] font-bold uppercase rounded-lg">High Priority</span>
+</div>
+<!-- Task Item -->
+<div class="flex items-center justify-between p-5 bg-surface-container/50 rounded-xl hover:bg-surface-container-highest transition-colors group">
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-on-surface-variant">assignment_turned_in</span>
+<div>
+<h4 class="font-bold text-on-surface group-hover:text-primary transition-colors">Finalize Grant Application</h4>
+<p class="text-on-surface-variant text-sm">Due tomorrow • Finance</p>
+</div>
+</div>
+<span class="px-3 py-1 bg-tertiary-container text-on-tertiary-container text-[10px] font-bold uppercase rounded-lg">Pending</span>
+</div>
+<!-- Task Item -->
+<div class="flex items-center justify-between p-5 bg-surface-container/50 rounded-xl hover:bg-surface-container-highest transition-colors group">
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-on-surface-variant">assignment_turned_in</span>
+<div>
+<h4 class="font-bold text-on-surface group-hover:text-primary transition-colors">Update Member Registry</h4>
+<p class="text-on-surface-variant text-sm">Due in 5 days • Admin</p>
+</div>
+</div>
+<span class="px-3 py-1 bg-secondary-container text-on-secondary-container text-[10px] font-bold uppercase rounded-lg">Routine</span>
+</div>
+</div>
+</div>
+<!-- Upcoming Events (Small Bento) -->
+<div class="md:col-span-4 flex flex-col gap-6">
+<div class="glass-card rounded-full p-8 border border-outline-variant/10 flex-1">
+<h3 class="text-xl font-headline font-bold text-on-surface mb-6">Upcoming Events</h3>
+<div class="space-y-6">
+<div class="flex gap-4">
+<div class="flex flex-col items-center justify-center w-12 h-14 bg-surface-container-high rounded-xl border border-primary/20">
+<span class="text-[10px] font-label text-tertiary uppercase">Oct</span>
+<span class="text-lg font-headline font-bold text-on-surface leading-none">24</span>
+</div>
+<div>
+<h4 class="font-bold text-sm">Faculty Symposium</h4>
+<p class="text-xs text-on-surface-variant">Main Auditorium • 09:00 AM</p>
+</div>
+</div>
+<div class="flex gap-4 opacity-70">
+<div class="flex flex-col items-center justify-center w-12 h-14 bg-surface-container-high rounded-xl">
+<span class="text-[10px] font-label text-on-surface-variant uppercase">Oct</span>
+<span class="text-lg font-headline font-bold text-on-surface leading-none">28</span>
+</div>
+<div>
+<h4 class="font-bold text-sm">Curator Board Meeting</h4>
+<p class="text-xs text-on-surface-variant">Virtual Room B • 02:00 PM</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Mini Stats -->
+<div class="bg-primary p-6 rounded-full flex items-center justify-between shadow-xl shadow-primary/10">
+<div class="flex flex-col">
+<span class="text-on-primary text-[10px] font-label uppercase tracking-widest">System Load</span>
+<span class="text-on-primary font-headline font-extrabold text-2xl">98.4%</span>
+</div>
+<span class="material-symbols-outlined text-on-primary text-3xl">query_stats</span>
+</div>
+</div>
+<!-- Announcements (Full Width Bento) -->
+<div class="md:col-span-12 glass-card rounded-full p-8 border border-outline-variant/10">
+<div class="flex items-center gap-3 mb-8">
+<span class="material-symbols-outlined text-tertiary">campaign</span>
+<h3 class="text-xl font-headline font-bold text-on-surface">Announcements</h3>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+<!-- Announcement Card -->
+<div class="bg-surface-container-low p-6 rounded-full border border-outline-variant/5 hover:border-primary/20 transition-all">
+<span class="text-tertiary-fixed-dim text-[10px] font-label uppercase tracking-widest block mb-3">System Update • 2h ago</span>
+<h4 class="font-bold text-on-surface mb-2">New Security Protocols Active</h4>
+<p class="text-sm text-on-surface-variant leading-relaxed">Multi-factor authentication is now mandatory for all Academic Curator roles during fund requests.</p>
+</div>
+<!-- Announcement Card -->
+<div class="bg-surface-container-low p-6 rounded-full border border-outline-variant/5 hover:border-primary/20 transition-all">
+<span class="text-tertiary-fixed-dim text-[10px] font-label uppercase tracking-widest block mb-3">Community • 1d ago</span>
+<h4 class="font-bold text-on-surface mb-2">Annual Member Review</h4>
+<p class="text-sm text-on-surface-variant leading-relaxed">The semester's member activity report is ready for download in the members portal.</p>
+</div>
+<!-- Announcement Card -->
+<div class="bg-surface-container-low p-6 rounded-full border border-outline-variant/5 hover:border-primary/20 transition-all">
+<span class="text-tertiary-fixed-dim text-[10px] font-label uppercase tracking-widest block mb-3">Event • 3d ago</span>
+<h4 class="font-bold text-on-surface mb-2">Campus Holiday Schedule</h4>
+<p class="text-sm text-on-surface-variant leading-relaxed">ManageIt will have limited support during the upcoming winter break transition period.</p>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- BottomNavBar Component -->
+<nav class="fixed bottom-0 w-full z-50 bg-[#0c1324]/90 backdrop-blur-xl border-t border-primary/10 shadow-[0_-10px_40px_rgba(0,0,0,0.5)] rounded-t-2xl">
+<div class="flex justify-around items-center h-20 px-2 pb-safe w-full">
+<!-- Home (Active) -->
+<a class="flex flex-col items-center justify-center text-primary bg-primary/10 rounded-xl px-3 py-1 transition-all duration-300 ease-in-out" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">dashboard</span>
+<span class="font-['Inter'] text-[10px] font-medium uppercase tracking-widest mt-1">Home</span>
+</a>
+<!-- Members -->
+<a class="flex flex-col items-center justify-center text-[#dce1fb]/60 hover:text-primary transition-all duration-300 ease-in-out" href="#">
+<span class="material-symbols-outlined">group</span>
+<span class="font-['Inter'] text-[10px] font-medium uppercase tracking-widest mt-1">Members</span>
+</a>
+<!-- Events -->
+<a class="flex flex-col items-center justify-center text-[#dce1fb]/60 hover:text-primary transition-all duration-300 ease-in-out" href="#">
+<span class="material-symbols-outlined">event_note</span>
+<span class="font-['Inter'] text-[10px] font-medium uppercase tracking-widest mt-1">Events</span>
+</a>
+<!-- Tasks -->
+<a class="flex flex-col items-center justify-center text-[#dce1fb]/60 hover:text-primary transition-all duration-300 ease-in-out" href="#">
+<span class="material-symbols-outlined">assignment_turned_in</span>
+<span class="font-['Inter'] text-[10px] font-medium uppercase tracking-widest mt-1">Tasks</span>
+</a>
+<!-- Finance -->
+<a class="flex flex-col items-center justify-center text-[#dce1fb]/60 hover:text-primary transition-all duration-300 ease-in-out" href="#">
+<span class="material-symbols-outlined">euro_symbol</span>
+<span class="font-['Inter'] text-[10px] font-medium uppercase tracking-widest mt-1">Finance</span>
+</a>
+</div>
+</nav>
+<!-- FAB for quick request -->
+<button class="fixed bottom-24 right-6 w-14 h-14 bg-primary text-on-primary rounded-full shadow-2xl flex items-center justify-center active:scale-90 transition-transform md:hidden">
+<span class="material-symbols-outlined">add</span>
+</button>
+</body></html>

@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>ManageIt | Member Directory</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;700;800&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "tertiary-fixed-dim": "#7bd0ff",
+              "on-tertiary-container": "#003e55",
+              "on-secondary": "#233144",
+              "surface-bright": "#33394c",
+              "surface": "#0c1324",
+              "on-primary": "#003824",
+              "outline": "#86948a",
+              "error-container": "#93000a",
+              "on-error": "#690005",
+              "on-primary-fixed-variant": "#005236",
+              "on-tertiary": "#00354a",
+              "surface-container-lowest": "#070d1f",
+              "tertiary": "#7bd0ff",
+              "on-secondary-container": "#abb9d1",
+              "surface-container-highest": "#2e3447",
+              "surface-container-low": "#151b2d",
+              "secondary-fixed": "#d5e3fc",
+              "on-primary-fixed": "#002113",
+              "background": "#0c1324",
+              "tertiary-fixed": "#c4e7ff",
+              "tertiary-container": "#19aee8",
+              "surface-tint": "#4edea3",
+              "inverse-primary": "#006c49",
+              "on-surface-variant": "#bbcabf",
+              "secondary": "#b9c7df",
+              "secondary-container": "#3c4a5e",
+              "surface-container-high": "#23293c",
+              "inverse-surface": "#dce1fb",
+              "on-error-container": "#ffdad6",
+              "on-tertiary-fixed": "#001e2c",
+              "on-primary-container": "#00422b",
+              "primary": "#4edea3",
+              "on-secondary-fixed-variant": "#3a485b",
+              "on-surface": "#dce1fb",
+              "inverse-on-surface": "#2a3043",
+              "on-background": "#dce1fb",
+              "primary-fixed-dim": "#4edea3",
+              "on-secondary-fixed": "#0d1c2e",
+              "primary-container": "#10b981",
+              "surface-container": "#191f31",
+              "on-tertiary-fixed-variant": "#004c69",
+              "error": "#ffb4ab",
+              "surface-variant": "#2e3447",
+              "surface-dim": "#0c1324",
+              "primary-fixed": "#6ffbbe",
+              "outline-variant": "#3c4a42",
+              "secondary-fixed-dim": "#b9c7df"
+            },
+            fontFamily: {
+              "headline": ["Manrope"],
+              "body": ["Inter"],
+              "label": ["Inter"]
+            },
+            borderRadius: {"DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem"},
+          },
+        },
+      }
+    </script>
+<style>
+      .material-symbols-outlined {
+        font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      }
+      .glass-card {
+        background: rgba(46, 52, 71, 0.2);
+        backdrop-filter: blur(16px);
+      }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface text-on-surface font-body selection:bg-primary selection:text-on-primary">
+<!-- TopAppBar from JSON -->
+<header class="fixed top-0 w-full z-50 bg-[#0c1324]/80 backdrop-blur-lg shadow-[0_4px_30px_rgba(0,0,0,0.1)]">
+<div class="flex justify-between items-center px-6 h-16 w-full">
+<div class="flex items-center gap-4">
+<img class="w-10 h-10 rounded-full border border-primary/20" data-alt="professional portrait of a high-end software administrator in a dark studio setting with emerald accent lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD4XNaOsnBS92kCRZndY9HGUqqXAAewQsYaSRHe57lhi3UyRQsLUtPIj3Wi6Aer8TEesZKtrbuMnMX0Etz3Oat-x8kiEHmXq7Ex9QzCW7l0o7OR-BNVSWDI9y8UGSnj6JD1Ms6xuKbW2vtfQzpwFRJxQpr1x8--kZEFjdhujXgRqFo8iCxTvXWQVx2R1hS_WyjGr7U1buebagpIppExVvjgUYoUK7RKzpz5uE79mkt5ezi7r7_Byinu35WHz-mXwuTLdW6XspDHSd2c"/>
+<h1 class="text-xl font-black text-emerald-400 tracking-tighter font-headline">ManageIt</h1>
+</div>
+<div class="flex items-center gap-4">
+<button class="p-2 text-on-surface hover:bg-emerald-500/10 transition-colors rounded-full active:scale-95 duration-200">
+<span class="material-symbols-outlined">search</span>
+</button>
+</div>
+</div>
+</header>
+<main class="pt-24 pb-32 px-6 max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-8">
+<!-- Member Search & List Section -->
+<section class="lg:col-span-7 space-y-6">
+<div class="flex flex-col gap-2">
+<h2 class="text-3xl font-extrabold font-headline tracking-tight text-on-surface">Members</h2>
+<p class="text-on-surface-variant text-sm">Directory of all ecosystem contributors and roles.</p>
+</div>
+<!-- Search Bar -->
+<div class="relative group">
+<input class="w-full bg-surface-container-high border-none rounded-xl py-4 pl-12 pr-4 text-on-surface placeholder:text-on-surface-variant/50 focus:ring-2 focus:ring-primary transition-all" placeholder="Search members by name or role..." type="text"/>
+<span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-on-surface-variant">search</span>
+</div>
+<!-- List of Users -->
+<div class="space-y-3">
+<!-- User Item: Admin -->
+<div class="group bg-surface-container-low hover:bg-surface-container transition-all duration-300 rounded-xl p-4 flex items-center justify-between border-l-4 border-primary">
+<div class="flex items-center gap-4">
+<img class="w-12 h-12 rounded-xl object-cover" data-alt="portrait of Julian Sterling, a sharp dressed professional man with graying hair and a confident gaze" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBs3DKoPFCIhNC-J5EBQ9d3kOczDIbcUC1so_wA2Kjb3wo9_BzWXlwRwZqNPBUy0PlHaXJ2bATs069iRkl4Em22uHHp6IB-iPMnRHSnK_vE4haTQJ_Phi1VGQjGcYVoeX8lEjbmniXn4VZE-YQM4YVCj9KzbKiJ1pxqsFE1XjjbSCn1oSuF7T5NYzJDSYTo1YWwTF-IY2pTHsf0XtVPD24DnkbcQf5Xfh0WSZXgRfAhRiSxgfeRcf4MhjyZdqYAuQFVlRGB_2Om0yBp"/>
+<div>
+<div class="flex items-center gap-2">
+<span class="font-bold text-on-surface font-headline">Julian Sterling</span>
+<span class="px-2 py-0.5 text-[10px] font-bold uppercase tracking-widest bg-primary-container text-on-primary-container rounded-lg">Admin</span>
+</div>
+<span class="text-xs text-on-surface-variant">Chief Systems Architect</span>
+</div>
+</div>
+<div class="flex gap-2">
+<button class="w-10 h-10 flex items-center justify-center rounded-lg bg-surface-container-high text-primary hover:bg-primary hover:text-on-primary transition-all">
+<span class="material-symbols-outlined">mail</span>
+</button>
+<button class="w-10 h-10 flex items-center justify-center rounded-lg bg-surface-container-high text-primary hover:bg-primary hover:text-on-primary transition-all">
+<span class="material-symbols-outlined">call</span>
+</button>
+</div>
+</div>
+<!-- User Item: StandardUser -->
+<div class="group bg-surface-container-low hover:bg-surface-container transition-all duration-300 rounded-xl p-4 flex items-center justify-between border-l-4 border-transparent">
+<div class="flex items-center gap-4">
+<img class="w-12 h-12 rounded-xl object-cover" data-alt="professional headshot of a young creative woman with glasses in a minimalist workspace environment" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB8AiZfSheCeIEuD_b2ILjSBcIgZOKM0TnvblpDt89_G5Ml7WD2Qg5lCh9hn3c2HRoo50Ot1jSk_GUGQ5-c_FHphplcfXer8eDFp8xZ_sWLNb6xwVCJVG9EOr3UZO0XbO5B0NqdfZkPKHoa4XkOwcBHBZPN59m3aISnrXqw6oXjp4KJ4b4kVajMNNVZ9WtJJAx8oFS_Wl1O-lr1zkXfMHG-Fl0lGc0dLx-4HWq2yrXpoqM5JDEPkRM2DiZU0MvRD268tYbT-XM4o0Is"/>
+<div>
+<div class="flex items-center gap-2">
+<span class="font-bold text-on-surface font-headline">Amara Vance</span>
+<span class="px-2 py-0.5 text-[10px] font-bold uppercase tracking-widest bg-secondary-container text-on-secondary-container rounded-lg">StandardUser</span>
+</div>
+<span class="text-xs text-on-surface-variant">Senior Frontend Engineer</span>
+</div>
+</div>
+<div class="flex gap-2">
+<button class="w-10 h-10 flex items-center justify-center rounded-lg bg-surface-container-high text-primary/60 hover:bg-primary hover:text-on-primary transition-all">
+<span class="material-symbols-outlined">mail</span>
+</button>
+<button class="w-10 h-10 flex items-center justify-center rounded-lg bg-surface-container-high text-primary/60 hover:bg-primary hover:text-on-primary transition-all">
+<span class="material-symbols-outlined">call</span>
+</button>
+</div>
+</div>
+<!-- User Item: StandardUser -->
+<div class="group bg-surface-container-low hover:bg-surface-container transition-all duration-300 rounded-xl p-4 flex items-center justify-between border-l-4 border-transparent">
+<div class="flex items-center gap-4">
+<img class="w-12 h-12 rounded-xl object-cover" data-alt="middle aged man with a warm smile wearing a blue linen shirt in a modern bright office" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB35IGKH_MCYzo2S2C8AcbSVGnj__rnLK0lZH67u5UiBk_JR0-LAzUSOPkVTFTpZwp63hNL51cNHp7lWZs4SCFt6RZ8BEdJMtDvAT6IpxFDY2jrn13bh2ci8x8OLudJs8YK7isn6Kp_IRGdv9j6RpxGacxKA_oaltY9gVvX0DGjY3QYb4dHgXc93VHqnNNvHO9txJnzx8fyhHSsESY2RLgo98I0p2goaMKpl1OjXlnFp4104yvdG4KZ9lwmq9swbmO-8AUs0uCp-uen"/>
+<div>
+<div class="flex items-center gap-2">
+<span class="font-bold text-on-surface font-headline">Roman Kade</span>
+<span class="px-2 py-0.5 text-[10px] font-bold uppercase tracking-widest bg-secondary-container text-on-secondary-container rounded-lg">StandardUser</span>
+</div>
+<span class="text-xs text-on-surface-variant">Product Strategist</span>
+</div>
+</div>
+<div class="flex gap-2">
+<button class="w-10 h-10 flex items-center justify-center rounded-lg bg-surface-container-high text-primary/60 hover:bg-primary hover:text-on-primary transition-all">
+<span class="material-symbols-outlined">mail</span>
+</button>
+<button class="w-10 h-10 flex items-center justify-center rounded-lg bg-surface-container-high text-primary/60 hover:bg-primary hover:text-on-primary transition-all">
+<span class="material-symbols-outlined">call</span>
+</button>
+</div>
+</div>
+</div>
+</section>
+<!-- Profile Details Sidebar (Selected User) -->
+<aside class="lg:col-span-5">
+<div class="sticky top-24 space-y-6">
+<!-- Profile Header Card -->
+<div class="bg-surface-container rounded-2xl overflow-hidden shadow-2xl border border-outline-variant/10">
+<div class="h-32 bg-gradient-to-r from-primary/20 to-tertiary/20 relative" data-alt="abstract geometric pattern of shifting emerald and sky blue shapes with soft lighting effects">
+<div class="absolute -bottom-12 left-8">
+<img class="w-24 h-24 rounded-2xl border-4 border-surface-container shadow-xl object-cover" data-alt="detailed high resolution portrait of Julian Sterling looking directly at camera with professional intensity" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCUYbYqAH-PRezDM4OMHC4izGGJn-QYrq85iAFMy2HrG3ul10FIkjjZSqWPK9w5ZM7klX7YuBWiO16vbX_zKoqFRGC7mAFMQTe640tCjd5r_3xmEDiwJaqgOJnwKVaGy9bW-FrJMQBp9TAlTwSFjMbWZHao7Ed6driLjpxnESr88rg-izvNWjcFQEVTXFwAGVxwE1YyiBZFpQg4282RziuW02irHkOahcUi6AAPenmcYlY-AJr7XGifGL5asowc1ebmF4kq5j-_M-r2"/>
+</div>
+</div>
+<div class="pt-16 pb-8 px-8 space-y-6">
+<div>
+<h3 class="text-2xl font-black font-headline text-on-surface">Julian Sterling</h3>
+<p class="text-primary font-medium">@jsterling_admin</p>
+</div>
+<!-- Stats Bento Grid -->
+<div class="grid grid-cols-2 gap-4">
+<div class="bg-surface-container-low p-4 rounded-xl border border-outline-variant/10">
+<span class="text-[10px] uppercase tracking-tighter text-on-surface-variant block mb-1">Tasks Completed</span>
+<div class="flex items-baseline gap-1">
+<span class="text-2xl font-bold text-on-surface">142</span>
+<span class="text-primary text-xs">↑ 12%</span>
+</div>
+</div>
+<div class="bg-surface-container-low p-4 rounded-xl border border-outline-variant/10">
+<span class="text-[10px] uppercase tracking-tighter text-on-surface-variant block mb-1">System Uptime</span>
+<div class="flex items-baseline gap-1">
+<span class="text-2xl font-bold text-on-surface">99.8</span>
+<span class="text-on-surface-variant text-xs">%</span>
+</div>
+</div>
+</div>
+<!-- Membership Details -->
+<div class="space-y-4">
+<h4 class="text-xs font-bold uppercase tracking-widest text-on-surface-variant border-b border-outline-variant/10 pb-2">Membership Details</h4>
+<div class="flex justify-between items-center text-sm">
+<span class="text-on-surface-variant">Joined</span>
+<span class="text-on-surface font-medium">Jan 12, 2023</span>
+</div>
+<div class="flex justify-between items-center text-sm">
+<span class="text-on-surface-variant">Tier</span>
+<span class="flex items-center gap-1 text-tertiary">
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">verified</span>
+                                    Enterprise Admin
+                                </span>
+</div>
+<div class="flex justify-between items-center text-sm">
+<span class="text-on-surface-variant">Last Active</span>
+<span class="text-primary font-medium">Now</span>
+</div>
+</div>
+<!-- Action Buttons -->
+<div class="pt-4 flex gap-3">
+<button class="flex-1 bg-primary text-on-primary font-bold py-3 rounded-xl shadow-lg shadow-primary/20 active:scale-95 transition-all">
+                                Edit Profile
+                            </button>
+<button class="p-3 bg-surface-container-highest text-on-surface rounded-xl active:scale-95 transition-all">
+<span class="material-symbols-outlined">more_vert</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Status Glass Card -->
+<div class="glass-card p-6 rounded-2xl border border-white/5 space-y-3">
+<div class="flex items-center gap-3 text-emerald-400">
+<span class="material-symbols-outlined">monitoring</span>
+<span class="font-bold text-sm">Current Focus</span>
+</div>
+<p class="text-sm text-on-surface/80">Refactoring API services for the upcoming Q4 rollout. Available for architectural reviews between 2 PM - 4 PM UTC.</p>
+</div>
+</div>
+</aside>
+</main>
+<!-- BottomNavBar from JSON -->
+<nav class="fixed bottom-0 w-full z-50 bg-[#0c1324]/90 backdrop-blur-xl rounded-t-2xl shadow-[0_-10px_40px_rgba(0,0,0,0.5)] border-t border-emerald-500/10">
+<div class="flex justify-around items-center h-20 px-2 pb-safe w-full">
+<a class="flex flex-col items-center justify-center text-[#dce1fb]/60 hover:text-emerald-300 transition-all duration-300 ease-in-out" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="font-['Inter'] text-[10px] font-medium uppercase tracking-widest mt-1">Home</span>
+</a>
+<a class="flex flex-col items-center justify-center text-emerald-400 bg-emerald-500/10 rounded-xl px-3 py-1 transition-all duration-300 ease-in-out" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">group</span>
+<span class="font-['Inter'] text-[10px] font-medium uppercase tracking-widest mt-1">Members</span>
+</a>
+<a class="flex flex-col items-center justify-center text-[#dce1fb]/60 hover:text-emerald-300 transition-all duration-300 ease-in-out" href="#">
+<span class="material-symbols-outlined">event_note</span>
+<span class="font-['Inter'] text-[10px] font-medium uppercase tracking-widest mt-1">Events</span>
+</a>
+<a class="flex flex-col items-center justify-center text-[#dce1fb]/60 hover:text-emerald-300 transition-all duration-300 ease-in-out" href="#">
+<span class="material-symbols-outlined">assignment_turned_in</span>
+<span class="font-['Inter'] text-[10px] font-medium uppercase tracking-widest mt-1">Tasks</span>
+</a>
+<a class="flex flex-col items-center justify-center text-[#dce1fb]/60 hover:text-emerald-300 transition-all duration-300 ease-in-out" href="#">
+<span class="material-symbols-outlined">euro_symbol</span>
+<span class="font-['Inter'] text-[10px] font-medium uppercase tracking-widest mt-1">Finance</span>
+</a>
+</div>
+</nav>
+</body></html>

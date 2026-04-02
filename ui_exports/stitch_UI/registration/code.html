@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Register - ManageIt</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "surface-container": "#191f31",
+                        "primary-fixed": "#6ffbbe",
+                        "error-container": "#93000a",
+                        "on-secondary": "#233144",
+                        "secondary-container": "#3c4a5e",
+                        "inverse-on-surface": "#2a3043",
+                        "primary-fixed-dim": "#4edea3",
+                        "on-tertiary-container": "#003e55",
+                        "outline-variant": "#3c4a42",
+                        "primary": "#4edea3",
+                        "surface": "#0c1324",
+                        "on-tertiary": "#00354a",
+                        "on-secondary-container": "#abb9d1",
+                        "on-error": "#690005",
+                        "surface-variant": "#2e3447",
+                        "surface-tint": "#4edea3",
+                        "on-surface-variant": "#bbcabf",
+                        "on-error-container": "#ffdad6",
+                        "tertiary-fixed": "#c4e7ff",
+                        "inverse-primary": "#006c49",
+                        "secondary-fixed": "#d5e3fc",
+                        "outline": "#86948a",
+                        "tertiary": "#7bd0ff",
+                        "on-surface": "#dce1fb",
+                        "surface-bright": "#33394c",
+                        "surface-container-lowest": "#070d1f",
+                        "on-secondary-fixed-variant": "#3a485b",
+                        "on-primary": "#003824",
+                        "secondary": "#b9c7df",
+                        "on-primary-container": "#00422b",
+                        "on-tertiary-fixed-variant": "#004c69",
+                        "on-tertiary-fixed": "#001e2c",
+                        "on-background": "#dce1fb",
+                        "inverse-surface": "#dce1fb",
+                        "primary-container": "#10b981",
+                        "on-primary-fixed-variant": "#005236",
+                        "tertiary-fixed-dim": "#7bd0ff",
+                        "tertiary-container": "#19aee8",
+                        "error": "#ffb4ab",
+                        "surface-container-highest": "#2e3447",
+                        "surface-container-high": "#23293c",
+                        "surface-dim": "#0c1324",
+                        "on-secondary-fixed": "#0d1c2e",
+                        "surface-container-low": "#151b2d",
+                        "secondary-fixed-dim": "#b9c7df",
+                        "on-primary-fixed": "#002113",
+                        "background": "#0c1324"
+                    },
+                    fontFamily: {
+                        "headline": ["Manrope"],
+                        "body": ["Inter"],
+                        "label": ["Inter"]
+                    },
+                    borderRadius: { "DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem" },
+                },
+            },
+        }
+    </script>
+<style>
+        .glass-card {
+            background: rgba(21, 27, 45, 0.7);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface text-on-surface font-body min-h-screen selection:bg-primary/30">
+<!-- Background Decoration -->
+<div class="fixed inset-0 overflow-hidden pointer-events-none -z-10">
+<div class="absolute -top-[10%] -left-[10%] w-[40%] h-[40%] bg-primary/10 blur-[120px] rounded-full"></div>
+<div class="absolute top-[20%] -right-[5%] w-[30%] h-[50%] bg-tertiary/5 blur-[100px] rounded-full"></div>
+</div>
+<!-- Registration Layout -->
+<div class="flex flex-col min-h-screen">
+<!-- Header / Identity -->
+<header class="flex items-center justify-center pt-12 pb-8">
+<div class="flex flex-col items-center gap-3">
+<div class="w-12 h-12 rounded-xl bg-primary-container flex items-center justify-center text-on-primary-container shadow-lg shadow-primary/20">
+<span class="material-symbols-outlined text-3xl" style="font-variation-settings: 'FILL' 1;">grid_view</span>
+</div>
+<h1 class="font-headline text-3xl font-extrabold tracking-tighter text-on-surface">
+                    Manage<span class="text-primary">It</span>
+</h1>
+</div>
+</header>
+<!-- Main Form Canvas -->
+<main class="flex-grow flex items-start justify-center px-6 pb-20">
+<div class="w-full max-w-md glass-card rounded-[2rem] border border-white/5 p-8 shadow-2xl relative overflow-hidden">
+<!-- Form Header -->
+<div class="mb-8">
+<h2 class="font-headline text-2xl font-bold text-on-surface">Create Account</h2>
+<p class="text-on-surface-variant text-sm mt-1">Join the architectural ecosystem for professionals.</p>
+</div>
+<form action="#" class="space-y-6">
+<!-- Names Row -->
+<div class="grid grid-cols-2 gap-4">
+<div class="space-y-2">
+<label class="text-xs font-semibold tracking-wider text-on-surface-variant uppercase ml-1">First Name</label>
+<input class="w-full bg-surface-container-high border-outline-variant/20 rounded-xl px-4 py-3 text-on-surface placeholder:text-on-surface-variant/40 focus:ring-1 focus:ring-primary focus:border-primary transition-all" placeholder="John" type="text"/>
+</div>
+<div class="space-y-2">
+<label class="text-xs font-semibold tracking-wider text-on-surface-variant uppercase ml-1">Last Name</label>
+<input class="w-full bg-surface-container-high border-outline-variant/20 rounded-xl px-4 py-3 text-on-surface placeholder:text-on-surface-variant/40 focus:ring-1 focus:ring-primary focus:border-primary transition-all" placeholder="Doe" type="text"/>
+</div>
+</div>
+<!-- Email Field -->
+<div class="space-y-2">
+<label class="text-xs font-semibold tracking-wider text-on-surface-variant uppercase ml-1">Email Address</label>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-on-surface-variant text-lg">mail</span>
+<input class="w-full bg-surface-container-high border-outline-variant/20 rounded-xl pl-12 pr-4 py-3 text-on-surface placeholder:text-on-surface-variant/40 focus:ring-1 focus:ring-primary focus:border-primary transition-all" placeholder="john.doe@manageit.com" type="email"/>
+</div>
+</div>
+<!-- Password Field -->
+<div class="space-y-2">
+<label class="text-xs font-semibold tracking-wider text-on-surface-variant uppercase ml-1">Password</label>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-on-surface-variant text-lg">lock</span>
+<input class="w-full bg-surface-container-high border-outline-variant/20 rounded-xl pl-12 pr-4 py-3 text-on-surface placeholder:text-on-surface-variant/40 focus:ring-1 focus:ring-primary focus:border-primary transition-all" placeholder="••••••••" type="password"/>
+</div>
+</div>
+<!-- Role Selection -->
+<div class="space-y-2">
+<label class="text-xs font-semibold tracking-wider text-on-surface-variant uppercase ml-1">Access Role</label>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-on-surface-variant text-lg">admin_panel_settings</span>
+<select class="w-full bg-surface-container-high border-outline-variant/20 rounded-xl pl-12 pr-10 py-3 text-on-surface appearance-none focus:ring-1 focus:ring-primary focus:border-primary transition-all cursor-pointer">
+<option value="StandardUser">StandardUser</option>
+<option value="Admin">Admin</option>
+</select>
+<span class="material-symbols-outlined absolute right-4 top-1/2 -translate-y-1/2 text-on-surface-variant pointer-events-none">expand_more</span>
+</div>
+<p class="text-[10px] text-on-tertiary-fixed-variant italic px-1">Administrators have full system oversight and user management privileges.</p>
+</div>
+<!-- Action Button -->
+<div class="pt-4">
+<button class="w-full bg-primary py-4 rounded-xl text-on-primary font-bold text-sm uppercase tracking-widest hover:brightness-110 active:scale-[0.98] transition-all shadow-lg shadow-primary/10" type="submit">
+                            registerUser()
+                        </button>
+</div>
+<div class="flex items-center justify-center gap-2 mt-6">
+<span class="text-on-surface-variant text-sm">Already have an account?</span>
+<a class="text-primary font-semibold text-sm hover:underline" href="#">Log in</a>
+</div>
+</form>
+<!-- Subtle Decorative Element -->
+<div class="absolute -bottom-10 -right-10 w-32 h-32 bg-primary/5 rounded-full blur-2xl"></div>
+</div>
+</main>
+<!-- Footer Visual (Asymmetric Bento Element) -->
+<footer class="max-w-md mx-auto w-full px-6 mb-12">
+<div class="grid grid-cols-2 gap-3">
+<div class="bg-surface-container-low p-4 rounded-2xl border border-white/5 flex flex-col justify-between">
+<span class="material-symbols-outlined text-primary mb-2">verified_user</span>
+<span class="text-[10px] text-on-surface-variant uppercase font-bold tracking-tighter">AuthService Secure</span>
+</div>
+<div class="bg-surface-container-low p-4 rounded-2xl border border-white/5 flex flex-col justify-between">
+<span class="material-symbols-outlined text-tertiary mb-2">api</span>
+<span class="text-[10px] text-on-surface-variant uppercase font-bold tracking-tighter">API V2.4 Ready</span>
+</div>
+</div>
+</footer>
+</div>
+<!-- Screen-specific background images -->
+<div class="fixed top-0 right-0 w-1/3 h-full overflow-hidden opacity-10 pointer-events-none hidden lg:block">
+<img alt="" class="object-cover w-full h-full grayscale" data-alt="close-up of complex circuit board with green LED lights glowing in a dark technical environment with shallow depth of field" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAFRIY_CtS_Ym0hVzpv4vE63v3Uxut2ZZuuBafgIOAmx8vwcjhWND-yfo1f7jW_GAUQ1buWYEy0HLWgmSAa2KNdOt1kNRxhIBBBvm9tmq5tV8bt_APhiS7WmpRovBU7kaklbTHd4u57P3rXlw3lMkX9ofrR0WKAtMe-46vFCIj8UVTq2GZown8VqDIJMDMtpkKkjyK22x62hBXkO8ag3fkrEo0sQNpF-Khuwa0HlrQEhCCkmONeYiX48sLj1zk841gW3YYxIJTZrLf2"/>
+</div>
+</body></html>
