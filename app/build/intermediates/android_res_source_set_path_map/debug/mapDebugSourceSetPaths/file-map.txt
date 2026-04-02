@@ -1,0 +1,7 @@
+com.example.manageit.app-pngs-0 /Users/kanishkk/AndroidStudioProjects/ManageIt/app/build/generated/res/pngs/debug
+com.example.manageit.app-updated_navigation_xml-1 /Users/kanishkk/AndroidStudioProjects/ManageIt/app/build/generated/updated_navigation_xml/debug
+com.example.manageit.app-packageDebugResources-2 /Users/kanishkk/AndroidStudioProjects/ManageIt/app/build/intermediates/incremental/debug/packageDebugResources/merged.dir
+com.example.manageit.app-packageDebugResources-3 /Users/kanishkk/AndroidStudioProjects/ManageIt/app/build/intermediates/incremental/debug/packageDebugResources/stripped.dir
+com.example.manageit.app-debug-4 /Users/kanishkk/AndroidStudioProjects/ManageIt/app/build/intermediates/merged_res/debug/mergeDebugResources
+com.example.manageit.app-debug-5 /Users/kanishkk/AndroidStudioProjects/ManageIt/app/src/debug/res
+com.example.manageit.app-main-6 /Users/kanishkk/AndroidStudioProjects/ManageIt/app/src/main/res
