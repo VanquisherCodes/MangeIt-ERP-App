@@ -37,6 +37,12 @@
             android:name="com.example.manageit.activities.MainActivity"
             android:exported="false" />
         <activity
+            android:name="com.example.manageit.activities.MembershipManagementActivity"
+            android:exported="false" />
+        <activity
+            android:name="com.example.manageit.activities.GroupDashboardActivity"
+            android:exported="false" />
+        <activity
             android:name="com.example.manageit.activities.AuthActivity"
             android:exported="false" />
         <activity

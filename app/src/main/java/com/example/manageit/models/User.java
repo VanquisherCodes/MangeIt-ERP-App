@@ -1,22 +1,33 @@
 package com.example.manageit.models;
 
+import com.google.gson.annotations.SerializedName;
+
 /**
  * Authenticated app user.
  */
 public class User {
+    @SerializedName("user_id")
     private String id;
-    private String name;
+    @SerializedName("first_name")
+    private String firstName;
+    @SerializedName("last_name")
+    private String lastName;
+    @SerializedName("dob")
+    private String dateOfBirth;
     private String email;
-    private Role role;
+    @SerializedName("created_at")
+    private String createdAt;
 
     public User() {
     }
 
-    public User(String id, String name, String email, Role role) {
+    public User(String id, String firstName, String lastName, String dateOfBirth, String email, String createdAt) {
         this.id = id;
-        this.name = name;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.dateOfBirth = dateOfBirth;
         this.email = email;
-        this.role = role;
+        this.createdAt = createdAt;
     }
 
     public String getId() {
@@ -27,12 +38,28 @@ public class User {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getFirstName() {
+        return firstName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public String getDateOfBirth() {
+        return dateOfBirth;
+    }
+
+    public void setDateOfBirth(String dateOfBirth) {
+        this.dateOfBirth = dateOfBirth;
     }
 
     public String getEmail() {
@@ -43,11 +70,22 @@ public class User {
         this.email = email;
     }
 
-    public Role getRole() {
-        return role;
+    public String getCreatedAt() {
+        return createdAt;
     }
 
-    public void setRole(Role role) {
-        this.role = role;
+    public void setCreatedAt(String createdAt) {
+        this.createdAt = createdAt;
+    }
+
+    public String getFullName() {
+        return (firstName == null ? "" : firstName) + (lastName == null || lastName.isEmpty() ? "" : " " + lastName);
+    }
+
+    /**
+     * Backward-compatible alias while the app is being refactored.
+     */
+    public String getName() {
+        return getFullName().trim();
     }
 }

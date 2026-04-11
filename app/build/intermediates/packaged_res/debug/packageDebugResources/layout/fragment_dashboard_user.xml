@@ -2,29 +2,107 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fillViewport="true">
+    android:background="@color/surface"
+    android:fillViewport="true"
+    android:overScrollMode="never">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:padding="16dp">
+        android:padding="20dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <FrameLayout
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:background="@drawable/bg_avatar_secondary">
+
+                <TextView
+                    android:id="@+id/tv_dashboard_avatar_initial"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:text="MI"
+                    android:textColor="@color/on_primary"
+                    android:textStyle="bold" />
+            </FrameLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="14dp"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/tv_dashboard_group_label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Computer Science Society"
+                    android:textColor="@color/tertiary"
+                    android:textSize="13sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/tv_dashboard_membership_role"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:text="Group role: User"
+                    android:textColor="@color/on_surface_variant"
+                    android:textSize="13sp" />
+            </LinearLayout>
+        </LinearLayout>
 
         <TextView
+            android:id="@+id/tv_dashboard_greeting"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="User Dashboard"
+            android:layout_marginTop="24dp"
+            android:text="Good Morning,"
             android:textColor="@color/on_surface"
             android:textSize="30sp"
             android:textStyle="bold" />
 
         <TextView
+            android:id="@+id/tv_dashboard_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
-            android:text="Your upcoming tasks, events and requests"
-            android:textColor="@color/on_surface_variant"
-            android:textSize="12sp" />
+            android:text="Student."
+            android:textColor="@color/on_surface"
+            android:textSize="30sp"
+            android:textStyle="bold" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:background="@drawable/bg_surface_card"
+            android:orientation="vertical"
+            android:padding="18dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Your Membership"
+                android:textColor="@color/on_surface"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="This dashboard is scoped to the selected group only. Your role here does not affect any other student group."
+                android:textColor="@color/on_surface_variant"
+                android:textSize="15sp" />
+        </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -32,85 +110,48 @@
             android:layout_marginTop="16dp"
             android:background="@drawable/bg_surface_card"
             android:orientation="vertical"
-            android:padding="16dp">
+            android:padding="18dp">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Upcoming Events"
+                android:text="Tasks"
                 android:textColor="@color/on_surface"
-                android:textSize="18sp"
+                android:textSize="20sp"
                 android:textStyle="bold" />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:text="Faculty Symposium - 24 Oct - 09:00"
-                android:textColor="@color/on_surface"
-                android:textSize="14sp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Main Auditorium"
+                android:layout_marginTop="12dp"
+                android:text="1. View group tasks assigned through membership-driven workflows.\n2. Track due dates for this group only.\n3. No cross-group role escalation."
                 android:textColor="@color/on_surface_variant"
-                android:textSize="12sp" />
+                android:textSize="15sp" />
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="14dp"
-            android:background="@drawable/bg_surface_card_low"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/bg_surface_card"
             android:orientation="vertical"
-            android:padding="16dp">
+            android:padding="18dp">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Quick Access"
+                android:text="Announcements"
                 android:textColor="@color/on_surface"
-                android:textSize="18sp"
+                android:textSize="20sp"
                 android:textStyle="bold" />
 
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:background="@drawable/bg_chip_secondary"
-                android:paddingHorizontal="10dp"
-                android:paddingVertical="4dp"
-                android:text="Tasks"
-                android:textColor="@color/on_secondary_container"
-                android:textSize="11sp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:background="@drawable/bg_chip_secondary"
-                android:paddingHorizontal="10dp"
-                android:paddingVertical="4dp"
-                android:text="Events"
-                android:textColor="@color/on_secondary_container"
-                android:textSize="11sp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:background="@drawable/bg_chip_secondary"
-                android:paddingHorizontal="10dp"
-                android:paddingVertical="4dp"
-                android:text="Requests"
-                android:textColor="@color/on_secondary_container"
-                android:textSize="11sp"
-                android:textStyle="bold" />
+                android:layout_marginTop="12dp"
+                android:text="Announcements belong to the selected group and can be read here after group membership is established."
+                android:textColor="@color/on_surface_variant"
+                android:textSize="15sp" />
         </LinearLayout>
     </LinearLayout>
-
 </ScrollView>

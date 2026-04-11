@@ -14,7 +14,9 @@ public final class RoleNavigator {
     private RoleNavigator() {
     }
 
-    public static Fragment getHomeFragment(Role role) {
-        return role == Role.ADMIN ? new AdminDashboardFragment() : new UserDashboardFragment();
+    public static Fragment getDashboardFragment(Role role, String groupId, String groupName) {
+        return role == Role.ADMIN
+                ? AdminDashboardFragment.newInstance(groupId, groupName)
+                : UserDashboardFragment.newInstance(groupId, groupName);
     }
 }

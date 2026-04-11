@@ -24,6 +24,14 @@
             android:exported="false" />
 
         <activity
+            android:name=".activities.MembershipManagementActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".activities.GroupDashboardActivity"
+            android:exported="false" />
+
+        <activity
             android:name=".activities.AuthActivity"
             android:exported="false" />
 

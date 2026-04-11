@@ -10,11 +10,9 @@ public class ModuleRepository {
 
     public List<String> getDefaultModules() {
         return Arrays.asList(
-                "Profile",
                 "Tasks",
-                "Events",
                 "Announcements",
-                "Requests"
+                "Group Membership"
         );
     }
 }

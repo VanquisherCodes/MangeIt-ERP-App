@@ -1,10 +1,14 @@
 package com.example.manageit.models;
 
+import com.google.gson.annotations.SerializedName;
+
 /**
- * App roles used for access control and dashboard routing.
+ * Membership role within a student group.
  */
 public enum Role {
+    @SerializedName("admin")
     ADMIN,
+    @SerializedName("user")
     USER;
 
     public static Role from(String value) {
