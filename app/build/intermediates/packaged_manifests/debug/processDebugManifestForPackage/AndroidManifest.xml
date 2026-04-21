@@ -37,6 +37,12 @@
             android:name="com.example.manageit.activities.MainActivity"
             android:exported="false" />
         <activity
+            android:name="com.example.manageit.activities.GroupTasksActivity"
+            android:exported="false" />
+        <activity
+            android:name="com.example.manageit.activities.GroupAnnouncementsActivity"
+            android:exported="false" />
+        <activity
             android:name="com.example.manageit.activities.MembershipManagementActivity"
             android:exported="false" />
         <activity

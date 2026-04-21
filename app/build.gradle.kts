@@ -1,10 +1,27 @@
+import java.util.Properties
+
 plugins {
     alias(libs.plugins.android.application)
+}
+
+val localProperties = Properties().apply {
+    val localPropertiesFile = rootProject.file("local.properties")
+    if (localPropertiesFile.exists()) {
+        localPropertiesFile.inputStream().use { load(it) }
+    }
+}
+
+fun buildConfigString(value: String): String {
+    return "\"${value.replace("\\", "\\\\").replace("\"", "\\\"")}\""
 }
 
 android {
     namespace = "com.example.manageit"
     compileSdk = 36
+
+    buildFeatures {
+        buildConfig = true
+    }
 
     defaultConfig {
         applicationId = "com.example.manageit"
@@ -14,6 +31,12 @@ android {
         versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        buildConfigField("String", "MARKETAUX_API_BASE_URL", buildConfigString("https://api.marketaux.com/"))
+        buildConfigField(
+            "String",
+            "MARKETAUX_API_TOKEN",
+            buildConfigString(localProperties.getProperty("marketauxApiToken", ""))
+        )
     }
 
     buildTypes {

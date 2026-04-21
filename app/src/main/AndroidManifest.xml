@@ -24,6 +24,14 @@
             android:exported="false" />
 
         <activity
+            android:name=".activities.GroupTasksActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".activities.GroupAnnouncementsActivity"
+            android:exported="false" />
+
+        <activity
             android:name=".activities.MembershipManagementActivity"
             android:exported="false" />
 

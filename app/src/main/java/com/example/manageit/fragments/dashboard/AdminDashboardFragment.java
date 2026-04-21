@@ -11,8 +11,11 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.example.manageit.R;
+import com.example.manageit.activities.GroupAnnouncementsActivity;
+import com.example.manageit.activities.GroupTasksActivity;
 import com.example.manageit.activities.MembershipManagementActivity;
 import com.example.manageit.managers.SessionManager;
+import com.example.manageit.models.Role;
 import com.example.manageit.models.User;
 import com.example.manageit.utils.GreetingUtils;
 
@@ -51,6 +54,24 @@ public class AdminDashboardFragment extends Fragment {
         ((TextView) view.findViewById(R.id.tv_dashboard_name)).setText(GreetingUtils.getDisplayFirstName(currentUser));
         ((TextView) view.findViewById(R.id.tv_dashboard_membership_role)).setText("Group role: Admin");
         ((TextView) view.findViewById(R.id.tv_dashboard_avatar_initial)).setText(GreetingUtils.getInitials(currentUser));
+
+        Button manageTasksButton = view.findViewById(R.id.btn_open_group_tasks);
+        manageTasksButton.setOnClickListener(v -> {
+            Intent intent = new Intent(requireContext(), GroupTasksActivity.class);
+            intent.putExtra(GroupTasksActivity.EXTRA_GROUP_ID, groupId);
+            intent.putExtra(GroupTasksActivity.EXTRA_GROUP_NAME, groupName);
+            intent.putExtra(GroupTasksActivity.EXTRA_GROUP_ROLE, Role.ADMIN.name());
+            startActivity(intent);
+        });
+
+        Button manageAnnouncementsButton = view.findViewById(R.id.btn_open_group_announcements);
+        manageAnnouncementsButton.setOnClickListener(v -> {
+            Intent intent = new Intent(requireContext(), GroupAnnouncementsActivity.class);
+            intent.putExtra(GroupAnnouncementsActivity.EXTRA_GROUP_ID, groupId);
+            intent.putExtra(GroupAnnouncementsActivity.EXTRA_GROUP_NAME, groupName);
+            intent.putExtra(GroupAnnouncementsActivity.EXTRA_GROUP_ROLE, Role.ADMIN.name());
+            startActivity(intent);
+        });
 
         Button manageMembershipButton = view.findViewById(R.id.btn_manage_membership_flow);
         manageMembershipButton.setOnClickListener(v -> {

@@ -115,7 +115,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Tasks Oversight"
+                android:text="Group Tasks"
                 android:textColor="@color/on_surface"
                 android:textSize="20sp"
                 android:textStyle="bold" />
@@ -127,6 +127,18 @@
                 android:text="Admins can create and coordinate group tasks, but the rules stay inside this group context."
                 android:textColor="@color/on_surface_variant"
                 android:textSize="15sp" />
+
+            <Button
+                android:id="@+id/btn_open_group_tasks"
+                android:layout_width="match_parent"
+                android:layout_height="52dp"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/bg_button_primary"
+                android:text="Open Group Tasks"
+                android:textAllCaps="false"
+                android:textColor="@color/on_primary"
+                android:textSize="16sp"
+                android:textStyle="bold" />
         </LinearLayout>
 
         <LinearLayout
@@ -140,7 +152,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Announcements Management"
+                android:text="Group Announcements"
                 android:textColor="@color/on_surface"
                 android:textSize="20sp"
                 android:textStyle="bold" />
@@ -152,6 +164,18 @@
                 android:text="Announcements are group-bound. This scaffold keeps them available in the admin dashboard without introducing feature-access tables."
                 android:textColor="@color/on_surface_variant"
                 android:textSize="15sp" />
+
+            <Button
+                android:id="@+id/btn_open_group_announcements"
+                android:layout_width="match_parent"
+                android:layout_height="52dp"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/bg_button_primary"
+                android:text="Open Group Announcements"
+                android:textAllCaps="false"
+                android:textColor="@color/on_primary"
+                android:textSize="16sp"
+                android:textStyle="bold" />
         </LinearLayout>
 
         <LinearLayout
@@ -165,7 +189,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Membership Logic"
+                android:text="Role Privilege"
                 android:textColor="@color/on_surface"
                 android:textSize="20sp"
                 android:textStyle="bold" />

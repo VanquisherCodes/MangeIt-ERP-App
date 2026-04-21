@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/surface"
+    android:orientation="vertical">
+
+    <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/toolbar_group_announcements"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_top_bar"
+        android:elevation="0dp"
+        android:paddingHorizontal="4dp"
+        android:theme="@style/ThemeOverlay.MaterialComponents.ActionBar"
+        app:title="Group Announcements"
+        app:titleTextColor="@color/on_surface" />
+
+    <TextView
+        android:id="@+id/tv_group_announcements_subtitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingStart="20dp"
+        android:paddingTop="20dp"
+        android:paddingEnd="20dp"
+        android:text="Publish announcements for this group."
+        android:textColor="@color/on_surface_variant"
+        android:textSize="15sp" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:fillViewport="true"
+        android:overScrollMode="never">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <LinearLayout
+                android:id="@+id/layout_group_announcements_form"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_surface_card"
+                android:orientation="vertical"
+                android:padding="18dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Add Group Announcement"
+                    android:textColor="@color/on_surface"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
+
+                <EditText
+                    android:id="@+id/et_group_announcement_title"
+                    android:layout_width="match_parent"
+                    android:layout_height="56dp"
+                    android:layout_marginTop="16dp"
+                    android:background="@drawable/bg_input_field"
+                    android:hint="Announcement title"
+                    android:paddingHorizontal="18dp"
+                    android:textColor="@color/on_surface"
+                    android:textColorHint="@color/on_surface_variant" />
+
+                <EditText
+                    android:id="@+id/et_group_announcement_message"
+                    android:layout_width="match_parent"
+                    android:layout_height="120dp"
+                    android:layout_marginTop="12dp"
+                    android:background="@drawable/bg_input_field"
+                    android:gravity="top|start"
+                    android:hint="Announcement message"
+                    android:padding="18dp"
+                    android:textColor="@color/on_surface"
+                    android:textColorHint="@color/on_surface_variant" />
+
+                <Button
+                    android:id="@+id/btn_create_group_announcement"
+                    android:layout_width="match_parent"
+                    android:layout_height="52dp"
+                    android:layout_marginTop="16dp"
+                    android:background="@drawable/bg_button_primary"
+                    android:text="Publish Announcement"
+                    android:textAllCaps="false"
+                    android:textColor="@color/on_primary"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <ProgressBar
+                android:id="@+id/progress_group_announcements"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="32dp" />
+
+            <TextView
+                android:id="@+id/tv_group_announcements_message"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:textAlignment="center"
+                android:textColor="@color/on_surface_variant"
+                android:textSize="15sp"
+                android:visibility="gone" />
+
+            <Button
+                android:id="@+id/btn_retry_group_announcements"
+                android:layout_width="match_parent"
+                android:layout_height="52dp"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/bg_button_primary"
+                android:text="Retry Announcements"
+                android:textAllCaps="false"
+                android:textColor="@color/on_primary"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:visibility="gone" />
+
+            <ListView
+                android:id="@+id/lv_group_announcements"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:divider="@android:color/transparent"
+                android:dividerHeight="12dp"
+                android:listSelector="@android:color/transparent"
+                android:nestedScrollingEnabled="true"
+                android:scrollbars="none" />
+        </LinearLayout>
+    </ScrollView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_top_bar"
+        android:orientation="vertical"
+        android:paddingHorizontal="16dp"
+        android:paddingTop="12dp"
+        android:paddingBottom="18dp">
+
+        <Button
+            android:id="@+id/btn_back_from_group_announcements"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:background="@drawable/bg_button_secondary"
+            android:text="Back To Dashboard"
+            android:textAllCaps="false"
+            android:textColor="@color/on_surface"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+    </LinearLayout>
+</LinearLayout>

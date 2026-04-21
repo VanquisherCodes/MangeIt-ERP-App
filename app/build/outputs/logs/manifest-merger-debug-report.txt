@@ -1,9 +1,9 @@
 -- Merging decision tree log ---
 manifest
-ADDED from /Users/kanishkk/AndroidStudioProjects/ManageIt/app/src/main/AndroidManifest.xml:2:1-49:12
-INJECTED from /Users/kanishkk/AndroidStudioProjects/ManageIt/app/src/main/AndroidManifest.xml:2:1-49:12
-INJECTED from /Users/kanishkk/AndroidStudioProjects/ManageIt/app/src/main/AndroidManifest.xml:2:1-49:12
-INJECTED from /Users/kanishkk/AndroidStudioProjects/ManageIt/app/src/main/AndroidManifest.xml:2:1-49:12
+ADDED from /Users/kanishkk/AndroidStudioProjects/ManageIt/app/src/main/AndroidManifest.xml:2:1-57:12
+INJECTED from /Users/kanishkk/AndroidStudioProjects/ManageIt/app/src/main/AndroidManifest.xml:2:1-57:12
+INJECTED from /Users/kanishkk/AndroidStudioProjects/ManageIt/app/src/main/AndroidManifest.xml:2:1-57:12
+INJECTED from /Users/kanishkk/AndroidStudioProjects/ManageIt/app/src/main/AndroidManifest.xml:2:1-57:12
 MERGED from [com.google.android.material:material:1.10.0] /Users/kanishkk/.gradle/caches/9.3.1/transforms/8494f0c1867fe751316a765e65cb5eae/transformed/material-1.10.0/AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.appcompat:appcompat-resources:1.6.1] /Users/kanishkk/.gradle/caches/9.3.1/transforms/564d38264d056a118492b52a916ce892/transformed/appcompat-resources-1.6.1/AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.constraintlayout:constraintlayout:2.0.1] /Users/kanishkk/.gradle/caches/9.3.1/transforms/fbcbd79b1db911a03d30fc6674f317fa/transformed/constraintlayout-2.0.1/AndroidManifest.xml:2:1-11:12
@@ -64,8 +64,8 @@ ADDED from /Users/kanishkk/AndroidStudioProjects/ManageIt/app/src/main/AndroidMa
 	android:name
 		ADDED from /Users/kanishkk/AndroidStudioProjects/ManageIt/app/src/main/AndroidManifest.xml:6:22-76
 application
-ADDED from /Users/kanishkk/AndroidStudioProjects/ManageIt/app/src/main/AndroidManifest.xml:8:5-47:19
-INJECTED from /Users/kanishkk/AndroidStudioProjects/ManageIt/app/src/main/AndroidManifest.xml:8:5-47:19
+ADDED from /Users/kanishkk/AndroidStudioProjects/ManageIt/app/src/main/AndroidManifest.xml:8:5-55:19
+INJECTED from /Users/kanishkk/AndroidStudioProjects/ManageIt/app/src/main/AndroidManifest.xml:8:5-55:19
 MERGED from [com.google.android.material:material:1.10.0] /Users/kanishkk/.gradle/caches/9.3.1/transforms/8494f0c1867fe751316a765e65cb5eae/transformed/material-1.10.0/AndroidManifest.xml:22:5-20
 MERGED from [com.google.android.material:material:1.10.0] /Users/kanishkk/.gradle/caches/9.3.1/transforms/8494f0c1867fe751316a765e65cb5eae/transformed/material-1.10.0/AndroidManifest.xml:22:5-20
 MERGED from [androidx.constraintlayout:constraintlayout:2.0.1] /Users/kanishkk/.gradle/caches/9.3.1/transforms/fbcbd79b1db911a03d30fc6674f317fa/transformed/constraintlayout-2.0.1/AndroidManifest.xml:9:5-20
@@ -114,40 +114,52 @@ ADDED from /Users/kanishkk/AndroidStudioProjects/ManageIt/app/src/main/AndroidMa
 		ADDED from /Users/kanishkk/AndroidStudioProjects/ManageIt/app/src/main/AndroidManifest.xml:24:13-37
 	android:name
 		ADDED from /Users/kanishkk/AndroidStudioProjects/ManageIt/app/src/main/AndroidManifest.xml:23:13-52
-activity#com.example.manageit.activities.MembershipManagementActivity
+activity#com.example.manageit.activities.GroupTasksActivity
 ADDED from /Users/kanishkk/AndroidStudioProjects/ManageIt/app/src/main/AndroidManifest.xml:26:9-28:40
 	android:exported
 		ADDED from /Users/kanishkk/AndroidStudioProjects/ManageIt/app/src/main/AndroidManifest.xml:28:13-37
 	android:name
-		ADDED from /Users/kanishkk/AndroidStudioProjects/ManageIt/app/src/main/AndroidManifest.xml:27:13-68
-activity#com.example.manageit.activities.GroupDashboardActivity
+		ADDED from /Users/kanishkk/AndroidStudioProjects/ManageIt/app/src/main/AndroidManifest.xml:27:13-58
+activity#com.example.manageit.activities.GroupAnnouncementsActivity
 ADDED from /Users/kanishkk/AndroidStudioProjects/ManageIt/app/src/main/AndroidManifest.xml:30:9-32:40
 	android:exported
 		ADDED from /Users/kanishkk/AndroidStudioProjects/ManageIt/app/src/main/AndroidManifest.xml:32:13-37
 	android:name
-		ADDED from /Users/kanishkk/AndroidStudioProjects/ManageIt/app/src/main/AndroidManifest.xml:31:13-62
-activity#com.example.manageit.activities.AuthActivity
+		ADDED from /Users/kanishkk/AndroidStudioProjects/ManageIt/app/src/main/AndroidManifest.xml:31:13-66
+activity#com.example.manageit.activities.MembershipManagementActivity
 ADDED from /Users/kanishkk/AndroidStudioProjects/ManageIt/app/src/main/AndroidManifest.xml:34:9-36:40
 	android:exported
 		ADDED from /Users/kanishkk/AndroidStudioProjects/ManageIt/app/src/main/AndroidManifest.xml:36:13-37
 	android:name
-		ADDED from /Users/kanishkk/AndroidStudioProjects/ManageIt/app/src/main/AndroidManifest.xml:35:13-52
-activity#com.example.manageit.activities.SplashActivity
-ADDED from /Users/kanishkk/AndroidStudioProjects/ManageIt/app/src/main/AndroidManifest.xml:38:9-46:20
+		ADDED from /Users/kanishkk/AndroidStudioProjects/ManageIt/app/src/main/AndroidManifest.xml:35:13-68
+activity#com.example.manageit.activities.GroupDashboardActivity
+ADDED from /Users/kanishkk/AndroidStudioProjects/ManageIt/app/src/main/AndroidManifest.xml:38:9-40:40
 	android:exported
-		ADDED from /Users/kanishkk/AndroidStudioProjects/ManageIt/app/src/main/AndroidManifest.xml:40:13-36
+		ADDED from /Users/kanishkk/AndroidStudioProjects/ManageIt/app/src/main/AndroidManifest.xml:40:13-37
 	android:name
-		ADDED from /Users/kanishkk/AndroidStudioProjects/ManageIt/app/src/main/AndroidManifest.xml:39:13-54
+		ADDED from /Users/kanishkk/AndroidStudioProjects/ManageIt/app/src/main/AndroidManifest.xml:39:13-62
+activity#com.example.manageit.activities.AuthActivity
+ADDED from /Users/kanishkk/AndroidStudioProjects/ManageIt/app/src/main/AndroidManifest.xml:42:9-44:40
+	android:exported
+		ADDED from /Users/kanishkk/AndroidStudioProjects/ManageIt/app/src/main/AndroidManifest.xml:44:13-37
+	android:name
+		ADDED from /Users/kanishkk/AndroidStudioProjects/ManageIt/app/src/main/AndroidManifest.xml:43:13-52
+activity#com.example.manageit.activities.SplashActivity
+ADDED from /Users/kanishkk/AndroidStudioProjects/ManageIt/app/src/main/AndroidManifest.xml:46:9-54:20
+	android:exported
+		ADDED from /Users/kanishkk/AndroidStudioProjects/ManageIt/app/src/main/AndroidManifest.xml:48:13-36
+	android:name
+		ADDED from /Users/kanishkk/AndroidStudioProjects/ManageIt/app/src/main/AndroidManifest.xml:47:13-54
 intent-filter#action:name:android.intent.action.MAIN+category:name:android.intent.category.LAUNCHER
-ADDED from /Users/kanishkk/AndroidStudioProjects/ManageIt/app/src/main/AndroidManifest.xml:41:13-45:29
+ADDED from /Users/kanishkk/AndroidStudioProjects/ManageIt/app/src/main/AndroidManifest.xml:49:13-53:29
 action#android.intent.action.MAIN
-ADDED from /Users/kanishkk/AndroidStudioProjects/ManageIt/app/src/main/AndroidManifest.xml:42:17-69
+ADDED from /Users/kanishkk/AndroidStudioProjects/ManageIt/app/src/main/AndroidManifest.xml:50:17-69
 	android:name
-		ADDED from /Users/kanishkk/AndroidStudioProjects/ManageIt/app/src/main/AndroidManifest.xml:42:25-66
+		ADDED from /Users/kanishkk/AndroidStudioProjects/ManageIt/app/src/main/AndroidManifest.xml:50:25-66
 category#android.intent.category.LAUNCHER
-ADDED from /Users/kanishkk/AndroidStudioProjects/ManageIt/app/src/main/AndroidManifest.xml:44:17-77
+ADDED from /Users/kanishkk/AndroidStudioProjects/ManageIt/app/src/main/AndroidManifest.xml:52:17-77
 	android:name
-		ADDED from /Users/kanishkk/AndroidStudioProjects/ManageIt/app/src/main/AndroidManifest.xml:44:27-74
+		ADDED from /Users/kanishkk/AndroidStudioProjects/ManageIt/app/src/main/AndroidManifest.xml:52:27-74
 uses-sdk
 INJECTED from /Users/kanishkk/AndroidStudioProjects/ManageIt/app/src/main/AndroidManifest.xml reason: use-sdk injection requested
 INJECTED from /Users/kanishkk/AndroidStudioProjects/ManageIt/app/src/main/AndroidManifest.xml

@@ -84,74 +84,210 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
             android:background="@drawable/bg_surface_card"
-            android:orientation="vertical"
-            android:padding="18dp">
+            android:orientation="horizontal"
+            android:padding="6dp">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Your Membership"
-                android:textColor="@color/on_surface"
-                android:textSize="20sp"
+            <Button
+                android:id="@+id/btn_tab_overview"
+                android:layout_width="0dp"
+                android:layout_height="48dp"
+                android:layout_weight="1"
+                android:background="@drawable/bg_button_primary"
+                android:text="Overview"
+                android:textAllCaps="false"
+                android:textColor="@color/on_primary"
+                android:textSize="15sp"
                 android:textStyle="bold" />
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:text="This dashboard is scoped to the selected group only. Your role here does not affect any other student group."
-                android:textColor="@color/on_surface_variant"
-                android:textSize="15sp" />
+            <Button
+                android:id="@+id/btn_tab_news"
+                android:layout_width="0dp"
+                android:layout_height="48dp"
+                android:layout_marginStart="8dp"
+                android:layout_weight="1"
+                android:background="@drawable/bg_button_secondary"
+                android:text="News"
+                android:textAllCaps="false"
+                android:textColor="@color/on_surface"
+                android:textSize="15sp"
+                android:textStyle="bold" />
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/layout_dashboard_overview"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:background="@drawable/bg_surface_card"
-            android:orientation="vertical"
-            android:padding="18dp">
+            android:orientation="vertical">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Tasks"
-                android:textColor="@color/on_surface"
-                android:textSize="20sp"
-                android:textStyle="bold" />
-
-            <TextView
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="12dp"
-                android:text="1. View group tasks assigned through membership-driven workflows.\n2. Track due dates for this group only.\n3. No cross-group role escalation."
-                android:textColor="@color/on_surface_variant"
-                android:textSize="15sp" />
+                android:layout_marginTop="16dp"
+                android:background="@drawable/bg_surface_card"
+                android:orientation="vertical"
+                android:padding="18dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Your Membership"
+                    android:textColor="@color/on_surface"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:text="This dashboard is scoped to the selected group only. Your role here does not affect any other student group."
+                    android:textColor="@color/on_surface_variant"
+                    android:textSize="15sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/bg_surface_card"
+                android:orientation="vertical"
+                android:padding="18dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Group Tasks"
+                    android:textColor="@color/on_surface"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:text="1. View group tasks assigned through membership-driven workflows.\n2. Track due dates for this group only.\n3. No cross-group role escalation."
+                    android:textColor="@color/on_surface_variant"
+                    android:textSize="15sp" />
+
+                <Button
+                    android:id="@+id/btn_open_user_group_tasks"
+                    android:layout_width="match_parent"
+                    android:layout_height="52dp"
+                    android:layout_marginTop="16dp"
+                    android:background="@drawable/bg_button_primary"
+                    android:text="View Group Tasks"
+                    android:textAllCaps="false"
+                    android:textColor="@color/on_primary"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/bg_surface_card"
+                android:orientation="vertical"
+                android:padding="18dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Group Announcements"
+                    android:textColor="@color/on_surface"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:text="Announcements belong to the selected group and can be read here after group membership is established."
+                    android:textColor="@color/on_surface_variant"
+                    android:textSize="15sp" />
+
+                <Button
+                    android:id="@+id/btn_open_user_group_announcements"
+                    android:layout_width="match_parent"
+                    android:layout_height="52dp"
+                    android:layout_marginTop="16dp"
+                    android:background="@drawable/bg_button_primary"
+                    android:text="View Group Announcements"
+                    android:textAllCaps="false"
+                    android:textColor="@color/on_primary"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/layout_dashboard_news"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:background="@drawable/bg_surface_card"
             android:orientation="vertical"
-            android:padding="18dp">
+            android:visibility="gone">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Announcements"
-                android:textColor="@color/on_surface"
-                android:textSize="20sp"
-                android:textStyle="bold" />
-
-            <TextView
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="12dp"
-                android:text="Announcements belong to the selected group and can be read here after group membership is established."
-                android:textColor="@color/on_surface_variant"
-                android:textSize="15sp" />
+                android:background="@drawable/bg_surface_card"
+                android:orientation="vertical"
+                android:padding="18dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Finance News"
+                    android:textColor="@color/on_surface"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/tv_news_description"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:text="Relevant Financial Times headlines for this group."
+                    android:textColor="@color/on_surface_variant"
+                    android:textSize="15sp" />
+
+                <ProgressBar
+                    android:id="@+id/progress_ft_news"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="26dp" />
+
+                <TextView
+                    android:id="@+id/tv_ft_news_message"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:textAlignment="center"
+                    android:textColor="@color/on_surface_variant"
+                    android:textSize="15sp"
+                    android:visibility="gone" />
+
+                <Button
+                    android:id="@+id/btn_retry_ft_news"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_marginTop="16dp"
+                    android:background="@drawable/bg_button_primary"
+                    android:text="Retry News"
+                    android:textAllCaps="false"
+                    android:textColor="@color/on_primary"
+                    android:textSize="15sp"
+                    android:textStyle="bold"
+                    android:visibility="gone" />
+
+                <LinearLayout
+                    android:id="@+id/layout_ft_news_articles"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:orientation="vertical" />
+            </LinearLayout>
         </LinearLayout>
     </LinearLayout>
 </ScrollView>
