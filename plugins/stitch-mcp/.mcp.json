@@ -1,0 +1,14 @@
+{
+  "mcpServers": {
+    "stitch": {
+      "command": "node",
+      "args": [
+        "./scripts/start-stitch-mcp.mjs"
+      ],
+      "env": {
+        "STITCH_API_KEY": "$STITCH_API_KEY",
+        "STITCH_MCP_URL": "$STITCH_MCP_URL"
+      }
+    }
+  }
+}

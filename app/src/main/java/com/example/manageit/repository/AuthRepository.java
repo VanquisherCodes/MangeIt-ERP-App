@@ -2,6 +2,7 @@ package com.example.manageit.repository;
 
 import com.example.manageit.models.User;
 import com.example.manageit.network.ApiClient;
+import com.example.manageit.utils.PasswordUtils;
 
 import java.io.IOException;
 import java.util.List;
@@ -27,8 +28,66 @@ public class AuthRepository {
     }
 
     public void login(String email, String password, RepositoryCallback<User> callback) {
+        String normalizedEmail = email.trim();
+        String hashedPassword = PasswordUtils.sha256(password);
+
+        loginWithPassword(normalizedEmail, hashedPassword, new RepositoryCallback<User>() {
+            @Override
+            public void onSuccess(User result) {
+                callback.onSuccess(result);
+            }
+
+            @Override
+            public void onError(String message) {
+                // Backward-compatible fallback for accounts stored before password hashing was added.
+                loginWithPassword(normalizedEmail, password, callback);
+            }
+        });
+    }
+
+    public void register(
+            String firstName,
+            String lastName,
+            String dateOfBirth,
+            String email,
+            String password,
+            RepositoryCallback<User> callback
+    ) {
+        String normalizedEmail = email.trim();
+        String hashedPassword = PasswordUtils.sha256(password);
+
         apiClient.getApiService()
-                .login(email.trim(), password)
+                .register(
+                        firstName.trim(),
+                        lastName.trim(),
+                        dateOfBirth.trim(),
+                        normalizedEmail,
+                        hashedPassword
+                )
+                .enqueue(new Callback<ResponseBody>() {
+                    @Override
+                    public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                        if (!response.isSuccessful()) {
+                            callback.onError(extractErrorMessage(
+                                    response,
+                                    "Registration failed. Check whether the email already exists."
+                            ));
+                            return;
+                        }
+
+                        loginWithPassword(normalizedEmail, hashedPassword, callback);
+                    }
+
+                    @Override
+                    public void onFailure(Call<ResponseBody> call, Throwable throwable) {
+                        callback.onError("Couldn't reach the server. Check your connection and try again.");
+                    }
+                });
+    }
+
+    private void loginWithPassword(String email, String passwordValue, RepositoryCallback<User> callback) {
+        apiClient.getApiService()
+                .login(email, passwordValue)
                 .enqueue(new Callback<List<User>>() {
                     @Override
                     public void onResponse(Call<List<User>> call, Response<List<User>> response) {
@@ -48,43 +107,6 @@ public class AuthRepository {
 
                     @Override
                     public void onFailure(Call<List<User>> call, Throwable throwable) {
-                        callback.onError("Couldn't reach the server. Check your connection and try again.");
-                    }
-                });
-    }
-
-    public void register(
-            String firstName,
-            String lastName,
-            String dateOfBirth,
-            String email,
-            String password,
-            RepositoryCallback<User> callback
-    ) {
-        apiClient.getApiService()
-                .register(
-                        firstName.trim(),
-                        lastName.trim(),
-                        dateOfBirth.trim(),
-                        email.trim(),
-                        password
-                )
-                .enqueue(new Callback<ResponseBody>() {
-                    @Override
-                    public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-                        if (!response.isSuccessful()) {
-                            callback.onError(extractErrorMessage(
-                                    response,
-                                    "Registration failed. Check whether the email already exists."
-                            ));
-                            return;
-                        }
-
-                        login(email, password, callback);
-                    }
-
-                    @Override
-                    public void onFailure(Call<ResponseBody> call, Throwable throwable) {
                         callback.onError("Couldn't reach the server. Check your connection and try again.");
                     }
                 });

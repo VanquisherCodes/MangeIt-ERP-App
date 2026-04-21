@@ -1,0 +1,44 @@
+{
+  "name": "stitch-mcp",
+  "version": "0.1.0",
+  "description": "Expose Google Stitch MCP tools inside Codex.",
+  "author": {
+    "name": "Google Labs Code",
+    "url": "https://github.com/google-labs-code"
+  },
+  "homepage": "https://stitch.withgoogle.com/docs/mcp/setup",
+  "repository": "https://github.com/google-labs-code/stitch-sdk",
+  "license": "Apache-2.0",
+  "keywords": [
+    "stitch",
+    "google",
+    "mcp",
+    "ui-design",
+    "design-to-code"
+  ],
+  "mcpServers": "./.mcp.json",
+  "interface": {
+    "displayName": "Stitch",
+    "shortDescription": "Generate and refine UI screens with Google Stitch",
+    "longDescription": "Connect Codex to Google Stitch so you can create projects, generate screens, edit layouts, and fetch exported HTML or screenshots through MCP tools.",
+    "developerName": "Google Labs Code",
+    "category": "Design",
+    "capabilities": [
+      "Interactive",
+      "Read",
+      "Write"
+    ],
+    "websiteURL": "https://stitch.withgoogle.com/",
+    "privacyPolicyURL": "https://policies.google.com/privacy",
+    "termsOfServiceURL": "https://policies.google.com/terms",
+    "defaultPrompt": [
+      "Create a Stitch project for this app",
+      "Generate a mobile settings screen in Stitch",
+      "Edit this Stitch screen to match our branding"
+    ],
+    "brandColor": "#4285F4",
+    "composerIcon": "./assets/stitch.svg",
+    "logo": "./assets/stitch.svg",
+    "screenshots": []
+  }
+}

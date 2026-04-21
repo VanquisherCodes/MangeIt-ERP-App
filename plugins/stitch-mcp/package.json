@@ -1,0 +1,18 @@
+{
+  "name": "stitch-mcp-plugin",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "description": "Local launcher for the official Google Stitch MCP proxy.",
+  "engines": {
+    "node": ">=18"
+  },
+  "scripts": {
+    "mcp": "node ./scripts/start-stitch-mcp.mjs",
+    "check": "node --check ./scripts/start-stitch-mcp.mjs"
+  },
+  "dependencies": {
+    "@google/stitch-sdk": "^0.1.0",
+    "@modelcontextprotocol/sdk": "^1.23.0"
+  }
+}
