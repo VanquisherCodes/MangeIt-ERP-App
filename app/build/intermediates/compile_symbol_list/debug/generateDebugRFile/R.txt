@@ -79,6 +79,7 @@ int id btn_retry_memberships 0x0
 int id btn_tab_news 0x0
 int id btn_tab_overview 0x0
 int id btn_toggle_member_role 0x0
+int id btn_update_group_task_status 0x0
 int id et_group_announcement_message 0x0
 int id et_group_announcement_title 0x0
 int id et_group_task_description 0x0
@@ -133,6 +134,7 @@ int id tv_group_description 0x0
 int id tv_group_name 0x0
 int id tv_group_role_hint 0x0
 int id tv_group_status 0x0
+int id tv_group_task_assigned_by 0x0
 int id tv_group_task_assigned_to 0x0
 int id tv_group_task_description 0x0
 int id tv_group_task_due_date 0x0

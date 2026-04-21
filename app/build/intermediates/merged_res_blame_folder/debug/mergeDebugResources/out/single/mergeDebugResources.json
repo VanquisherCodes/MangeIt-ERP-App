@@ -4,12 +4,12 @@
         "source": "/Users/kanishkk/.gradle/daemon/9.3.1/com.example.manageit.app-main-32:/drawable/bg_top_bar.xml"
     },
     {
-        "merged": "/Users/kanishkk/.gradle/daemon/9.3.1/com.example.manageit.app-debug-30:/layout_fragment_dashboard_admin.xml.flat",
-        "source": "/Users/kanishkk/.gradle/daemon/9.3.1/com.example.manageit.app-main-32:/layout/fragment_dashboard_admin.xml"
-    },
-    {
         "merged": "/Users/kanishkk/.gradle/daemon/9.3.1/com.example.manageit.app-debug-30:/drawable_bg_surface_card_low.xml.flat",
         "source": "/Users/kanishkk/.gradle/daemon/9.3.1/com.example.manageit.app-main-32:/drawable/bg_surface_card_low.xml"
+    },
+    {
+        "merged": "/Users/kanishkk/.gradle/daemon/9.3.1/com.example.manageit.app-debug-30:/layout_fragment_dashboard_admin.xml.flat",
+        "source": "/Users/kanishkk/.gradle/daemon/9.3.1/com.example.manageit.app-main-32:/layout/fragment_dashboard_admin.xml"
     },
     {
         "merged": "/Users/kanishkk/.gradle/daemon/9.3.1/com.example.manageit.app-debug-30:/drawable_bg_surface_card_high.xml.flat",
@@ -24,24 +24,20 @@
         "source": "/Users/kanishkk/.gradle/daemon/9.3.1/com.example.manageit.app-main-32:/layout/fragment_profile.xml"
     },
     {
-        "merged": "com.example.manageit.app-debug-30:/layout_item_group_announcement.xml.flat",
-        "source": "com.example.manageit.app-main-32:/layout/item_group_announcement.xml"
-    },
-    {
         "merged": "/Users/kanishkk/.gradle/daemon/9.3.1/com.example.manageit.app-debug-30:/drawable_bg_calendar_marker_tertiary.xml.flat",
         "source": "/Users/kanishkk/.gradle/daemon/9.3.1/com.example.manageit.app-main-32:/drawable/bg_calendar_marker_tertiary.xml"
     },
     {
-        "merged": "/Users/kanishkk/.gradle/daemon/9.3.1/com.example.manageit.app-debug-30:/layout_fragment_register.xml.flat",
-        "source": "/Users/kanishkk/.gradle/daemon/9.3.1/com.example.manageit.app-main-32:/layout/fragment_register.xml"
+        "merged": "/Users/kanishkk/.gradle/daemon/9.3.1/com.example.manageit.app-debug-30:/drawable_bg_metric_card.xml.flat",
+        "source": "/Users/kanishkk/.gradle/daemon/9.3.1/com.example.manageit.app-main-32:/drawable/bg_metric_card.xml"
     },
     {
         "merged": "/Users/kanishkk/.gradle/daemon/9.3.1/com.example.manageit.app-debug-30:/drawable_bg_avatar_secondary.xml.flat",
         "source": "/Users/kanishkk/.gradle/daemon/9.3.1/com.example.manageit.app-main-32:/drawable/bg_avatar_secondary.xml"
     },
     {
-        "merged": "/Users/kanishkk/.gradle/daemon/9.3.1/com.example.manageit.app-debug-30:/drawable_bg_metric_card.xml.flat",
-        "source": "/Users/kanishkk/.gradle/daemon/9.3.1/com.example.manageit.app-main-32:/drawable/bg_metric_card.xml"
+        "merged": "/Users/kanishkk/.gradle/daemon/9.3.1/com.example.manageit.app-debug-30:/layout_fragment_register.xml.flat",
+        "source": "/Users/kanishkk/.gradle/daemon/9.3.1/com.example.manageit.app-main-32:/layout/fragment_register.xml"
     },
     {
         "merged": "/Users/kanishkk/.gradle/daemon/9.3.1/com.example.manageit.app-debug-30:/mipmap-mdpi_ic_launcher_round.webp.flat",
@@ -72,20 +68,12 @@
         "source": "/Users/kanishkk/.gradle/daemon/9.3.1/com.example.manageit.app-main-32:/layout/item_ft_news_article.xml"
     },
     {
-        "merged": "com.example.manageit.app-debug-30:/layout_fragment_dashboard_admin.xml.flat",
-        "source": "com.example.manageit.app-main-32:/layout/fragment_dashboard_admin.xml"
-    },
-    {
         "merged": "/Users/kanishkk/.gradle/daemon/9.3.1/com.example.manageit.app-debug-30:/drawable_bg_input_field.xml.flat",
         "source": "/Users/kanishkk/.gradle/daemon/9.3.1/com.example.manageit.app-main-32:/drawable/bg_input_field.xml"
     },
     {
         "merged": "/Users/kanishkk/.gradle/daemon/9.3.1/com.example.manageit.app-debug-30:/drawable_bg_avatar_primary.xml.flat",
         "source": "/Users/kanishkk/.gradle/daemon/9.3.1/com.example.manageit.app-main-32:/drawable/bg_avatar_primary.xml"
-    },
-    {
-        "merged": "com.example.manageit.app-debug-30:/layout_fragment_dashboard_user.xml.flat",
-        "source": "com.example.manageit.app-main-32:/layout/fragment_dashboard_user.xml"
     },
     {
         "merged": "/Users/kanishkk/.gradle/daemon/9.3.1/com.example.manageit.app-debug-30:/drawable_bg_glass_panel.xml.flat",
@@ -98,6 +86,10 @@
     {
         "merged": "/Users/kanishkk/.gradle/daemon/9.3.1/com.example.manageit.app-debug-30:/xml_data_extraction_rules.xml.flat",
         "source": "/Users/kanishkk/.gradle/daemon/9.3.1/com.example.manageit.app-main-32:/xml/data_extraction_rules.xml"
+    },
+    {
+        "merged": "/Users/kanishkk/.gradle/daemon/9.3.1/com.example.manageit.app-debug-30:/layout_activity_group_announcements.xml.flat",
+        "source": "/Users/kanishkk/.gradle/daemon/9.3.1/com.example.manageit.app-main-32:/layout/activity_group_announcements.xml"
     },
     {
         "merged": "/Users/kanishkk/.gradle/daemon/9.3.1/com.example.manageit.app-debug-30:/mipmap-xxhdpi_ic_launcher.webp.flat",
@@ -140,8 +132,8 @@
         "source": "/Users/kanishkk/.gradle/daemon/9.3.1/com.example.manageit.app-main-32:/mipmap-hdpi/ic_launcher_round.webp"
     },
     {
-        "merged": "com.example.manageit.app-debug-30:/layout_activity_group_announcements.xml.flat",
-        "source": "com.example.manageit.app-main-32:/layout/activity_group_announcements.xml"
+        "merged": "/Users/kanishkk/.gradle/daemon/9.3.1/com.example.manageit.app-debug-30:/layout_item_group_task.xml.flat",
+        "source": "/Users/kanishkk/.gradle/daemon/9.3.1/com.example.manageit.app-main-32:/layout/item_group_task.xml"
     },
     {
         "merged": "/Users/kanishkk/.gradle/daemon/9.3.1/com.example.manageit.app-debug-30:/layout_activity_auth.xml.flat",
@@ -200,16 +192,20 @@
         "source": "/Users/kanishkk/.gradle/daemon/9.3.1/com.example.manageit.app-main-32:/layout/item_group.xml"
     },
     {
-        "merged": "com.example.manageit.app-debug-30:/layout_activity_group_tasks.xml.flat",
-        "source": "com.example.manageit.app-main-32:/layout/activity_group_tasks.xml"
-    },
-    {
         "merged": "/Users/kanishkk/.gradle/daemon/9.3.1/com.example.manageit.app-debug-30:/mipmap-xxxhdpi_ic_launcher.webp.flat",
         "source": "/Users/kanishkk/.gradle/daemon/9.3.1/com.example.manageit.app-main-32:/mipmap-xxxhdpi/ic_launcher.webp"
     },
     {
         "merged": "/Users/kanishkk/.gradle/daemon/9.3.1/com.example.manageit.app-debug-30:/drawable_bg_chip_primary.xml.flat",
         "source": "/Users/kanishkk/.gradle/daemon/9.3.1/com.example.manageit.app-main-32:/drawable/bg_chip_primary.xml"
+    },
+    {
+        "merged": "/Users/kanishkk/.gradle/daemon/9.3.1/com.example.manageit.app-debug-30:/layout_activity_group_tasks.xml.flat",
+        "source": "/Users/kanishkk/.gradle/daemon/9.3.1/com.example.manageit.app-main-32:/layout/activity_group_tasks.xml"
+    },
+    {
+        "merged": "/Users/kanishkk/.gradle/daemon/9.3.1/com.example.manageit.app-debug-30:/layout_item_group_announcement.xml.flat",
+        "source": "/Users/kanishkk/.gradle/daemon/9.3.1/com.example.manageit.app-main-32:/layout/item_group_announcement.xml"
     },
     {
         "merged": "/Users/kanishkk/.gradle/daemon/9.3.1/com.example.manageit.app-debug-30:/layout_activity_group_dashboard.xml.flat",

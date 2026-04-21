@@ -62,6 +62,12 @@ public interface ApiService {
             @Path("assignedby") String assignedByMembershipId
     );
 
+    @GET("UpdateTaskStatus/{taskid}/{status}")
+    Call<ResponseBody> updateTaskStatus(
+            @Path("taskid") String taskId,
+            @Path("status") String status
+    );
+
     @GET("GetGroupAnnouncements/{groupid}")
     Call<List<Announcement>> getGroupAnnouncements(@Path("groupid") String groupId);
 

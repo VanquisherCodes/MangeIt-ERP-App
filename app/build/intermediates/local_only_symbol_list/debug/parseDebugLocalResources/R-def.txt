@@ -81,6 +81,7 @@ id btn_retry_memberships
 id btn_tab_news
 id btn_tab_overview
 id btn_toggle_member_role
+id btn_update_group_task_status
 id et_group_announcement_message
 id et_group_announcement_title
 id et_group_task_description
@@ -135,6 +136,7 @@ id tv_group_description
 id tv_group_name
 id tv_group_role_hint
 id tv_group_status
+id tv_group_task_assigned_by
 id tv_group_task_assigned_to
 id tv_group_task_description
 id tv_group_task_due_date

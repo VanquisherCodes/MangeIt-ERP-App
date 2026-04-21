@@ -54,6 +54,15 @@
         android:textSize="13sp" />
 
     <TextView
+        android:id="@+id/tv_group_task_assigned_by"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="6dp"
+        android:text="Assigned by: Admin"
+        android:textColor="@color/on_surface_variant"
+        android:textSize="13sp" />
+
+    <TextView
         android:id="@+id/tv_group_task_assigned_to"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -61,4 +70,17 @@
         android:text="Assigned to: Member"
         android:textColor="@color/on_surface_variant"
         android:textSize="13sp" />
+
+    <Button
+        android:id="@+id/btn_update_group_task_status"
+        android:layout_width="match_parent"
+        android:layout_height="52dp"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/bg_button_primary"
+        android:text="Update Task Status"
+        android:textAllCaps="false"
+        android:textColor="@color/on_primary"
+        android:textSize="15sp"
+        android:textStyle="bold"
+        android:visibility="gone" />
 </LinearLayout>

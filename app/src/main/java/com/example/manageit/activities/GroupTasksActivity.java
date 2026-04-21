@@ -26,6 +26,7 @@ import com.example.manageit.repository.GroupMembershipRepository;
 import com.example.manageit.repository.GroupTasksRepository;
 import com.example.manageit.repository.RepositoryCallback;
 import com.google.android.material.appbar.MaterialToolbar;
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
@@ -91,13 +92,14 @@ public class GroupTasksActivity extends AppCompatActivity {
 
         TextView subtitle = findViewById(R.id.tv_group_tasks_subtitle);
         subtitle.setText(role == Role.ADMIN
-                ? "Create and review tasks for this group."
-                : "View the tasks created for this group.");
+                ? "Create tasks for this group and oversee progress."
+                : "View group tasks and update the ones assigned to you.");
     }
 
     private void bindList() {
         ListView listView = findViewById(R.id.lv_group_tasks);
-        adapter = new GroupTaskAdapter(this);
+        adapter = new GroupTaskAdapter(this, this::showStatusDialog);
+        adapter.setCurrentRole(role);
         listView.setAdapter(adapter);
 
         Button retryButton = findViewById(R.id.btn_retry_group_tasks);
@@ -113,26 +115,23 @@ public class GroupTasksActivity extends AppCompatActivity {
     }
 
     private void loadMembershipAndContent(String userId) {
-        if (role == Role.ADMIN) {
-            groupMembershipRepository.getMembership(userId, groupId, new RepositoryCallback<GroupMembership>() {
-                @Override
-                public void onSuccess(GroupMembership result) {
-                    currentMembership = result;
-                    loadMembers();
-                    loadTasks();
-                }
+        groupMembershipRepository.getMembership(userId, groupId, new RepositoryCallback<GroupMembership>() {
+            @Override
+            public void onSuccess(GroupMembership result) {
+                currentMembership = result;
+                adapter.setCurrentMembershipId(result == null ? "" : result.getMembershipId());
+                loadMembers();
+                loadTasks();
+            }
 
-                @Override
-                public void onError(String message) {
-                    Toast.makeText(GroupTasksActivity.this, message, Toast.LENGTH_LONG).show();
-                    loadMembers();
-                    loadTasks();
-                }
-            });
-        } else {
-            loadMembers();
-            loadTasks();
-        }
+            @Override
+            public void onError(String message) {
+                Toast.makeText(GroupTasksActivity.this, message, Toast.LENGTH_LONG).show();
+                adapter.setCurrentMembershipId("");
+                loadMembers();
+                loadTasks();
+            }
+        });
     }
 
     private void loadMembers() {
@@ -270,6 +269,41 @@ public class GroupTasksActivity extends AppCompatActivity {
                     }
                 }
         );
+    }
+
+    private void showStatusDialog(Task task) {
+        String[] statuses = {"pending", "in_progress", "completed", "cancelled"};
+        new MaterialAlertDialogBuilder(this)
+                .setTitle(task.getTitle())
+                .setMessage(role == Role.ADMIN
+                        ? "Choose the new status for this task."
+                        : "Choose the new status for your assigned task.")
+                .setItems(statuses, (dialog, which) -> updateTaskStatus(task, statuses[which]))
+                .setNegativeButton("Cancel", null)
+                .show();
+    }
+
+    private void updateTaskStatus(Task task, String status) {
+        groupTasksRepository.updateTaskStatus(task.getId(), status, new RepositoryCallback<Void>() {
+            @Override
+            public void onSuccess(Void result) {
+                if (isFinishing() || isDestroyed()) {
+                    return;
+                }
+
+                Toast.makeText(GroupTasksActivity.this, "Task status updated.", Toast.LENGTH_SHORT).show();
+                loadTasks();
+            }
+
+            @Override
+            public void onError(String message) {
+                if (isFinishing() || isDestroyed()) {
+                    return;
+                }
+
+                Toast.makeText(GroupTasksActivity.this, message, Toast.LENGTH_LONG).show();
+            }
+        });
     }
 
     private void setLoadingState(boolean loading, String message) {

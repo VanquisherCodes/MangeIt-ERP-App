@@ -76,4 +76,23 @@ public class GroupTasksRepository {
                     }
                 });
     }
+
+    public void updateTaskStatus(String taskId, String status, RepositoryCallback<Void> callback) {
+        apiClient.getApiService().updateTaskStatus(taskId, status).enqueue(new Callback<ResponseBody>() {
+            @Override
+            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                if (!response.isSuccessful()) {
+                    callback.onError("Couldn't update the task status.");
+                    return;
+                }
+
+                callback.onSuccess(null);
+            }
+
+            @Override
+            public void onFailure(Call<ResponseBody> call, Throwable throwable) {
+                callback.onError("Couldn't reach the server while updating the task status.");
+            }
+        });
+    }
 }
