@@ -27,7 +27,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:text="Registration only captures the user identity. Group roles are chosen later during enrollment."
+            android:text="Registration only captures the user identity. Group access is requested later, and admin roles are assigned from the dashboard."
             android:textAlignment="center"
             android:textColor="@color/on_surface_variant"
             android:textSize="15sp" />

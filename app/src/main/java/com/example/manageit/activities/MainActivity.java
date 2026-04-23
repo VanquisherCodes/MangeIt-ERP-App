@@ -13,9 +13,11 @@ import com.example.manageit.R;
 import com.example.manageit.adapters.GroupListAdapter;
 import com.example.manageit.managers.SessionManager;
 import com.example.manageit.models.GroupMembership;
+import com.example.manageit.models.Request;
 import com.example.manageit.models.Role;
 import com.example.manageit.models.StudentGroup;
 import com.example.manageit.models.User;
+import com.example.manageit.repository.AdminAccessRequestRepository;
 import com.example.manageit.repository.GroupMembershipRepository;
 import com.example.manageit.repository.RepositoryCallback;
 import com.example.manageit.repository.StudentGroupRepository;
@@ -32,6 +34,7 @@ public class MainActivity extends AppCompatActivity {
     private SessionManager sessionManager;
     private GroupMembershipRepository membershipRepository;
     private StudentGroupRepository studentGroupRepository;
+    private AdminAccessRequestRepository adminAccessRequestRepository;
     private GroupListAdapter groupListAdapter;
     private User currentUser;
 
@@ -58,6 +61,7 @@ public class MainActivity extends AppCompatActivity {
 
         membershipRepository = new GroupMembershipRepository();
         studentGroupRepository = new StudentGroupRepository();
+        adminAccessRequestRepository = new AdminAccessRequestRepository(this);
 
         bindHeader();
         bindGroupList();
@@ -77,17 +81,8 @@ public class MainActivity extends AppCompatActivity {
         ListView listView = findViewById(R.id.lv_groups);
         groupListAdapter = new GroupListAdapter(this, new GroupListAdapter.Listener() {
             @Override
-            public void onJoinAsUser(StudentGroup group) {
-                enrollAsUser(group);
-            }
-
-            @Override
-            public void onAdminAccessInfo(StudentGroup group) {
-                new MaterialAlertDialogBuilder(MainActivity.this)
-                        .setTitle("Admin Approval Required")
-                        .setMessage("Admin approval is required for " + group.getGroupName() + ". Contact an admin to get access.")
-                        .setPositiveButton("OK", null)
-                        .show();
+            public void onRequestUserEnrollment(StudentGroup group) {
+                requestUserEnrollment(group);
             }
         });
         listView.setAdapter(groupListAdapter);
@@ -112,8 +107,12 @@ public class MainActivity extends AppCompatActivity {
                 }
 
                 groupListAdapter.submitGroups(result);
+                if (result == null) {
+                    return;
+                }
                 for (StudentGroup group : result) {
                     resolveMembership(group);
+                    resolveEnrollmentRequest(group);
                 }
             }
 
@@ -148,6 +147,31 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+    private void resolveEnrollmentRequest(StudentGroup group) {
+        groupListAdapter.markEnrollmentRequestLoading(group.getGroupId());
+        adminAccessRequestRepository.getUserAdminAccessRequest(
+                currentUser.getId(),
+                group.getGroupId(),
+                new RepositoryCallback<Request>() {
+                    @Override
+                    public void onSuccess(Request result) {
+                        if (isFinishing() || isDestroyed()) {
+                            return;
+                        }
+                        groupListAdapter.updateEnrollmentRequest(group.getGroupId(), result);
+                    }
+
+                    @Override
+                    public void onError(String message) {
+                        if (isFinishing() || isDestroyed()) {
+                            return;
+                        }
+                        groupListAdapter.markEnrollmentRequestError(group.getGroupId());
+                    }
+                }
+        );
+    }
+
     private void handleGroupTap(StudentGroup group) {
         if (groupListAdapter.isBusy(group.getGroupId())) {
             Toast.makeText(this, "Please wait while we finish this request.", Toast.LENGTH_SHORT).show();
@@ -156,7 +180,8 @@ public class MainActivity extends AppCompatActivity {
 
         if (groupListAdapter.hasMembershipError(group.getGroupId())) {
             resolveMembership(group);
-            Toast.makeText(this, "Retrying membership lookup...", Toast.LENGTH_SHORT).show();
+            resolveEnrollmentRequest(group);
+            Toast.makeText(this, "Retrying group access lookup...", Toast.LENGTH_SHORT).show();
             return;
         }
 
@@ -170,10 +195,27 @@ public class MainActivity extends AppCompatActivity {
             openDashboard(group, membership.getRoleInGroup());
             return;
         }
-        Toast.makeText(this, "Tap 'Join As User' to enter this group. Admin access is granted manually.", Toast.LENGTH_LONG).show();
+
+        if (groupListAdapter.hasPendingEnrollmentRequest(group.getGroupId())) {
+            Toast.makeText(this, "Your enrollment request is pending admin approval.", Toast.LENGTH_LONG).show();
+            return;
+        }
+
+        if (groupListAdapter.hasApprovedEnrollmentRequest(group.getGroupId())) {
+            resolveMembership(group);
+            Toast.makeText(this, "Enrollment approved. Syncing your membership...", Toast.LENGTH_LONG).show();
+            return;
+        }
+
+        if (groupListAdapter.hasRejectedEnrollmentRequest(group.getGroupId())) {
+            Toast.makeText(this, "Your enrollment request was rejected. You can submit again.", Toast.LENGTH_LONG).show();
+            return;
+        }
+
+        Toast.makeText(this, "Tap 'Join As User' to request access to this group.", Toast.LENGTH_LONG).show();
     }
 
-    private void enrollAsUser(StudentGroup group) {
+    private void requestUserEnrollment(StudentGroup group) {
         if (groupListAdapter.isBusy(group.getGroupId())) {
             Toast.makeText(this, "Please wait while we finish this request.", Toast.LENGTH_SHORT).show();
             return;
@@ -181,23 +223,29 @@ public class MainActivity extends AppCompatActivity {
 
         new MaterialAlertDialogBuilder(this)
                 .setTitle(group.getGroupName())
-                .setMessage("Join this group as a user? Admin access is granted manually and cannot be requested here.")
-                .setPositiveButton("Join as user", (dialog, which) -> {
-                    groupListAdapter.markJoining(group.getGroupId());
-                    membershipRepository.createMembership(
+                .setMessage("Send a request to join this group as a standard user?")
+                .setPositiveButton("Request Enrollment", (dialog, which) -> {
+                    groupListAdapter.markEnrollmentRequestSubmitting(group.getGroupId());
+                    adminAccessRequestRepository.createAdminAccessRequest(
                             currentUser.getId(),
                             group.getGroupId(),
-                            Role.USER,
-                            new RepositoryCallback<GroupMembership>() {
+                            "requested_user_enrollment",
+                            currentUser.getFirstName(),
+                            currentUser.getLastName(),
+                            currentUser.getEmail(),
+                            new RepositoryCallback<Request>() {
                                 @Override
-                                public void onSuccess(GroupMembership result) {
+                                public void onSuccess(Request result) {
                                     if (isFinishing() || isDestroyed()) {
                                         return;
                                     }
 
-                                    groupListAdapter.updateMembership(group.getGroupId(), result);
-                                    Role resolvedRole = result == null ? Role.USER : result.getRoleInGroup();
-                                    openDashboard(group, resolvedRole);
+                                    groupListAdapter.updateEnrollmentRequest(group.getGroupId(), result);
+                                    Toast.makeText(
+                                            MainActivity.this,
+                                            "Enrollment request submitted. Wait for admin approval.",
+                                            Toast.LENGTH_SHORT
+                                    ).show();
                                 }
 
                                 @Override
@@ -206,7 +254,7 @@ public class MainActivity extends AppCompatActivity {
                                         return;
                                     }
 
-                                    groupListAdapter.markMembershipError(group.getGroupId());
+                                    groupListAdapter.markEnrollmentRequestError(group.getGroupId());
                                     Toast.makeText(MainActivity.this, message, Toast.LENGTH_LONG).show();
                                 }
                             }

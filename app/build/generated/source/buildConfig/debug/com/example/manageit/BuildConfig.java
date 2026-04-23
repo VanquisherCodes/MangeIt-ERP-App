@@ -12,5 +12,5 @@ public final class BuildConfig {
   // Field from default config.
   public static final String MARKETAUX_API_BASE_URL = "https://api.marketaux.com/";
   // Field from default config.
-  public static final String MARKETAUX_API_TOKEN = "OXlmx751VAdo5pJkg6RFN3FsQApl4dpAGoO1vc52";
+  public static final String MARKETAUX_API_TOKEN = "";
 }

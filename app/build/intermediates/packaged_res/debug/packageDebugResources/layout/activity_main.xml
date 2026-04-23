@@ -79,7 +79,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:text="Groups are fetched from the server. Tap a group to open your dashboard or enroll with a role for that group."
+        android:text="Groups are fetched from the server. Tap a group to open your dashboard or request to join as a standard user."
         android:textColor="@color/on_surface_variant"
         android:textSize="15sp" />
 

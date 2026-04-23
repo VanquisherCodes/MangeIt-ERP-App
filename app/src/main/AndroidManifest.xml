@@ -32,6 +32,10 @@
             android:exported="false" />
 
         <activity
+            android:name=".activities.GroupEventsActivity"
+            android:exported="false" />
+
+        <activity
             android:name=".activities.MembershipManagementActivity"
             android:exported="false" />
 

@@ -164,7 +164,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="12dp"
-                    android:text="1. View group tasks assigned through membership-driven workflows.\n2. Track due dates for this group only.\n3. No cross-group role escalation."
+                    android:text="View your group tasks and track due dates for this group."
                     android:textColor="@color/on_surface_variant"
                     android:textSize="15sp" />
 
@@ -201,7 +201,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="12dp"
-                    android:text="Announcements belong to the selected group and can be read here after group membership is established."
+                    android:text="Read announcements published for this group."
                     android:textColor="@color/on_surface_variant"
                     android:textSize="15sp" />
 
@@ -212,6 +212,43 @@
                     android:layout_marginTop="16dp"
                     android:background="@drawable/bg_button_primary"
                     android:text="View Group Announcements"
+                    android:textAllCaps="false"
+                    android:textColor="@color/on_primary"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/bg_surface_card"
+                android:orientation="vertical"
+                android:padding="18dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Group Events"
+                    android:textColor="@color/on_surface"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:text="View the schedule for upcoming and past group events."
+                    android:textColor="@color/on_surface_variant"
+                    android:textSize="15sp" />
+
+                <Button
+                    android:id="@+id/btn_open_user_group_events"
+                    android:layout_width="match_parent"
+                    android:layout_height="52dp"
+                    android:layout_marginTop="16dp"
+                    android:background="@drawable/bg_button_primary"
+                    android:text="View Group Events"
                     android:textAllCaps="false"
                     android:textColor="@color/on_primary"
                     android:textSize="16sp"
