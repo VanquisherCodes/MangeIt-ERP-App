@@ -1,12 +1,17 @@
 package com.example.manageit.network;
 
 import com.example.manageit.models.Announcement;
+import com.example.manageit.models.Budget;
+import com.example.manageit.models.BudgetCategory;
+import com.example.manageit.models.BudgetOverview;
 import com.example.manageit.models.Event;
+import com.example.manageit.models.Expense;
 import com.example.manageit.models.GroupMember;
 import com.example.manageit.models.GroupMembership;
 import com.example.manageit.models.Request;
 import com.example.manageit.models.StudentGroup;
 import com.example.manageit.models.Task;
+import com.example.manageit.models.TaskBudget;
 import com.example.manageit.models.User;
 
 import java.util.List;
@@ -93,6 +98,120 @@ public interface ApiService {
     Call<ResponseBody> updateMemberRole(
             @Path("membershipid") String membershipId,
             @Path("roleingroup") String roleInGroup
+    );
+
+    @GET("GetActiveGroupBudget/{groupid}")
+    Call<List<Budget>> getActiveGroupBudget(@Path("groupid") String groupId);
+
+    @GET("GetGroupBudgetOverview/{groupid}")
+    Call<List<BudgetOverview>> getGroupBudgetOverview(@Path("groupid") String groupId);
+
+    @GET("GetGroupBudgetCategories/{groupid}")
+    Call<List<BudgetCategory>> getGroupBudgetCategories(@Path("groupid") String groupId);
+
+    @GET("GetGroupTaskBudgets/{groupid}")
+    Call<List<TaskBudget>> getGroupTaskBudgets(@Path("groupid") String groupId);
+
+    @GET("CreateBudget/{groupid}/{name}/{description}/{totalamount}/{currencycode}/{periodstart}/{periodend}/{status}/{createdbymembershipid}/{createdbymembershipid_check}/{groupid_check}/{totalamount_check}/{periodend_check}/{periodstart_check}/{status_check}/{groupid_exists}")
+    Call<ResponseBody> createBudget(
+            @Path("groupid") String groupId,
+            @Path(value = "name", encoded = true) String name,
+            @Path(value = "description", encoded = true) String description,
+            @Path("totalamount") String totalAmount,
+            @Path(value = "currencycode", encoded = true) String currencyCode,
+            @Path("periodstart") String periodStart,
+            @Path("periodend") String periodEnd,
+            @Path(value = "status", encoded = true) String status,
+            @Path("createdbymembershipid") String createdByMembershipId,
+            @Path("createdbymembershipid_check") String createdByMembershipIdCheck,
+            @Path("groupid_check") String groupIdCheck,
+            @Path("totalamount_check") String totalAmountCheck,
+            @Path("periodend_check") String periodEndCheck,
+            @Path("periodstart_check") String periodStartCheck,
+            @Path("status_check") String statusCheck,
+            @Path("groupid_exists") String groupIdExists
+    );
+
+    @GET("CreateBudgetCategory/{budgetid}/{categoryname}/{allocatedamount}/{notes}/{displayorder}/{createdbymembershipid}/{budgetid_check}/{allocatedamount_check_1}/{allocatedamount_check_2}")
+    Call<ResponseBody> createBudgetCategory(
+            @Path("budgetid") String budgetId,
+            @Path(value = "categoryname", encoded = true) String categoryName,
+            @Path("allocatedamount") String allocatedAmount,
+            @Path(value = "notes", encoded = true) String notes,
+            @Path("displayorder") String displayOrder,
+            @Path("createdbymembershipid") String createdByMembershipId,
+            @Path("budgetid_check") String budgetIdCheck,
+            @Path("allocatedamount_check_1") String allocatedAmountCheck1,
+            @Path("allocatedamount_check_2") String allocatedAmountCheck2
+    );
+
+    @GET("GetBudgetCategoryRemaining/{budgetcategoryid}")
+    Call<List<BudgetCategory>> getBudgetCategoryRemaining(@Path("budgetcategoryid") String budgetCategoryId);
+
+    @GET("UpdateBudgetCategoryAllocation/{createdbymembershipid}/{allocatedamount}/{budgetcategoryid}/{allocatedamount_check_1}/{allocatedamount_check_2}/{allocatedamount_check_3}")
+    Call<ResponseBody> updateBudgetCategoryAllocation(
+            @Path("createdbymembershipid") String createdByMembershipId,
+            @Path("allocatedamount") String allocatedAmount,
+            @Path("budgetcategoryid") String budgetCategoryId,
+            @Path("allocatedamount_check_1") String allocatedAmountCheck1,
+            @Path("allocatedamount_check_2") String allocatedAmountCheck2,
+            @Path("allocatedamount_check_3") String allocatedAmountCheck3
+    );
+
+    @GET("CreateTaskBudget/{budgetid}/{budgetcategoryid}/{taskid}/{allocatedamount}/{createdbymembershipid}/{taskid_check}/{createdbymembershipid_check}/{budgetcategoryid_check}/{budgetid_check_1}/{budgetid_check_2}/{taskid_exists}/{allocatedamount_check_1}/{allocatedamount_check_2}")
+    Call<ResponseBody> createTaskBudget(
+            @Path("budgetid") String budgetId,
+            @Path("budgetcategoryid") String budgetCategoryId,
+            @Path("taskid") String taskId,
+            @Path("allocatedamount") String allocatedAmount,
+            @Path("createdbymembershipid") String createdByMembershipId,
+            @Path("taskid_check") String taskIdCheck,
+            @Path("createdbymembershipid_check") String createdByMembershipIdCheck,
+            @Path("budgetcategoryid_check") String budgetCategoryIdCheck,
+            @Path("budgetid_check_1") String budgetIdCheck1,
+            @Path("budgetid_check_2") String budgetIdCheck2,
+            @Path("taskid_exists") String taskIdExists,
+            @Path("allocatedamount_check_1") String allocatedAmountCheck1,
+            @Path("allocatedamount_check_2") String allocatedAmountCheck2
+    );
+
+    @GET("UpdateTaskBudgetAllocation/{createdbymembershipid}/{allocatedamount}/{taskbudgetid}/{allocatedamount_check_1}/{allocatedamount_check_2}")
+    Call<ResponseBody> updateTaskBudgetAllocation(
+            @Path("createdbymembershipid") String createdByMembershipId,
+            @Path("allocatedamount") String allocatedAmount,
+            @Path("taskbudgetid") String taskBudgetId,
+            @Path("allocatedamount_check_1") String allocatedAmountCheck1,
+            @Path("allocatedamount_check_2") String allocatedAmountCheck2
+    );
+
+    @GET("UpdateTaskBudgetActualCost/{createdbymembershipid}/{actualcostamount}/{taskbudgetid}/{actualcostamount_check}")
+    Call<ResponseBody> updateTaskBudgetActualCost(
+            @Path("createdbymembershipid") String createdByMembershipId,
+            @Path("actualcostamount") String actualCostAmount,
+            @Path("taskbudgetid") String taskBudgetId,
+            @Path("actualcostamount_check") String actualCostAmountCheck
+    );
+
+    @GET("CreateExpense/{expensetitle}/{expenseamount}/{expensedate}/{vendorname}/{notes}/{createdbymembershipid}/{createdbymembershipid_check}/{taskbudgetid}/{expenseamount_check}")
+    Call<ResponseBody> createExpense(
+            @Path(value = "expensetitle", encoded = true) String expenseTitle,
+            @Path("expenseamount") String expenseAmount,
+            @Path(value = "expensedate", encoded = true) String expenseDate,
+            @Path(value = "vendorname", encoded = true) String vendorName,
+            @Path(value = "notes", encoded = true) String notes,
+            @Path("createdbymembershipid") String createdByMembershipId,
+            @Path("createdbymembershipid_check") String createdByMembershipIdCheck,
+            @Path("taskbudgetid") String taskBudgetId,
+            @Path("expenseamount_check") String expenseAmountCheck
+    );
+
+    @GET("GetTaskBudgetExpenses/{taskbudgetid}")
+    Call<List<Expense>> getTaskBudgetExpenses(@Path("taskbudgetid") String taskBudgetId);
+
+    @GET("SyncTaskBudgetActualFromExpenses/{taskbudgetid}/{createdbymembershipid}")
+    Call<ResponseBody> syncTaskBudgetActualFromExpenses(
+            @Path("taskbudgetid") String taskBudgetId,
+            @Path("createdbymembershipid") String createdByMembershipId
     );
 
     // REST APIs for new dashboard modules.

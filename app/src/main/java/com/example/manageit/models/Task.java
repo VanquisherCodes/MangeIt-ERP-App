@@ -17,6 +17,11 @@ public class Task {
     private String dueDate;
     @SerializedName("created_at")
     private String createdAt;
+    private String priority;
+    @SerializedName("estimated_hours")
+    private String estimatedHours;
+    @SerializedName("team_size")
+    private String teamSize;
     @SerializedName("assigned_to_membership_id")
     private String assignedToMembershipId;
     @SerializedName("assigned_by_membership_id")
@@ -76,6 +81,30 @@ public class Task {
 
     public void setCreatedAt(String createdAt) {
         this.createdAt = createdAt;
+    }
+
+    public String getPriority() {
+        return priority;
+    }
+
+    public void setPriority(String priority) {
+        this.priority = priority;
+    }
+
+    public String getEstimatedHours() {
+        return estimatedHours;
+    }
+
+    public void setEstimatedHours(String estimatedHours) {
+        this.estimatedHours = estimatedHours;
+    }
+
+    public String getTeamSize() {
+        return teamSize;
+    }
+
+    public void setTeamSize(String teamSize) {
+        this.teamSize = teamSize;
     }
 
     public String getAssignedToMembershipId() {

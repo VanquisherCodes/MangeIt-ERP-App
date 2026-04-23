@@ -6,3 +6,4 @@ Use this folder for backend integration references:
 - auth token and session policy
 - error code standards
 - versioning notes (`/v1`, `/v2`, etc.)
+- ML prediction backend bridge contract

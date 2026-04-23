@@ -6,9 +6,7 @@ import android.net.Network;
 import android.net.NetworkCapabilities;
 import android.net.NetworkRequest;
 
-/**
- * Central network state observer used by offline-mode handling.
- */
+
 public class NetworkMonitor {
 
     public interface Listener {

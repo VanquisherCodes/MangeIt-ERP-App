@@ -12,6 +12,7 @@ import androidx.fragment.app.Fragment;
 
 import com.example.manageit.R;
 import com.example.manageit.activities.GroupAnnouncementsActivity;
+import com.example.manageit.activities.GroupBudgetActivity;
 import com.example.manageit.activities.GroupEventsActivity;
 import com.example.manageit.activities.GroupTasksActivity;
 import com.example.manageit.activities.MembershipManagementActivity;
@@ -28,7 +29,10 @@ import com.example.manageit.repository.GroupTasksRepository;
 import com.example.manageit.repository.RepositoryCallback;
 import com.example.manageit.utils.GreetingUtils;
 
+import java.util.HashSet;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.Set;
 
 /**
  * Dashboard for an admin membership inside a selected student group.
@@ -42,6 +46,9 @@ public class AdminDashboardFragment extends Fragment {
     private final GroupTasksRepository groupTasksRepository = new GroupTasksRepository();
     private final GroupEventsRepository groupEventsRepository = new GroupEventsRepository();
     private AdminAccessRequestRepository adminAccessRequestRepository;
+    private @Nullable View rootView;
+    private String currentGroupId = "";
+    private final List<com.example.manageit.models.GroupMember> latestGroupMembers = new LinkedList<>();
 
     public AdminDashboardFragment() {
         super(R.layout.fragment_dashboard_admin);
@@ -59,11 +66,13 @@ public class AdminDashboardFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        rootView = view;
 
         adminAccessRequestRepository = new AdminAccessRequestRepository(requireContext());
 
         Bundle args = getArguments();
         String groupId = args != null ? args.getString(ARG_GROUP_ID, "") : "";
+        currentGroupId = groupId;
         String groupName = args != null ? args.getString(ARG_GROUP_NAME, "Student Group") : "Student Group";
         User currentUser = new SessionManager(requireContext()).getCurrentUser();
 
@@ -76,6 +85,14 @@ public class AdminDashboardFragment extends Fragment {
         bindActions(view, groupId, groupName);
         bindKpiDefaults(view);
         loadKpis(view, groupId);
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        if (rootView != null && !currentGroupId.trim().isEmpty()) {
+            loadKpis(rootView, currentGroupId);
+        }
     }
 
     private void bindActions(View view, String groupId, String groupName) {
@@ -106,6 +123,15 @@ public class AdminDashboardFragment extends Fragment {
             startActivity(intent);
         });
 
+        Button openBudgetButton = view.findViewById(R.id.btn_open_group_budget);
+        openBudgetButton.setOnClickListener(v -> {
+            Intent intent = new Intent(requireContext(), GroupBudgetActivity.class);
+            intent.putExtra(GroupBudgetActivity.EXTRA_GROUP_ID, groupId);
+            intent.putExtra(GroupBudgetActivity.EXTRA_GROUP_NAME, groupName);
+            intent.putExtra(GroupBudgetActivity.EXTRA_GROUP_ROLE, Role.ADMIN.name());
+            startActivity(intent);
+        });
+
         Button manageMembershipButton = view.findViewById(R.id.btn_manage_membership_flow);
         manageMembershipButton.setOnClickListener(v -> {
             Intent intent = new Intent(requireContext(), MembershipManagementActivity.class);
@@ -129,7 +155,12 @@ public class AdminDashboardFragment extends Fragment {
                 if (!isAdded()) {
                     return;
                 }
+                latestGroupMembers.clear();
+                if (result != null) {
+                    latestGroupMembers.addAll(result);
+                }
                 ((TextView) view.findViewById(R.id.tv_kpi_members_value)).setText(String.valueOf(result == null ? 0 : result.size()));
+                refreshPendingRequestCount(view, groupId);
             }
 
             @Override
@@ -137,7 +168,9 @@ public class AdminDashboardFragment extends Fragment {
                 if (!isAdded()) {
                     return;
                 }
+                latestGroupMembers.clear();
                 ((TextView) view.findViewById(R.id.tv_kpi_members_value)).setText("N/A");
+                refreshPendingRequestCount(view, groupId);
             }
         });
 
@@ -187,6 +220,10 @@ public class AdminDashboardFragment extends Fragment {
             }
         });
 
+        refreshPendingRequestCount(view, groupId);
+    }
+
+    private void refreshPendingRequestCount(View view, String groupId) {
         adminAccessRequestRepository.getGroupAdminAccessRequests(groupId, new RepositoryCallback<List<Request>>() {
             @Override
             public void onSuccess(List<Request> result) {
@@ -194,14 +231,7 @@ public class AdminDashboardFragment extends Fragment {
                     return;
                 }
 
-                int pendingRequestCount = 0;
-                if (result != null) {
-                    for (Request request : result) {
-                        if (request != null && request.isPending()) {
-                            pendingRequestCount++;
-                        }
-                    }
-                }
+                int pendingRequestCount = countVisiblePendingRequests(result, latestGroupMembers);
 
                 ((TextView) view.findViewById(R.id.tv_kpi_pending_requests_value))
                         .setText(String.valueOf(pendingRequestCount));
@@ -215,5 +245,39 @@ public class AdminDashboardFragment extends Fragment {
                 ((TextView) view.findViewById(R.id.tv_kpi_pending_requests_value)).setText("N/A");
             }
         });
+    }
+
+    private int countVisiblePendingRequests(
+            List<Request> requests,
+            @Nullable List<com.example.manageit.models.GroupMember> members
+    ) {
+        if (requests == null || requests.isEmpty()) {
+            return 0;
+        }
+
+        Set<String> memberUserIds = new HashSet<>();
+        if (members != null) {
+            for (com.example.manageit.models.GroupMember member : members) {
+                if (member == null || member.getUserId() == null) {
+                    continue;
+                }
+                memberUserIds.add(member.getUserId().trim());
+            }
+        }
+
+        int count = 0;
+        for (Request request : requests) {
+            if (request == null || !request.isPending()) {
+                continue;
+            }
+
+            String requesterId = request.getUserId() == null ? "" : request.getUserId().trim();
+            if (!requesterId.isEmpty() && memberUserIds.contains(requesterId)) {
+                continue;
+            }
+
+            count++;
+        }
+        return count;
     }
 }

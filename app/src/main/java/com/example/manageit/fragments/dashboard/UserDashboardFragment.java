@@ -15,6 +15,7 @@ import androidx.fragment.app.Fragment;
 
 import com.example.manageit.R;
 import com.example.manageit.activities.GroupAnnouncementsActivity;
+import com.example.manageit.activities.GroupBudgetActivity;
 import com.example.manageit.activities.GroupEventsActivity;
 import com.example.manageit.activities.GroupTasksActivity;
 import com.example.manageit.apis.marketaux.MarketauxNewsRepository;
@@ -103,6 +104,15 @@ public class UserDashboardFragment extends Fragment {
             intent.putExtra(GroupEventsActivity.EXTRA_GROUP_ID, groupId);
             intent.putExtra(GroupEventsActivity.EXTRA_GROUP_NAME, groupName);
             intent.putExtra(GroupEventsActivity.EXTRA_GROUP_ROLE, Role.USER.name());
+            startActivity(intent);
+        });
+
+        Button budgetButton = root.findViewById(R.id.btn_open_user_group_budget);
+        budgetButton.setOnClickListener(v -> {
+            android.content.Intent intent = new android.content.Intent(requireContext(), GroupBudgetActivity.class);
+            intent.putExtra(GroupBudgetActivity.EXTRA_GROUP_ID, groupId);
+            intent.putExtra(GroupBudgetActivity.EXTRA_GROUP_NAME, groupName);
+            intent.putExtra(GroupBudgetActivity.EXTRA_GROUP_ROLE, Role.USER.name());
             startActivity(intent);
         });
     }

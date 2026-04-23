@@ -34,6 +34,11 @@ android {
         buildConfigField("String", "MARKETAUX_API_BASE_URL", buildConfigString("https://api.marketaux.com/"))
         buildConfigField(
             "String",
+            "BACKEND_API_BASE_URL",
+            buildConfigString(localProperties.getProperty("backendApiBaseUrl", "http://10.0.2.2:8080/"))
+        )
+        buildConfigField(
+            "String",
             "MARKETAUX_API_TOKEN",
             buildConfigString(localProperties.getProperty("marketauxApiToken", ""))
         )
@@ -60,6 +65,7 @@ dependencies {
     implementation(libs.retrofit)
     implementation(libs.converter.gson)
     implementation(libs.logging.interceptor)
+    implementation(libs.mpandroidchart)
     testImplementation(libs.junit)
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)

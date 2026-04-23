@@ -10,7 +10,9 @@ public final class BuildConfig {
   public static final int VERSION_CODE = 1;
   public static final String VERSION_NAME = "1.0";
   // Field from default config.
+  public static final String BACKEND_API_BASE_URL = "https://manageit-ml-backend-kk-20260424.azurewebsites.net/";
+  // Field from default config.
   public static final String MARKETAUX_API_BASE_URL = "https://api.marketaux.com/";
   // Field from default config.
-  public static final String MARKETAUX_API_TOKEN = "";
+  public static final String MARKETAUX_API_TOKEN = "OXlmx751VAdo5pJkg6RFN3FsQApl4dpAGoO1vc52";
 }

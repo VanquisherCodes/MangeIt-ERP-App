@@ -5,9 +5,7 @@ import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-/**
- * Central Retrofit client for the Groept StudEV SQL services.
- */
+
 public class ApiClient {
 
     private static ApiClient instance;
