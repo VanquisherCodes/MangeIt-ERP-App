@@ -1,10 +1,11 @@
 package com.example.manageit.repository;
 
+import com.example.manageit.errors.ApiErrorMapper;
 import com.example.manageit.models.User;
 import com.example.manageit.network.ApiClient;
+import com.example.manageit.repository.contracts.AuthRepositoryContract;
 import com.example.manageit.utils.PasswordUtils;
 
-import java.io.IOException;
 import java.util.List;
 
 import okhttp3.ResponseBody;
@@ -15,12 +16,16 @@ import retrofit2.Response;
 /**
  * Authentication data operations backed by StudEV services.
  */
-public class AuthRepository {
+public class AuthRepository implements AuthRepositoryContract {
 
     private final ApiClient apiClient;
 
     public AuthRepository() {
-        this.apiClient = ApiClient.getInstance();
+        this(ApiClient.getInstance());
+    }
+
+    public AuthRepository(ApiClient apiClient) {
+        this.apiClient = apiClient;
     }
 
     public String getBaseUrl() {
@@ -68,7 +73,7 @@ public class AuthRepository {
                     @Override
                     public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
                         if (!response.isSuccessful()) {
-                            callback.onError(extractErrorMessage(
+                            callback.onError(ApiErrorMapper.fromResponse(
                                     response,
                                     "Registration failed. Check whether the email already exists."
                             ));
@@ -80,7 +85,7 @@ public class AuthRepository {
 
                     @Override
                     public void onFailure(Call<ResponseBody> call, Throwable throwable) {
-                        callback.onError("Couldn't reach the server. Check your connection and try again.");
+                        callback.onError(ApiErrorMapper.networkError());
                     }
                 });
     }
@@ -92,7 +97,7 @@ public class AuthRepository {
                     @Override
                     public void onResponse(Call<List<User>> call, Response<List<User>> response) {
                         if (!response.isSuccessful()) {
-                            callback.onError(extractErrorMessage(response, "Login failed. Please try again."));
+                            callback.onError(ApiErrorMapper.fromResponse(response, "Login failed. Please try again."));
                             return;
                         }
 
@@ -107,26 +112,8 @@ public class AuthRepository {
 
                     @Override
                     public void onFailure(Call<List<User>> call, Throwable throwable) {
-                        callback.onError("Couldn't reach the server. Check your connection and try again.");
+                        callback.onError(ApiErrorMapper.networkError());
                     }
                 });
-    }
-
-    private String extractErrorMessage(Response<?> response, String fallback) {
-        try {
-            ResponseBody errorBody = response.errorBody();
-            if (errorBody == null) {
-                return fallback;
-            }
-
-            String rawError = errorBody.string();
-            if (rawError == null || rawError.trim().isEmpty()) {
-                return fallback;
-            }
-
-            return rawError.trim();
-        } catch (IOException ignored) {
-            return fallback;
-        }
     }
 }

@@ -4,6 +4,7 @@ import android.net.Uri;
 import androidx.annotation.Nullable;
 import android.util.Log;
 
+import com.example.manageit.errors.ApiErrorMapper;
 import com.example.manageit.models.Budget;
 import com.example.manageit.models.BudgetCategory;
 import com.example.manageit.models.BudgetDashboardData;
@@ -11,6 +12,7 @@ import com.example.manageit.models.BudgetOverview;
 import com.example.manageit.models.Expense;
 import com.example.manageit.models.TaskBudget;
 import com.example.manageit.network.ApiClient;
+import com.example.manageit.repository.contracts.BudgetRepositoryContract;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -24,7 +26,7 @@ import retrofit2.Response;
 /**
  * Budget read operations scoped to one student group.
  */
-public class BudgetRepository {
+public class BudgetRepository implements BudgetRepositoryContract {
 
     private static final String TAG = "BudgetRepository";
     private static final String STUDEV_SPACE_TOKEN = "__sp__";
@@ -32,7 +34,11 @@ public class BudgetRepository {
     private final ApiClient apiClient;
 
     public BudgetRepository() {
-        this.apiClient = ApiClient.getInstance();
+        this(ApiClient.getInstance());
+    }
+
+    public BudgetRepository(ApiClient apiClient) {
+        this.apiClient = apiClient;
     }
 
     public void createBudget(
@@ -464,7 +470,7 @@ public class BudgetRepository {
         @Override
         public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
             if (!response.isSuccessful()) {
-                callback.onError(fallbackError);
+                callback.onError(ApiErrorMapper.fromResponse(response, fallbackError));
                 return;
             }
 
@@ -478,7 +484,7 @@ public class BudgetRepository {
 
         @Override
         public void onFailure(Call<ResponseBody> call, Throwable throwable) {
-            callback.onError("Couldn't reach the server while saving budget changes.");
+            callback.onError(ApiErrorMapper.networkError());
         }
     }
 }

@@ -6,7 +6,7 @@ package com.example.manageit.utils;
 public class Resource<T> {
 
     public enum Status {
-        SUCCESS, ERROR, LOADING
+        SUCCESS, ERROR, LOADING, EMPTY
     }
 
     public final Status status;
@@ -29,5 +29,9 @@ public class Resource<T> {
 
     public static <T> Resource<T> loading() {
         return new Resource<>(Status.LOADING, null, null);
+    }
+
+    public static <T> Resource<T> empty() {
+        return new Resource<>(Status.EMPTY, null, null);
     }
 }

@@ -2,8 +2,6 @@ package com.example.manageit.fragments.auth;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.text.TextUtils;
-import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -12,18 +10,24 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
 
+import com.example.manageit.ManageItApplication;
 import com.example.manageit.R;
 import com.example.manageit.activities.MainActivity;
 import com.example.manageit.managers.SessionManager;
 import com.example.manageit.models.User;
-import com.example.manageit.repository.AuthRepository;
-import com.example.manageit.repository.RepositoryCallback;
+import com.example.manageit.utils.Resource;
+import com.example.manageit.validation.AuthField;
+import com.example.manageit.validation.AuthValidationResult;
+import com.example.manageit.viewmodel.AuthViewModel;
 
 /**
  * Registration screen backed by the StudEV auth services.
  */
 public class RegisterFragment extends Fragment {
+
+    private AuthViewModel viewModel;
 
     public RegisterFragment() {
         super(R.layout.fragment_register);
@@ -40,7 +44,11 @@ public class RegisterFragment extends Fragment {
         EditText passwordInput = view.findViewById(R.id.et_register_password);
         Button registerButton = view.findViewById(R.id.btn_register);
         Button goToLoginButton = view.findViewById(R.id.btn_go_login);
-        AuthRepository authRepository = new AuthRepository();
+        ManageItApplication application = (ManageItApplication) requireActivity().getApplication();
+        viewModel = new ViewModelProvider(
+                this,
+                application.getAppContainer().createAuthViewModelFactory()
+        ).get(AuthViewModel.class);
 
         registerButton.setOnClickListener(v -> {
             String firstName = firstNameInput.getText().toString().trim();
@@ -48,43 +56,92 @@ public class RegisterFragment extends Fragment {
             String dateOfBirth = dateOfBirthInput.getText().toString().trim();
             String email = emailInput.getText().toString().trim();
             String password = passwordInput.getText().toString();
+            viewModel.register(firstName, lastName, dateOfBirth, email, password);
+        });
 
-            if (TextUtils.isEmpty(firstName)) {
-                firstNameInput.setError("Enter a first name.");
-                firstNameInput.requestFocus();
-                return;
-            }
+        goToLoginButton.setOnClickListener(v -> requireActivity().getSupportFragmentManager()
+                .popBackStack());
 
-            if (TextUtils.isEmpty(lastName)) {
-                lastNameInput.setError("Enter a last name.");
-                lastNameInput.requestFocus();
-                return;
-            }
+        viewModel.getValidationState().observe(getViewLifecycleOwner(), result -> showValidationError(
+                result,
+                firstNameInput,
+                lastNameInput,
+                dateOfBirthInput,
+                emailInput,
+                passwordInput
+        ));
+        viewModel.getAuthState().observe(getViewLifecycleOwner(), state -> renderAuthState(
+                state,
+                firstNameInput,
+                lastNameInput,
+                dateOfBirthInput,
+                emailInput,
+                passwordInput,
+                registerButton,
+                goToLoginButton
+        ));
+    }
 
-            if (TextUtils.isEmpty(dateOfBirth)) {
-                dateOfBirthInput.setError("Enter date of birth.");
-                dateOfBirthInput.requestFocus();
-                return;
-            }
+    private void showValidationError(
+            AuthValidationResult result,
+            EditText firstNameInput,
+            EditText lastNameInput,
+            EditText dateOfBirthInput,
+            EditText emailInput,
+            EditText passwordInput
+    ) {
+        if (result == null || result.isValid()) {
+            return;
+        }
 
-            if (TextUtils.isEmpty(email)) {
-                emailInput.setError("Enter an email address.");
-                emailInput.requestFocus();
-                return;
-            }
+        EditText target = resolveField(result.getField(), firstNameInput, lastNameInput, dateOfBirthInput, emailInput, passwordInput);
+        if (target != null) {
+            target.setError(result.getMessage());
+            target.requestFocus();
+        }
+    }
 
-            if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
-                emailInput.setError("Enter a valid email address.");
-                emailInput.requestFocus();
-                return;
-            }
+    private EditText resolveField(
+            AuthField field,
+            EditText firstNameInput,
+            EditText lastNameInput,
+            EditText dateOfBirthInput,
+            EditText emailInput,
+            EditText passwordInput
+    ) {
+        if (field == AuthField.FIRST_NAME) {
+            return firstNameInput;
+        }
+        if (field == AuthField.LAST_NAME) {
+            return lastNameInput;
+        }
+        if (field == AuthField.DATE_OF_BIRTH) {
+            return dateOfBirthInput;
+        }
+        if (field == AuthField.EMAIL) {
+            return emailInput;
+        }
+        if (field == AuthField.PASSWORD) {
+            return passwordInput;
+        }
+        return null;
+    }
 
-            if (TextUtils.isEmpty(password) || password.length() < 6) {
-                passwordInput.setError("Use at least 6 characters.");
-                passwordInput.requestFocus();
-                return;
-            }
+    private void renderAuthState(
+            Resource<User> state,
+            EditText firstNameInput,
+            EditText lastNameInput,
+            EditText dateOfBirthInput,
+            EditText emailInput,
+            EditText passwordInput,
+            Button registerButton,
+            Button goToLoginButton
+    ) {
+        if (state == null) {
+            return;
+        }
 
+        if (state.status == Resource.Status.LOADING) {
             setLoadingState(
                     firstNameInput,
                     lastNameInput,
@@ -96,46 +153,54 @@ public class RegisterFragment extends Fragment {
                     true,
                     "Creating account..."
             );
-            authRepository.register(firstName, lastName, dateOfBirth, email, password, new RepositoryCallback<User>() {
-                @Override
-                public void onSuccess(User user) {
-                    if (!isAdded()) {
-                        return;
-                    }
+            return;
+        }
 
-                    SessionManager sessionManager = new SessionManager(requireContext());
-                    sessionManager.createSession(user);
+        if (state.status == Resource.Status.ERROR) {
+            setLoadingState(
+                    firstNameInput,
+                    lastNameInput,
+                    dateOfBirthInput,
+                    emailInput,
+                    passwordInput,
+                    registerButton,
+                    goToLoginButton,
+                    false,
+                    "Register"
+            );
+            emailInput.setError(state.message);
+            emailInput.requestFocus();
+            return;
+        }
 
-                    Toast.makeText(requireContext(), "Account created for " + user.getFullName(), Toast.LENGTH_SHORT).show();
-                    startActivity(new Intent(requireContext(), MainActivity.class));
-                    requireActivity().finish();
-                }
+        if (state.status == Resource.Status.SUCCESS && state.data != null) {
+            setLoadingState(
+                    firstNameInput,
+                    lastNameInput,
+                    dateOfBirthInput,
+                    emailInput,
+                    passwordInput,
+                    registerButton,
+                    goToLoginButton,
+                    false,
+                    "Register"
+            );
+            createSessionAndOpenMain(state.data);
+            viewModel.resetState();
+        }
+    }
 
-                @Override
-                public void onError(String message) {
-                    if (!isAdded()) {
-                        return;
-                    }
+    private void createSessionAndOpenMain(User user) {
+        if (!isAdded()) {
+            return;
+        }
 
-                    setLoadingState(
-                            firstNameInput,
-                            lastNameInput,
-                            dateOfBirthInput,
-                            emailInput,
-                            passwordInput,
-                            registerButton,
-                            goToLoginButton,
-                            false,
-                            "Register"
-                    );
-                    emailInput.setError(message);
-                    emailInput.requestFocus();
-                }
-            });
-        });
+        SessionManager sessionManager = new SessionManager(requireContext());
+        sessionManager.createSession(user);
 
-        goToLoginButton.setOnClickListener(v -> requireActivity().getSupportFragmentManager()
-                .popBackStack());
+        Toast.makeText(requireContext(), "Account created for " + user.getFullName(), Toast.LENGTH_SHORT).show();
+        startActivity(new Intent(requireContext(), MainActivity.class));
+        requireActivity().finish();
     }
 
     private void setLoadingState(

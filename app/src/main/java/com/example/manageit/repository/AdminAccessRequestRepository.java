@@ -2,8 +2,10 @@ package com.example.manageit.repository;
 
 import android.content.Context;
 
+import com.example.manageit.errors.ApiErrorMapper;
 import com.example.manageit.models.Request;
 import com.example.manageit.network.ApiClient;
+import com.example.manageit.repository.contracts.AdminAccessRequestRepositoryContract;
 
 import java.util.List;
 
@@ -15,7 +17,7 @@ import retrofit2.Response;
 /**
  * Backend-backed enrollment-request operations scoped to one student group.
  */
-public class AdminAccessRequestRepository {
+public class AdminAccessRequestRepository implements AdminAccessRequestRepositoryContract {
 
     private static final String ERROR_LOAD_GROUP = "Couldn't load enrollment requests right now.";
     private static final String ERROR_LOAD_USER = "Couldn't load your enrollment-request status right now.";
@@ -26,7 +28,11 @@ public class AdminAccessRequestRepository {
     private final ApiClient apiClient;
 
     public AdminAccessRequestRepository(Context context) {
-        this.apiClient = ApiClient.getInstance();
+        this(ApiClient.getInstance());
+    }
+
+    public AdminAccessRequestRepository(ApiClient apiClient) {
+        this.apiClient = apiClient;
     }
 
     public void getGroupAdminAccessRequests(String groupId, RepositoryCallback<List<Request>> callback) {
@@ -100,7 +106,7 @@ public class AdminAccessRequestRepository {
                     @Override
                     public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
                         if (!response.isSuccessful()) {
-                            callback.onError(ERROR_CREATE);
+                            callback.onError(ApiErrorMapper.fromResponse(response, ERROR_CREATE));
                             return;
                         }
 
