@@ -84,6 +84,10 @@
         "source": "/Users/hamzehmajzoub/.gradle/daemon/9.3.1/com.example.manageit.app-main-33:/layout/dialog_create_budget_category.xml"
     },
     {
+        "merged": "com.example.manageit.app-debug-31:/layout_activity_about.xml.flat",
+        "source": "com.example.manageit.app-main-33:/layout/activity_about.xml"
+    },
+    {
         "merged": "/Users/hamzehmajzoub/.gradle/daemon/9.3.1/com.example.manageit.app-debug-31:/mipmap-mdpi_ic_launcher_round.webp.flat",
         "source": "/Users/hamzehmajzoub/.gradle/daemon/9.3.1/com.example.manageit.app-main-33:/mipmap-mdpi/ic_launcher_round.webp"
     },
@@ -118,10 +122,6 @@
     {
         "merged": "/Users/hamzehmajzoub/.gradle/daemon/9.3.1/com.example.manageit.app-debug-31:/layout_item_budget_category_summary.xml.flat",
         "source": "/Users/hamzehmajzoub/.gradle/daemon/9.3.1/com.example.manageit.app-main-33:/layout/item_budget_category_summary.xml"
-    },
-    {
-        "merged": "com.example.manageit.app-debug-31:/layout_fragment_dashboard_user.xml.flat",
-        "source": "com.example.manageit.app-main-33:/layout/fragment_dashboard_user.xml"
     },
     {
         "merged": "/Users/hamzehmajzoub/.gradle/daemon/9.3.1/com.example.manageit.app-debug-31:/layout_activity_membership_management.xml.flat",
