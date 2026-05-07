@@ -50,6 +50,10 @@
             android:exported="false" />
 
         <activity
+            android:name=".activities.AboutActivity"
+            android:exported="false" />
+
+        <activity
             android:name=".activities.AuthActivity"
             android:exported="false" />
 

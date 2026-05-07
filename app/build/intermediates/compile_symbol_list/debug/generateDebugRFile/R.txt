@@ -54,6 +54,7 @@ int drawable bg_surface_card_low 0x0
 int drawable bg_top_bar 0x0
 int drawable ic_launcher_background 0x0
 int drawable ic_launcher_foreground 0x0
+int id btn_about 0x0
 int id btn_add_task_budget_expense 0x0
 int id btn_allocate_predict_cost 0x0
 int id btn_approve_access_request 0x0
@@ -167,6 +168,7 @@ int id spinner_allocate_task 0x0
 int id spinner_budget_category_name 0x0
 int id spinner_budget_ml_task 0x0
 int id spinner_group_task_assignee 0x0
+int id toolbar_about 0x0
 int id toolbar_group_announcements 0x0
 int id toolbar_group_budget 0x0
 int id toolbar_group_dashboard 0x0
@@ -266,6 +268,8 @@ int id tv_task_budget_meta 0x0
 int id tv_task_budget_name 0x0
 int id tv_task_budget_predicted 0x0
 int id tv_task_budget_variance 0x0
+int id tv_version_name 0x0
+int layout activity_about 0x0
 int layout activity_auth 0x0
 int layout activity_blackjack 0x0
 int layout activity_group_announcements 0x0

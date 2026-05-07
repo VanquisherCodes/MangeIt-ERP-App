@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "com.example.manageit.app-mergeDebugResources-28:/values-v28/values-v28.xml",
+            "outputFile": "com.example.manageit.app-mergeDebugResources-29:/values-v28/values-v28.xml",
             "map": [
                 {
-                    "source": "/Users/kanishkk/.gradle/caches/9.3.1/transforms/77c40ce14b2d2b520b66343d02f3edce/transformed/appcompat-1.6.1/res/values-v28/values-v28.xml",
+                    "source": "C:\\Users\\Abdallah\\.gradle\\caches\\9.3.1\\transforms\\f2aa03c3983f3102ad1ffa32ff92b9ed\\workspace\\transformed\\appcompat-1.6.1\\res\\values-v28\\values-v28.xml",
                     "from": {
                         "startLines": "2,3,4,8",
                         "startColumns": "4,4,4,4",
@@ -23,7 +23,7 @@
                     }
                 },
                 {
-                    "source": "/Users/kanishkk/.gradle/caches/9.3.1/transforms/b7a731dc432675ca9c6a500031f006f4/transformed/material-1.10.0/res/values-v28/values-v28.xml",
+                    "source": "C:\\Users\\Abdallah\\.gradle\\caches\\9.3.1\\transforms\\53f6c11ddba713ef0f45ddba765f2a0b\\workspace\\transformed\\material-1.10.0\\res\\values-v28\\values-v28.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14",
                         "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4",

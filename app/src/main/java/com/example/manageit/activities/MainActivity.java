@@ -65,7 +65,7 @@ public class MainActivity extends AppCompatActivity {
 
         bindHeader();
         bindGroupList();
-        bindLogout();
+        bindActions();
         loadGroups();
     }
 
@@ -89,12 +89,22 @@ public class MainActivity extends AppCompatActivity {
         listView.setOnItemClickListener((parent, view, position, id) -> handleGroupTap(groupListAdapter.getItem(position)));
     }
 
-    private void bindLogout() {
+    private void bindActions() {
+        ImageButton aboutButton = findViewById(R.id.btn_about);
+        aboutButton.setOnClickListener(v -> startActivity(new Intent(this, AboutActivity.class)));
+
         ImageButton logoutButton = findViewById(R.id.btn_logout);
         logoutButton.setOnClickListener(v -> {
-            sessionManager.clearSession();
-            startActivity(new Intent(this, AuthActivity.class));
-            finish();
+            new MaterialAlertDialogBuilder(this)
+                    .setTitle("Logout")
+                    .setMessage("Are you sure you want to log out?")
+                    .setPositiveButton("Logout", (dialog, which) -> {
+                        sessionManager.clearSession();
+                        startActivity(new Intent(this, AuthActivity.class));
+                        finish();
+                    })
+                    .setNegativeButton("Cancel", null)
+                    .show();
         });
     }
 

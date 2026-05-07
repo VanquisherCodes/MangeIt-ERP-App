@@ -55,6 +55,7 @@ drawable bg_surface_card_low
 drawable bg_top_bar
 drawable ic_launcher_background
 drawable ic_launcher_foreground
+id btn_about
 id btn_add_task_budget_expense
 id btn_allocate_predict_cost
 id btn_approve_access_request
@@ -168,6 +169,7 @@ id spinner_allocate_task
 id spinner_budget_category_name
 id spinner_budget_ml_task
 id spinner_group_task_assignee
+id toolbar_about
 id toolbar_group_announcements
 id toolbar_group_budget
 id toolbar_group_dashboard
@@ -267,6 +269,8 @@ id tv_task_budget_meta
 id tv_task_budget_name
 id tv_task_budget_predicted
 id tv_task_budget_variance
+id tv_version_name
+layout activity_about
 layout activity_auth
 layout activity_blackjack
 layout activity_group_announcements
