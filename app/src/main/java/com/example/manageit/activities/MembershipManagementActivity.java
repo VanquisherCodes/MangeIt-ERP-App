@@ -338,12 +338,12 @@ public class MembershipManagementActivity extends AppCompatActivity {
                 }
 
                 memberAdapter.markUpdating(member.getMembershipId(), false);
-                memberAdapter.notifyDataSetChanged();
                 Toast.makeText(
                         MembershipManagementActivity.this,
                         result.getDisplayName() + " is now " + (result.getRoleInGroup() == Role.ADMIN ? "an admin." : "a user."),
                         Toast.LENGTH_SHORT
                 ).show();
+                loadData();
             }
 
             @Override

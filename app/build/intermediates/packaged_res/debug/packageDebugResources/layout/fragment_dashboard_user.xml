@@ -130,18 +130,177 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Your Membership"
+                    android:text="Today"
                     android:textColor="@color/on_surface"
                     android:textSize="20sp"
                     android:textStyle="bold" />
 
                 <TextView
+                    android:id="@+id/tv_user_dashboard_overview_status"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
-                    android:text="This dashboard is scoped to the selected group only. Your role here does not affect any other student group."
+                    android:text="Refreshing your group overview..."
                     android:textColor="@color/on_surface_variant"
                     android:textSize="15sp" />
+
+                <TextView
+                    android:id="@+id/tv_user_dashboard_next_task_label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="18dp"
+                    android:background="@drawable/bg_chip_primary"
+                    android:paddingHorizontal="12dp"
+                    android:paddingVertical="6dp"
+                    android:text="Next Task"
+                    android:textColor="@color/primary"
+                    android:textSize="12sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/tv_user_dashboard_next_task_title"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:text="Loading task..."
+                    android:textColor="@color/on_surface"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/tv_user_dashboard_next_task_meta"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="6dp"
+                    android:text="Due date unavailable"
+                    android:textColor="@color/on_surface_variant"
+                    android:textSize="14sp" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="18dp"
+                    android:background="@color/outline_variant" />
+
+                <TextView
+                    android:id="@+id/tv_user_dashboard_next_event_label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="18dp"
+                    android:background="@drawable/bg_chip_tertiary"
+                    android:paddingHorizontal="12dp"
+                    android:paddingVertical="6dp"
+                    android:text="Next Event"
+                    android:textColor="@color/tertiary"
+                    android:textSize="12sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/tv_user_dashboard_next_event_title"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:text="Loading event..."
+                    android:textColor="@color/on_surface"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/tv_user_dashboard_next_event_meta"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="6dp"
+                    android:text="Event date unavailable"
+                    android:textColor="@color/on_surface_variant"
+                    android:textSize="14sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="6dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/bg_metric_card"
+                    android:orientation="vertical"
+                    android:padding="14dp">
+
+                    <TextView
+                        android:id="@+id/tv_user_dashboard_pending_count"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="--"
+                        android:textColor="@color/on_surface"
+                        android:textSize="24sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:text="Pending"
+                        android:textColor="@color/on_surface_variant"
+                        android:textSize="13sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="6dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/bg_metric_card"
+                    android:orientation="vertical"
+                    android:padding="14dp">
+
+                    <TextView
+                        android:id="@+id/tv_user_dashboard_in_progress_count"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="--"
+                        android:textColor="@color/on_surface"
+                        android:textSize="24sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:text="Active"
+                        android:textColor="@color/on_surface_variant"
+                        android:textSize="13sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="6dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/bg_metric_card"
+                    android:orientation="vertical"
+                    android:padding="14dp">
+
+                    <TextView
+                        android:id="@+id/tv_user_dashboard_due_soon_count"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="--"
+                        android:textColor="@color/on_surface"
+                        android:textSize="24sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:text="Due Soon"
+                        android:textColor="@color/on_surface_variant"
+                        android:textSize="13sp" />
+                </LinearLayout>
             </LinearLayout>
 
             <LinearLayout
@@ -155,65 +314,48 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Group Tasks"
+                    android:text="Latest Announcement"
                     android:textColor="@color/on_surface"
                     android:textSize="20sp"
                     android:textStyle="bold" />
 
                 <TextView
+                    android:id="@+id/tv_user_dashboard_latest_announcement_title"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="12dp"
-                    android:text="View your group tasks and track due dates for this group."
-                    android:textColor="@color/on_surface_variant"
-                    android:textSize="15sp" />
-
-                <Button
-                    android:id="@+id/btn_open_user_group_tasks"
-                    android:layout_width="match_parent"
-                    android:layout_height="52dp"
-                    android:layout_marginTop="16dp"
-                    android:background="@drawable/bg_button_primary"
-                    android:text="View Group Tasks"
-                    android:textAllCaps="false"
-                    android:textColor="@color/on_primary"
-                    android:textSize="16sp"
-                    android:textStyle="bold" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:background="@drawable/bg_surface_card"
-                android:orientation="vertical"
-                android:padding="18dp">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Group Announcements"
+                    android:text="Loading announcement..."
                     android:textColor="@color/on_surface"
-                    android:textSize="20sp"
+                    android:textSize="18sp"
                     android:textStyle="bold" />
 
                 <TextView
+                    android:id="@+id/tv_user_dashboard_latest_announcement_body"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="12dp"
-                    android:text="Read announcements published for this group."
+                    android:layout_marginTop="8dp"
+                    android:text="Checking the latest group update."
                     android:textColor="@color/on_surface_variant"
-                    android:textSize="15sp" />
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/tv_user_dashboard_latest_announcement_meta"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:text="Published date unavailable"
+                    android:textColor="@color/on_surface_variant"
+                    android:textSize="13sp" />
 
                 <Button
                     android:id="@+id/btn_open_user_group_announcements"
                     android:layout_width="match_parent"
                     android:layout_height="52dp"
                     android:layout_marginTop="16dp"
-                    android:background="@drawable/bg_button_primary"
-                    android:text="View Group Announcements"
+                    android:background="@drawable/bg_button_secondary"
+                    android:text="Open Announcements"
                     android:textAllCaps="false"
-                    android:textColor="@color/on_primary"
+                    android:textColor="@color/on_surface"
                     android:textSize="16sp"
                     android:textStyle="bold" />
             </LinearLayout>
@@ -229,42 +371,76 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Group Events"
+                    android:text="Quick Actions"
                     android:textColor="@color/on_surface"
                     android:textSize="20sp"
                     android:textStyle="bold" />
 
-                <TextView
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:orientation="horizontal">
+
+                    <Button
+                        android:id="@+id/btn_open_user_group_tasks"
+                        android:layout_width="0dp"
+                        android:layout_height="52dp"
+                        android:layout_marginEnd="6dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/bg_button_primary"
+                        android:text="Tasks"
+                        android:textAllCaps="false"
+                        android:textColor="@color/on_primary"
+                        android:textSize="15sp"
+                        android:textStyle="bold" />
+
+                    <Button
+                        android:id="@+id/btn_open_user_group_events"
+                        android:layout_width="0dp"
+                        android:layout_height="52dp"
+                        android:layout_marginStart="6dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/bg_button_primary"
+                        android:text="Events"
+                        android:textAllCaps="false"
+                        android:textColor="@color/on_primary"
+                        android:textSize="15sp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="12dp"
-                    android:text="View the schedule for upcoming and past group events."
-                    android:textColor="@color/on_surface_variant"
-                    android:textSize="15sp" />
+                    android:orientation="horizontal">
 
-                <Button
-                    android:id="@+id/btn_open_user_group_events"
-                    android:layout_width="match_parent"
-                    android:layout_height="52dp"
-                    android:layout_marginTop="16dp"
-                    android:background="@drawable/bg_button_primary"
-                    android:text="View Group Events"
-                    android:textAllCaps="false"
-                    android:textColor="@color/on_primary"
-                    android:textSize="16sp"
-                    android:textStyle="bold" />
+                    <Button
+                        android:id="@+id/btn_open_user_group_budget"
+                        android:layout_width="0dp"
+                        android:layout_height="52dp"
+                        android:layout_marginEnd="6dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/bg_button_secondary"
+                        android:text="Budget"
+                        android:textAllCaps="false"
+                        android:textColor="@color/on_surface"
+                        android:textSize="15sp"
+                        android:textStyle="bold" />
 
-                <Button
-                    android:id="@+id/btn_open_user_group_budget"
-                    android:layout_width="match_parent"
-                    android:layout_height="52dp"
-                    android:layout_marginTop="12dp"
-                    android:background="@drawable/bg_button_secondary"
-                    android:text="Open Group Budget"
-                    android:textAllCaps="false"
-                    android:textColor="@color/on_surface"
-                    android:textSize="16sp"
-                    android:textStyle="bold" />
+                    <Button
+                        android:id="@+id/btn_refresh_user_dashboard"
+                        android:layout_width="0dp"
+                        android:layout_height="52dp"
+                        android:layout_marginStart="6dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/bg_button_secondary"
+                        android:text="Refresh"
+                        android:textAllCaps="false"
+                        android:textColor="@color/on_surface"
+                        android:textSize="15sp"
+                        android:textStyle="bold" />
+                </LinearLayout>
             </LinearLayout>
         </LinearLayout>
 

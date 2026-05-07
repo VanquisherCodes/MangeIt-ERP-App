@@ -11,6 +11,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 
 import com.example.manageit.R;
 import com.example.manageit.adapters.GroupEventAdapter;
@@ -24,6 +25,10 @@ import com.example.manageit.repository.RepositoryCallback;
 import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.List;
 
 /**
@@ -34,6 +39,17 @@ public class GroupEventsActivity extends AppCompatActivity {
     public static final String EXTRA_GROUP_ID = "extra_group_id";
     public static final String EXTRA_GROUP_NAME = "extra_group_name";
     public static final String EXTRA_GROUP_ROLE = "extra_group_role";
+    private static final DateTimeFormatter EVENT_API_FORMAT =
+            DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+    private static final DateTimeFormatter[] DATE_TIME_INPUT_FORMATS = {
+            DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"),
+            DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"),
+            DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss"),
+            DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm")
+    };
+    private static final DateTimeFormatter[] DATE_INPUT_FORMATS = {
+            DateTimeFormatter.ofPattern("yyyy-MM-dd")
+    };
 
     private GroupEventsRepository groupEventsRepository;
     private GroupMembershipRepository groupMembershipRepository;
@@ -168,15 +184,15 @@ public class GroupEventsActivity extends AppCompatActivity {
 
         String title = titleInput.getText().toString().trim();
         String description = descriptionInput.getText().toString().trim();
-        String dateTime = dateTimeInput.getText().toString().trim();
+        String dateTime = normalizeEventDateTime(dateTimeInput.getText().toString().trim());
 
         if (TextUtils.isEmpty(title)) {
             titleInput.setError("Enter an event title.");
             titleInput.requestFocus();
             return;
         }
-        if (TextUtils.isEmpty(dateTime)) {
-            dateTimeInput.setError("Enter the event date and time.");
+        if (dateTime == null) {
+            dateTimeInput.setError("Use yyyy-MM-dd HH:mm, for example 2026-05-05 14:00.");
             dateTimeInput.requestFocus();
             return;
         }
@@ -226,14 +242,17 @@ public class GroupEventsActivity extends AppCompatActivity {
         EditText titleInput = new EditText(this);
         titleInput.setHint("Event title");
         titleInput.setText(event.getEventName() == null ? "" : event.getEventName());
+        styleDialogInput(titleInput);
 
         EditText descriptionInput = new EditText(this);
         descriptionInput.setHint("Description");
         descriptionInput.setText(event.getEventDescription() == null ? "" : event.getEventDescription());
+        styleDialogInput(descriptionInput);
 
         EditText dateTimeInput = new EditText(this);
         dateTimeInput.setHint("Date and time");
         dateTimeInput.setText(event.getEventDateTime() == null ? "" : event.getEventDateTime());
+        styleDialogInput(dateTimeInput);
 
         // Lightweight custom stack for quick editing.
         android.widget.LinearLayout layout = new android.widget.LinearLayout(this);
@@ -252,6 +271,11 @@ public class GroupEventsActivity extends AppCompatActivity {
                 .show();
     }
 
+    private void styleDialogInput(EditText input) {
+        input.setTextColor(ContextCompat.getColor(this, R.color.on_surface));
+        input.setHintTextColor(ContextCompat.getColor(this, R.color.on_surface_variant));
+    }
+
     private void updateEvent(Event event, EditText titleInput, EditText descriptionInput, EditText dateTimeInput) {
         String eventId = event.getEventId();
         if (eventId == null || eventId.trim().isEmpty()) {
@@ -261,10 +285,14 @@ public class GroupEventsActivity extends AppCompatActivity {
 
         String title = titleInput.getText().toString().trim();
         String description = descriptionInput.getText().toString().trim();
-        String dateTime = dateTimeInput.getText().toString().trim();
+        String dateTime = normalizeEventDateTime(dateTimeInput.getText().toString().trim());
 
-        if (TextUtils.isEmpty(title) || TextUtils.isEmpty(dateTime)) {
-            Toast.makeText(this, "Title and date/time are required.", Toast.LENGTH_LONG).show();
+        if (TextUtils.isEmpty(title)) {
+            Toast.makeText(this, "Title is required.", Toast.LENGTH_LONG).show();
+            return;
+        }
+        if (dateTime == null) {
+            Toast.makeText(this, "Use yyyy-MM-dd HH:mm for the event date/time.", Toast.LENGTH_LONG).show();
             return;
         }
 
@@ -286,6 +314,29 @@ public class GroupEventsActivity extends AppCompatActivity {
                 Toast.makeText(GroupEventsActivity.this, message, Toast.LENGTH_LONG).show();
             }
         });
+    }
+
+    private String normalizeEventDateTime(String rawValue) {
+        if (rawValue == null || rawValue.trim().isEmpty()) {
+            return null;
+        }
+
+        String trimmed = rawValue.trim();
+        for (DateTimeFormatter formatter : DATE_TIME_INPUT_FORMATS) {
+            try {
+                return LocalDateTime.parse(trimmed, formatter).format(EVENT_API_FORMAT);
+            } catch (DateTimeParseException ignored) {
+            }
+        }
+
+        for (DateTimeFormatter formatter : DATE_INPUT_FORMATS) {
+            try {
+                return LocalDate.parse(trimmed, formatter).atStartOfDay().format(EVENT_API_FORMAT);
+            } catch (DateTimeParseException ignored) {
+            }
+        }
+
+        return null;
     }
 
     private void confirmDelete(Event event) {

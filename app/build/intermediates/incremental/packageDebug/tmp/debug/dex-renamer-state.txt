@@ -1,19 +1,19 @@
-#Wed May 06 15:38:26 CEST 2026
-base.0=C\:\\Users\\Abdallah\\uni\\y2\\sem2\\programming techniques\\labs\\AndroidProject\\2526-201.0\\app\\build\\intermediates\\dex\\debug\\mergeExtDexDebug\\classes.dex
-base.1=C\:\\Users\\Abdallah\\uni\\y2\\sem2\\programming techniques\\labs\\AndroidProject\\2526-201.0\\app\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\0\\classes.dex
-base.10=C\:\\Users\\Abdallah\\uni\\y2\\sem2\\programming techniques\\labs\\AndroidProject\\2526-201.0\\app\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\6\\classes.dex
-base.11=C\:\\Users\\Abdallah\\uni\\y2\\sem2\\programming techniques\\labs\\AndroidProject\\2526-201.0\\app\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\7\\classes.dex
-base.12=C\:\\Users\\Abdallah\\uni\\y2\\sem2\\programming techniques\\labs\\AndroidProject\\2526-201.0\\app\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\8\\classes.dex
-base.13=C\:\\Users\\Abdallah\\uni\\y2\\sem2\\programming techniques\\labs\\AndroidProject\\2526-201.0\\app\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\9\\classes.dex
-base.14=C\:\\Users\\Abdallah\\uni\\y2\\sem2\\programming techniques\\labs\\AndroidProject\\2526-201.0\\app\\build\\intermediates\\dex\\debug\\mergeExtDexDebug\\classes2.dex
-base.2=C\:\\Users\\Abdallah\\uni\\y2\\sem2\\programming techniques\\labs\\AndroidProject\\2526-201.0\\app\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\11\\classes.dex
-base.3=C\:\\Users\\Abdallah\\uni\\y2\\sem2\\programming techniques\\labs\\AndroidProject\\2526-201.0\\app\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\12\\classes.dex
-base.4=C\:\\Users\\Abdallah\\uni\\y2\\sem2\\programming techniques\\labs\\AndroidProject\\2526-201.0\\app\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\13\\classes.dex
-base.5=C\:\\Users\\Abdallah\\uni\\y2\\sem2\\programming techniques\\labs\\AndroidProject\\2526-201.0\\app\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\14\\classes.dex
-base.6=C\:\\Users\\Abdallah\\uni\\y2\\sem2\\programming techniques\\labs\\AndroidProject\\2526-201.0\\app\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\15\\classes.dex
-base.7=C\:\\Users\\Abdallah\\uni\\y2\\sem2\\programming techniques\\labs\\AndroidProject\\2526-201.0\\app\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\2\\classes.dex
-base.8=C\:\\Users\\Abdallah\\uni\\y2\\sem2\\programming techniques\\labs\\AndroidProject\\2526-201.0\\app\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\4\\classes.dex
-base.9=C\:\\Users\\Abdallah\\uni\\y2\\sem2\\programming techniques\\labs\\AndroidProject\\2526-201.0\\app\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\5\\classes.dex
+#Thu May 07 14:28:39 CEST 2026
+base.0=/Users/hamzehmajzoub/AndroidStudioProjects/Manageit2/app/build/intermediates/dex/debug/mergeExtDexDebug/classes.dex
+base.1=/Users/hamzehmajzoub/AndroidStudioProjects/Manageit2/app/build/intermediates/dex/debug/mergeProjectDexDebug/0/classes.dex
+base.10=/Users/hamzehmajzoub/AndroidStudioProjects/Manageit2/app/build/intermediates/dex/debug/mergeProjectDexDebug/6/classes.dex
+base.11=/Users/hamzehmajzoub/AndroidStudioProjects/Manageit2/app/build/intermediates/dex/debug/mergeProjectDexDebug/7/classes.dex
+base.12=/Users/hamzehmajzoub/AndroidStudioProjects/Manageit2/app/build/intermediates/dex/debug/mergeProjectDexDebug/8/classes.dex
+base.13=/Users/hamzehmajzoub/AndroidStudioProjects/Manageit2/app/build/intermediates/dex/debug/mergeProjectDexDebug/9/classes.dex
+base.14=/Users/hamzehmajzoub/AndroidStudioProjects/Manageit2/app/build/intermediates/dex/debug/mergeExtDexDebug/classes2.dex
+base.2=/Users/hamzehmajzoub/AndroidStudioProjects/Manageit2/app/build/intermediates/dex/debug/mergeProjectDexDebug/11/classes.dex
+base.3=/Users/hamzehmajzoub/AndroidStudioProjects/Manageit2/app/build/intermediates/dex/debug/mergeProjectDexDebug/12/classes.dex
+base.4=/Users/hamzehmajzoub/AndroidStudioProjects/Manageit2/app/build/intermediates/dex/debug/mergeProjectDexDebug/13/classes.dex
+base.5=/Users/hamzehmajzoub/AndroidStudioProjects/Manageit2/app/build/intermediates/dex/debug/mergeProjectDexDebug/14/classes.dex
+base.6=/Users/hamzehmajzoub/AndroidStudioProjects/Manageit2/app/build/intermediates/dex/debug/mergeProjectDexDebug/15/classes.dex
+base.7=/Users/hamzehmajzoub/AndroidStudioProjects/Manageit2/app/build/intermediates/dex/debug/mergeProjectDexDebug/2/classes.dex
+base.8=/Users/hamzehmajzoub/AndroidStudioProjects/Manageit2/app/build/intermediates/dex/debug/mergeProjectDexDebug/4/classes.dex
+base.9=/Users/hamzehmajzoub/AndroidStudioProjects/Manageit2/app/build/intermediates/dex/debug/mergeProjectDexDebug/5/classes.dex
 path.0=classes.dex
 path.1=0/classes.dex
 path.10=6/classes.dex

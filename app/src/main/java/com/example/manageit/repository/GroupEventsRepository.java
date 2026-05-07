@@ -3,6 +3,9 @@ package com.example.manageit.repository;
 import com.example.manageit.models.Event;
 import com.example.manageit.network.ApiClient;
 
+import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -148,15 +151,16 @@ public class GroupEventsRepository {
         apiClient.getApiService()
                 .createEventLegacy(
                         groupId,
-                        title,
-                        description == null ? "-" : description,
-                        eventDateTime,
+                        encodePathValue(title),
+                        encodePathValue(optionalPathText(description)),
+                        encodePathValue(eventDateTime),
                         createdByMembershipId == null ? "" : createdByMembershipId
                 )
                 .enqueue(new Callback<ResponseBody>() {
                     @Override
                     public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-                        if (!response.isSuccessful()) {
+                        String body = readBody(response.body());
+                        if (!response.isSuccessful() || looksLikeServerError(body)) {
                             callback.onError("Couldn't create the group event.");
                             return;
                         }
@@ -178,11 +182,17 @@ public class GroupEventsRepository {
             RepositoryCallback<Void> callback
     ) {
         apiClient.getApiService()
-                .updateEventLegacy(eventId, title, description == null ? "-" : description, eventDateTime)
+                .updateEventLegacy(
+                        eventId,
+                        encodePathValue(title),
+                        encodePathValue(optionalPathText(description)),
+                        encodePathValue(eventDateTime)
+                )
                 .enqueue(new Callback<ResponseBody>() {
                     @Override
                     public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-                        if (!response.isSuccessful()) {
+                        String body = readBody(response.body());
+                        if (!response.isSuccessful() || looksLikeServerError(body)) {
                             callback.onError("Couldn't update this event.");
                             return;
                         }
@@ -196,11 +206,28 @@ public class GroupEventsRepository {
                 });
     }
 
+    private String optionalPathText(String rawValue) {
+        if (rawValue == null || rawValue.trim().isEmpty()) {
+            return " ";
+        }
+        return rawValue.trim();
+    }
+
+    private String encodePathValue(String rawValue) {
+        String safeValue = rawValue == null ? "" : rawValue;
+        try {
+            return URLEncoder.encode(safeValue, "UTF-8");
+        } catch (UnsupportedEncodingException ignored) {
+            return safeValue.replace(" ", "+");
+        }
+    }
+
     private void deleteEventLegacy(String eventId, RepositoryCallback<Void> callback) {
         apiClient.getApiService().deleteEventLegacy(eventId).enqueue(new Callback<ResponseBody>() {
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-                if (!response.isSuccessful()) {
+                String body = readBody(response.body());
+                if (!response.isSuccessful() || looksLikeServerError(body)) {
                     callback.onError("Couldn't delete this event.");
                     return;
                 }
@@ -212,5 +239,28 @@ public class GroupEventsRepository {
                 callback.onError("Couldn't reach the server while deleting this event.");
             }
         });
+    }
+
+    private String readBody(ResponseBody body) {
+        if (body == null) {
+            return "";
+        }
+
+        try {
+            return body.string();
+        } catch (IOException ignored) {
+            return "";
+        }
+    }
+
+    private boolean looksLikeServerError(String body) {
+        if (body == null) {
+            return false;
+        }
+
+        String normalized = body.toLowerCase();
+        return normalized.contains("fatal error")
+                || normalized.contains("pdoexception")
+                || normalized.contains("sqlstate");
     }
 }

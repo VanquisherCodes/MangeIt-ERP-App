@@ -86,15 +86,25 @@ public interface ApiService {
     @GET("CreateAnnouncement/{groupid}/{title}/{message}/{createdbymembershipid}")
     Call<ResponseBody> createAnnouncement(
             @Path("groupid") String groupId,
-            @Path("title") String title,
-            @Path("message") String message,
+            @Path(value = "title", encoded = true) String title,
+            @Path(value = "message", encoded = true) String message,
             @Path("createdbymembershipid") String createdByMembershipId
     );
+
+    @GET("UpdateAnnouncement/{title}/{message}/{announcementid}")
+    Call<ResponseBody> updateAnnouncement(
+            @Path(value = "title", encoded = true) String title,
+            @Path(value = "message", encoded = true) String message,
+            @Path("announcementid") String announcementId
+    );
+
+    @GET("DeleteAnnouncement/{announcementid}")
+    Call<ResponseBody> deleteAnnouncement(@Path("announcementid") String announcementId);
 
     @GET("GetGroupMembers/{groupid}")
     Call<List<GroupMember>> getGroupMembers(@Path("groupid") String groupId);
 
-    @GET("UpdateMemberRole/{membershipid}/{roleingroup}")
+    @GET("UpdateMemberRole/{roleingroup}/{membershipid}")
     Call<ResponseBody> updateMemberRole(
             @Path("membershipid") String membershipId,
             @Path("roleingroup") String roleInGroup
@@ -262,18 +272,18 @@ public interface ApiService {
     @GET("CreateEvent/{groupid}/{title}/{description}/{eventdatetime}/{createdbymembershipid}")
     Call<ResponseBody> createEventLegacy(
             @Path("groupid") String groupId,
-            @Path("title") String title,
-            @Path("description") String description,
-            @Path("eventdatetime") String eventDateTime,
+            @Path(value = "title", encoded = true) String title,
+            @Path(value = "description", encoded = true) String description,
+            @Path(value = "eventdatetime", encoded = true) String eventDateTime,
             @Path("createdbymembershipid") String createdByMembershipId
     );
 
-    @GET("UpdateEvent/{eventid}/{title}/{description}/{eventdatetime}")
+    @GET("UpdateEvent/{title}/{description}/{eventdatetime}/{eventid}")
     Call<ResponseBody> updateEventLegacy(
             @Path("eventid") String eventId,
-            @Path("title") String title,
-            @Path("description") String description,
-            @Path("eventdatetime") String eventDateTime
+            @Path(value = "title", encoded = true) String title,
+            @Path(value = "description", encoded = true) String description,
+            @Path(value = "eventdatetime", encoded = true) String eventDateTime
     );
 
     @GET("DeleteEvent/{eventid}")

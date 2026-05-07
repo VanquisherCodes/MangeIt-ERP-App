@@ -1,7 +1,7 @@
-com.example.manageit.app-pngs-0 C:\Users\Abdallah\uni\y2\sem2\programming techniques\labs\AndroidProject\2526-201.0\app\build\generated\res\pngs\debug
-com.example.manageit.app-updated_navigation_xml-1 C:\Users\Abdallah\uni\y2\sem2\programming techniques\labs\AndroidProject\2526-201.0\app\build\generated\updated_navigation_xml\debug
-com.example.manageit.app-packageDebugResources-2 C:\Users\Abdallah\uni\y2\sem2\programming techniques\labs\AndroidProject\2526-201.0\app\build\intermediates\incremental\debug\packageDebugResources\merged.dir
-com.example.manageit.app-packageDebugResources-3 C:\Users\Abdallah\uni\y2\sem2\programming techniques\labs\AndroidProject\2526-201.0\app\build\intermediates\incremental\debug\packageDebugResources\stripped.dir
-com.example.manageit.app-debug-4 C:\Users\Abdallah\uni\y2\sem2\programming techniques\labs\AndroidProject\2526-201.0\app\build\intermediates\merged_res\debug\mergeDebugResources
-com.example.manageit.app-debug-5 C:\Users\Abdallah\uni\y2\sem2\programming techniques\labs\AndroidProject\2526-201.0\app\src\debug\res
-com.example.manageit.app-main-6 C:\Users\Abdallah\uni\y2\sem2\programming techniques\labs\AndroidProject\2526-201.0\app\src\main\res
+com.example.manageit.app-pngs-0 /Users/hamzehmajzoub/AndroidStudioProjects/Manageit2/app/build/generated/res/pngs/debug
+com.example.manageit.app-updated_navigation_xml-1 /Users/hamzehmajzoub/AndroidStudioProjects/Manageit2/app/build/generated/updated_navigation_xml/debug
+com.example.manageit.app-packageDebugResources-2 /Users/hamzehmajzoub/AndroidStudioProjects/Manageit2/app/build/intermediates/incremental/debug/packageDebugResources/merged.dir
+com.example.manageit.app-packageDebugResources-3 /Users/hamzehmajzoub/AndroidStudioProjects/Manageit2/app/build/intermediates/incremental/debug/packageDebugResources/stripped.dir
+com.example.manageit.app-debug-4 /Users/hamzehmajzoub/AndroidStudioProjects/Manageit2/app/build/intermediates/merged_res/debug/mergeDebugResources
+com.example.manageit.app-debug-5 /Users/hamzehmajzoub/AndroidStudioProjects/Manageit2/app/src/debug/res
+com.example.manageit.app-main-6 /Users/hamzehmajzoub/AndroidStudioProjects/Manageit2/app/src/main/res
