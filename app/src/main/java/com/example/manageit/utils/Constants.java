@@ -15,6 +15,7 @@ public final class Constants {
     public static final String KEY_AUTH_SEED_COMPLETE = "key_auth_seed_complete";
     public static final String KEY_REGISTERED_EMAILS = "key_registered_emails";
     public static final String KEY_MEMBERSHIP_LOOKUPS = "key_membership_lookups";
+    public static final String KEY_UI_MODE_DARK = "key_ui_mode_dark";
 
     private Constants() {
     }

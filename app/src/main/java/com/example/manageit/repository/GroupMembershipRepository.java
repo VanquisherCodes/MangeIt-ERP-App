@@ -17,6 +17,7 @@ import retrofit2.Response;
 public class GroupMembershipRepository {
 
     private final ApiClient apiClient;
+    private static final String ERROR_UNENROLL = "Couldn't unenroll from this group. Please try again.";
 
     public GroupMembershipRepository() {
         this.apiClient = ApiClient.getInstance();
@@ -89,6 +90,59 @@ public class GroupMembershipRepository {
                 });
     }
 
+    public void unenrollFromGroup(
+            GroupMembership membership,
+            RepositoryCallback<Void> callback
+    ) {
+        if (membership == null
+                || isBlank(membership.getMembershipId())
+                || isBlank(membership.getUserId())
+                || isBlank(membership.getGroupId())) {
+            callback.onError(ERROR_UNENROLL);
+            return;
+        }
+
+        String userId = membership.getUserId();
+        String groupId = membership.getGroupId();
+        apiClient.getApiService()
+                .unenrollFromGroup(membership.getMembershipId())
+                .enqueue(new Callback<ResponseBody>() {
+                    @Override
+                    public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                        if (!response.isSuccessful()) {
+                            callback.onError(ERROR_UNENROLL);
+                            return;
+                        }
+
+                        verifyUnenrolled(userId, groupId, callback);
+                    }
+
+                    @Override
+                    public void onFailure(Call<ResponseBody> call, Throwable throwable) {
+                        callback.onError("Couldn't reach the server while unenrolling.");
+                    }
+                });
+    }
+
+    private void verifyUnenrolled(String userId, String groupId, RepositoryCallback<Void> callback) {
+        getMembership(userId, groupId, new RepositoryCallback<GroupMembership>() {
+            @Override
+            public void onSuccess(GroupMembership result) {
+                if (result == null) {
+                    callback.onSuccess(null);
+                    return;
+                }
+
+                callback.onError("Unenroll request was sent, but membership still exists.");
+            }
+
+            @Override
+            public void onError(String message) {
+                callback.onSuccess(null);
+            }
+        });
+    }
+
     private GroupMembership buildPendingMembership(String userId, String groupId, Role roleInGroup) {
         return new GroupMembership(
                 "",
@@ -98,5 +152,9 @@ public class GroupMembershipRepository {
                 "",
                 "active"
         );
+    }
+
+    private boolean isBlank(String value) {
+        return value == null || value.trim().isEmpty();
     }
 }

@@ -3,6 +3,7 @@ package com.example.manageit;
 import android.app.Application;
 
 import com.example.manageit.di.AppContainer;
+import com.example.manageit.managers.UiModeManager;
 
 public class ManageItApplication extends Application {
 
@@ -11,6 +12,7 @@ public class ManageItApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
+        UiModeManager.applySavedMode(this);
         appContainer = new AppContainer(this);
     }
 

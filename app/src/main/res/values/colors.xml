@@ -1,32 +1,54 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- Stitch UI "Deep Slate" tokens -->
-    <color name="primary">#4EDEA3</color>
-    <color name="on_primary">#003824</color>
-    <color name="primary_container">#10B981</color>
-    <color name="on_primary_container">#00422B</color>
+    <!-- Light mode tokens -->
+    <color name="primary">#087A53</color>
+    <color name="on_primary">#FFFFFF</color>
+    <color name="primary_container">#C7F4DF</color>
+    <color name="on_primary_container">#053824</color>
 
-    <color name="tertiary">#7BD0FF</color>
-    <color name="tertiary_container">#19AEE8</color>
-    <color name="on_tertiary_container">#003E55</color>
+    <color name="tertiary">#006D96</color>
+    <color name="tertiary_container">#C7EFFF</color>
+    <color name="on_tertiary_container">#00344A</color>
 
-    <color name="surface">#0C1324</color>
-    <color name="surface_container_lowest">#070D1F</color>
-    <color name="surface_container_low">#151B2D</color>
-    <color name="surface_container">#191F31</color>
-    <color name="surface_container_high">#23293C</color>
-    <color name="surface_container_highest">#2E3447</color>
-    <color name="surface_bright">#33394C</color>
+    <color name="surface">#F7FAF8</color>
+    <color name="surface_container_lowest">#FFFFFF</color>
+    <color name="surface_container_low">#EFF5F1</color>
+    <color name="surface_container">#E8F0EB</color>
+    <color name="surface_container_high">#DDE7E1</color>
+    <color name="surface_container_highest">#CFDCD5</color>
+    <color name="surface_bright">#FFFFFF</color>
 
-    <color name="secondary_container">#3C4A5E</color>
-    <color name="on_secondary_container">#ABB9D1</color>
+    <color name="secondary_container">#D8E5DF</color>
+    <color name="on_secondary_container">#34463D</color>
 
-    <color name="on_surface">#DCE1FB</color>
-    <color name="on_surface_variant">#BBCABF</color>
-    <color name="outline_variant">#3C4A42</color>
+    <color name="on_surface">#13201A</color>
+    <color name="on_surface_variant">#506259</color>
+    <color name="outline_variant">#AABAB2</color>
 
-    <color name="error_container">#93000A</color>
-    <color name="error">#FFB4AB</color>
+    <color name="error_container">#FFDAD6</color>
+    <color name="error">#BA1A1A</color>
+
+    <color name="bottom_nav_background">#F2FFFFFF</color>
+    <color name="bottom_nav_stroke">#33087A53</color>
+    <color name="calendar_selected">#D9F7E8</color>
+    <color name="chip_error_background">#24BA1A1A</color>
+    <color name="chip_primary_background">#2E087A53</color>
+    <color name="chip_secondary_background">#BFD8E5DF</color>
+    <color name="chip_tertiary_background">#2E006D96</color>
+    <color name="glass_panel_background">#F2FFFFFF</color>
+    <color name="glass_panel_stroke">#22087A53</color>
+    <color name="input_field_stroke">#6688978F</color>
+    <color name="logo_inner_background">#E8F0EB</color>
+    <color name="member_cover_start">#D7EDE4</color>
+    <color name="member_cover_end">#C7EFFF</color>
+    <color name="nav_item_active_background">#24087A53</color>
+    <color name="screen_glow_primary_start">#30087A53</color>
+    <color name="screen_glow_primary_center">#16087A53</color>
+    <color name="screen_glow_primary_end">#00087A53</color>
+    <color name="screen_glow_tertiary_start">#22006D96</color>
+    <color name="screen_glow_tertiary_center">#10006D96</color>
+    <color name="screen_glow_tertiary_end">#00006D96</color>
+    <color name="top_bar_background">#F2FFFFFF</color>
 
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>

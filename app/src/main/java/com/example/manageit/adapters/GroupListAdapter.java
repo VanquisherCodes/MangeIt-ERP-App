@@ -29,6 +29,7 @@ public class GroupListAdapter extends BaseAdapter {
 
     public interface Listener {
         void onRequestUserEnrollment(StudentGroup group);
+        void onUnenroll(StudentGroup group, GroupMembership membership);
     }
 
     private final LayoutInflater inflater;
@@ -42,6 +43,7 @@ public class GroupListAdapter extends BaseAdapter {
     private final Set<String> loadingEnrollmentRequestGroupIds = new HashSet<>();
     private final Set<String> enrollmentRequestErrorGroupIds = new HashSet<>();
     private final Set<String> submittingEnrollmentRequestGroupIds = new HashSet<>();
+    private final Set<String> unenrollingGroupIds = new HashSet<>();
 
     public GroupListAdapter(Context context, Listener listener) {
         this.inflater = LayoutInflater.from(context);
@@ -58,6 +60,7 @@ public class GroupListAdapter extends BaseAdapter {
         loadingEnrollmentRequestGroupIds.clear();
         enrollmentRequestErrorGroupIds.clear();
         submittingEnrollmentRequestGroupIds.clear();
+        unenrollingGroupIds.clear();
         if (newGroups != null) {
             groups.addAll(newGroups);
         }
@@ -79,6 +82,7 @@ public class GroupListAdapter extends BaseAdapter {
         }
         loadingGroupIds.remove(groupId);
         errorGroupIds.remove(groupId);
+        unenrollingGroupIds.remove(groupId);
         resolvedGroupIds.add(groupId);
         if (membership == null) {
             membershipsByGroupId.remove(groupId);
@@ -141,6 +145,18 @@ public class GroupListAdapter extends BaseAdapter {
         notifyDataSetChanged();
     }
 
+    public void markUnenrolling(String groupId, boolean unenrolling) {
+        if (groupId == null) {
+            return;
+        }
+        if (unenrolling) {
+            unenrollingGroupIds.add(groupId);
+        } else {
+            unenrollingGroupIds.remove(groupId);
+        }
+        notifyDataSetChanged();
+    }
+
     public boolean isMembershipResolved(String groupId) {
         return resolvedGroupIds.contains(groupId);
     }
@@ -167,7 +183,8 @@ public class GroupListAdapter extends BaseAdapter {
     public boolean isBusy(String groupId) {
         return loadingGroupIds.contains(groupId)
                 || loadingEnrollmentRequestGroupIds.contains(groupId)
-                || submittingEnrollmentRequestGroupIds.contains(groupId);
+                || submittingEnrollmentRequestGroupIds.contains(groupId)
+                || unenrollingGroupIds.contains(groupId);
     }
 
     public GroupMembership getMembershipForGroup(String groupId) {
@@ -208,6 +225,9 @@ public class GroupListAdapter extends BaseAdapter {
         holder.nameView.setText(group.getGroupName());
         holder.descriptionView.setText(group.getGroupDescription());
         holder.joinAsUserButton.setOnClickListener(null);
+        holder.unenrollButton.setOnClickListener(null);
+        holder.joinAsUserButton.setVisibility(View.VISIBLE);
+        holder.unenrollButton.setVisibility(View.GONE);
 
         if (loadingGroupIds.contains(groupId) && !resolvedGroupIds.contains(groupId)) {
             holder.statusView.setText("Checking...");
@@ -226,9 +246,18 @@ public class GroupListAdapter extends BaseAdapter {
         }
 
         if (membership != null) {
+            boolean unenrolling = unenrollingGroupIds.contains(groupId);
             holder.statusView.setText("Enrolled");
-            holder.roleView.setText(membership.getRoleInGroup() == Role.ADMIN ? "Role in group: Admin" : "Role in group: User");
-            holder.actionContainer.setVisibility(View.GONE);
+            holder.roleView.setText(unenrolling
+                    ? "Unenrolling from this group..."
+                    : membership.getRoleInGroup() == Role.ADMIN ? "Role in group: Admin" : "Role in group: User");
+            holder.actionContainer.setVisibility(View.VISIBLE);
+            holder.joinAsUserButton.setVisibility(View.GONE);
+            holder.unenrollButton.setVisibility(View.VISIBLE);
+            holder.unenrollButton.setEnabled(!unenrolling);
+            holder.unenrollButton.setText("Unenroll");
+            holder.unenrollButton.setContentDescription("Unenroll");
+            holder.unenrollButton.setOnClickListener(v -> listener.onUnenroll(group, membership));
             holder.statusView.setBackgroundResource(
                     membership.getRoleInGroup() == Role.ADMIN ? R.drawable.bg_chip_primary : R.drawable.bg_chip_tertiary
             );
@@ -341,6 +370,9 @@ public class GroupListAdapter extends BaseAdapter {
             this.roleView = itemView.findViewById(R.id.tv_group_role_hint);
             this.actionContainer = itemView.findViewById(R.id.layout_group_actions);
             this.joinAsUserButton = itemView.findViewById(R.id.btn_group_join_user);
+            this.unenrollButton = itemView.findViewById(R.id.btn_group_unenroll);
         }
+
+        private final Button unenrollButton;
     }
 }

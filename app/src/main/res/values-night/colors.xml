@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Dark mode tokens -->
+    <color name="primary">#5DF2B5</color>
+    <color name="on_primary">#002F1F</color>
+    <color name="primary_container">#10B981</color>
+    <color name="on_primary_container">#D8FFED</color>
+
+    <color name="tertiary">#8FDCFF</color>
+    <color name="tertiary_container">#1E9DCE</color>
+    <color name="on_tertiary_container">#D9F4FF</color>
+
+    <color name="surface">#0A1020</color>
+    <color name="surface_container_lowest">#050A16</color>
+    <color name="surface_container_low">#12192A</color>
+    <color name="surface_container">#182033</color>
+    <color name="surface_container_high">#243044</color>
+    <color name="surface_container_highest">#303C52</color>
+    <color name="surface_bright">#39465C</color>
+
+    <color name="secondary_container">#3A475C</color>
+    <color name="on_secondary_container">#D6E2F3</color>
+
+    <color name="on_surface">#F1F5F0</color>
+    <color name="on_surface_variant">#C8D4CC</color>
+    <color name="outline_variant">#56675F</color>
+
+    <color name="error_container">#93000A</color>
+    <color name="error">#FFB4AB</color>
+
+    <color name="bottom_nav_background">#F00A1020</color>
+    <color name="bottom_nav_stroke">#245DF2B5</color>
+    <color name="calendar_selected">#FF0A1020</color>
+    <color name="chip_error_background">#30FFB4AB</color>
+    <color name="chip_primary_background">#2E10B981</color>
+    <color name="chip_secondary_background">#663A475C</color>
+    <color name="chip_tertiary_background">#2E1E9DCE</color>
+    <color name="glass_panel_background">#B812192A</color>
+    <color name="glass_panel_stroke">#18FFFFFF</color>
+    <color name="input_field_stroke">#3356675F</color>
+    <color name="logo_inner_background">#090E1A</color>
+    <color name="member_cover_start">#3D4E6C72</color>
+    <color name="member_cover_end">#243B566D</color>
+    <color name="nav_item_active_background">#245DF2B5</color>
+    <color name="screen_glow_primary_start">#335DF2B5</color>
+    <color name="screen_glow_primary_center">#1A5DF2B5</color>
+    <color name="screen_glow_primary_end">#005DF2B5</color>
+    <color name="screen_glow_tertiary_start">#248FDCFF</color>
+    <color name="screen_glow_tertiary_center">#148FDCFF</color>
+    <color name="screen_glow_tertiary_end">#008FDCFF</color>
+    <color name="top_bar_background">#E60A1020</color>
+
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+</resources>

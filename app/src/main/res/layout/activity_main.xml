@@ -56,6 +56,17 @@
         </LinearLayout>
 
         <ImageButton
+            android:id="@+id/btn_theme_mode"
+            android:layout_width="44dp"
+            android:layout_height="44dp"
+            android:layout_marginEnd="8dp"
+            android:background="@drawable/bg_button_secondary"
+            android:contentDescription="Switch UI mode"
+            android:padding="12dp"
+            android:src="@drawable/ic_theme_light"
+            android:tint="@color/on_surface" />
+
+        <ImageButton
             android:id="@+id/btn_about"
             android:layout_width="44dp"
             android:layout_height="44dp"

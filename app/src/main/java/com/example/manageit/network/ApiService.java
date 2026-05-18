@@ -60,6 +60,9 @@ public interface ApiService {
             @Path("roleingroup") String roleInGroup
     );
 
+    @GET("UnenrollFromGroup/{membershipid}")
+    Call<ResponseBody> unenrollFromGroup(@Path("membershipid") String membershipId);
+
     @GET("GetGroupTasks/{groupid}")
     Call<List<Task>> getGroupTasks(@Path("groupid") String groupId);
 

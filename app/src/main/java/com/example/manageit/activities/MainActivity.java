@@ -12,6 +12,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.manageit.R;
 import com.example.manageit.adapters.GroupListAdapter;
 import com.example.manageit.managers.SessionManager;
+import com.example.manageit.managers.UiModeManager;
 import com.example.manageit.models.GroupMembership;
 import com.example.manageit.models.Request;
 import com.example.manageit.models.Role;
@@ -84,12 +85,28 @@ public class MainActivity extends AppCompatActivity {
             public void onRequestUserEnrollment(StudentGroup group) {
                 requestUserEnrollment(group);
             }
+
+            @Override
+            public void onUnenroll(StudentGroup group, GroupMembership membership) {
+                confirmUnenroll(group, membership);
+            }
         });
         listView.setAdapter(groupListAdapter);
         listView.setOnItemClickListener((parent, view, position, id) -> handleGroupTap(groupListAdapter.getItem(position)));
     }
 
     private void bindActions() {
+        ImageButton themeButton = findViewById(R.id.btn_theme_mode);
+        updateThemeButton(themeButton);
+        themeButton.setOnClickListener(v -> {
+            boolean darkMode = UiModeManager.toggleMode(this);
+            Toast.makeText(
+                    this,
+                    darkMode ? "Dark mode enabled." : "Light mode enabled.",
+                    Toast.LENGTH_SHORT
+            ).show();
+        });
+
         ImageButton aboutButton = findViewById(R.id.btn_about);
         aboutButton.setOnClickListener(v -> startActivity(new Intent(this, AboutActivity.class)));
 
@@ -106,6 +123,12 @@ public class MainActivity extends AppCompatActivity {
                     .setNegativeButton("Cancel", null)
                     .show();
         });
+    }
+
+    private void updateThemeButton(ImageButton themeButton) {
+        boolean darkMode = UiModeManager.isDarkMode(this);
+        themeButton.setImageResource(darkMode ? R.drawable.ic_theme_light : R.drawable.ic_theme_dark);
+        themeButton.setContentDescription(darkMode ? "Switch to light mode" : "Switch to dark mode");
     }
 
     private void loadGroups() {
@@ -272,6 +295,46 @@ public class MainActivity extends AppCompatActivity {
                 })
                 .setNegativeButton("Cancel", null)
                 .show();
+    }
+
+    private void confirmUnenroll(StudentGroup group, GroupMembership membership) {
+        if (groupListAdapter.isBusy(group.getGroupId())) {
+            Toast.makeText(this, "Please wait while we finish this request.", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        new MaterialAlertDialogBuilder(this)
+                .setTitle(group.getGroupName())
+                .setMessage("Unenroll from this group? You will need admin approval to join again.")
+                .setPositiveButton("Unenroll", (dialog, which) -> unenrollFromGroup(group, membership))
+                .setNegativeButton("Cancel", null)
+                .show();
+    }
+
+    private void unenrollFromGroup(StudentGroup group, GroupMembership membership) {
+        groupListAdapter.markUnenrolling(group.getGroupId(), true);
+        membershipRepository.unenrollFromGroup(membership, new RepositoryCallback<Void>() {
+            @Override
+            public void onSuccess(Void result) {
+                if (isFinishing() || isDestroyed()) {
+                    return;
+                }
+
+                groupListAdapter.updateMembership(group.getGroupId(), null);
+                groupListAdapter.updateEnrollmentRequest(group.getGroupId(), null);
+                Toast.makeText(MainActivity.this, "Unenrolled from " + group.getGroupName() + ".", Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onError(String message) {
+                if (isFinishing() || isDestroyed()) {
+                    return;
+                }
+
+                groupListAdapter.markUnenrolling(group.getGroupId(), false);
+                Toast.makeText(MainActivity.this, message, Toast.LENGTH_LONG).show();
+            }
+        });
     }
 
     private void openDashboard(StudentGroup group, Role role) {
