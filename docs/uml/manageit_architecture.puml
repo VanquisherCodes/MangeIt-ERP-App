@@ -1,0 +1,249 @@
+@startuml
+title ManageIt - High Level Class / Architecture Diagram
+
+skinparam packageStyle rectangle
+skinparam shadowing false
+skinparam classAttributeIconSize 0
+
+package "Android App" {
+  class ManageItApplication
+  class AppContainer <<DI Container>>
+
+  package "Activities" {
+    class SplashActivity
+    class AuthActivity
+    class MainActivity
+    class GroupDashboardActivity
+    class GroupTasksActivity
+    class GroupEventsActivity
+    class GroupAnnouncementsActivity
+    class GroupBudgetActivity
+    class MembershipManagementActivity
+    class AboutActivity
+  }
+
+  package "Fragments" {
+    class LoginFragment
+    class RegisterFragment
+    class UserDashboardFragment
+    class AdminDashboardFragment
+    class BudgetDashboardFragment
+  }
+
+  package "Navigation / Managers" {
+    class RoleNavigator
+    class SessionManager
+    class UiModeManager
+    class OfflineModeManager
+  }
+
+  package "ViewModel + Use Cases" {
+    class AuthViewModel
+    class AuthViewModelFactory
+    class LoginUseCase
+    class RegisterUseCase
+    class CreateBudgetUseCase
+    class PredictTaskCostUseCase
+    class RequestAdminAccessUseCase
+  }
+
+  package "Repositories" {
+    interface AuthRepositoryContract
+    interface BudgetRepositoryContract
+    interface MlPredictionRepositoryContract
+    interface AdminAccessRequestRepositoryContract
+    interface RepositoryCallback
+
+    class AuthRepository
+    class StudentGroupRepository
+    class GroupMembershipRepository
+    class AdminAccessRequestRepository
+    class GroupAdminRepository
+    class GroupTasksRepository
+    class GroupEventsRepository
+    class GroupAnnouncementsRepository
+    class BudgetRepository
+    class DashboardRepository
+    class MarketauxNewsRepository
+    class MlPredictionRepository
+  }
+
+  package "Network" {
+    class ApiClient <<Singleton>>
+    interface ApiService
+    class MarketauxApiClient
+    interface MarketauxApiService
+    class MlBackendApiClient
+    interface MlBackendApiService
+  }
+
+  package "Adapters" {
+    class GroupListAdapter
+    class GroupMemberAdapter
+    class AdminAccessRequestAdapter
+    class GroupTaskAdapter
+    class GroupEventAdapter
+    class GroupAnnouncementAdapter
+  }
+
+  package "Models" {
+    class User
+    class StudentGroup
+    class GroupMembership
+    class GroupMember
+    class Request
+    class Task
+    class Event
+    class Announcement
+    class Budget
+    class BudgetCategory
+    class BudgetOverview
+    class TaskBudget
+    class Expense
+    class MarketauxArticle
+    class PredictTaskCostRequest
+    class PredictTaskCostResponse
+    enum Role
+  }
+}
+
+package "Spring Boot Backend" {
+  class ManageItBackendApplication
+  class MlPredictionController
+  class AzureMlPredictionService
+  class ApiExceptionHandler
+  class BackendPredictTaskCostRequest
+  class BackendPredictTaskCostResponse
+}
+
+package "External Services" {
+  class StudEV_SQL_API
+  class Marketaux_News_API
+  class Azure_ML_Endpoint
+}
+
+ManageItApplication --> AppContainer : creates
+ManageItApplication --> UiModeManager : applies saved theme
+AppContainer --> AuthRepositoryContract
+AppContainer --> BudgetRepositoryContract
+AppContainer --> MlPredictionRepositoryContract
+AppContainer --> LoginUseCase
+AppContainer --> RegisterUseCase
+AppContainer --> CreateBudgetUseCase
+AppContainer --> PredictTaskCostUseCase
+
+SplashActivity --> SessionManager : checks session
+AuthActivity --> LoginFragment
+AuthActivity --> RegisterFragment
+LoginFragment --> AuthViewModel
+RegisterFragment --> AuthViewModel
+AuthViewModel --> LoginUseCase
+AuthViewModel --> RegisterUseCase
+LoginUseCase --> AuthRepositoryContract
+RegisterUseCase --> AuthRepositoryContract
+AuthRepositoryContract <|.. AuthRepository
+AuthRepository --> ApiClient
+
+MainActivity --> SessionManager
+MainActivity --> StudentGroupRepository : loads groups
+MainActivity --> GroupMembershipRepository : checks/enrolls/unenrolls
+MainActivity --> AdminAccessRequestRepository : join requests
+MainActivity --> GroupListAdapter : renders groups
+GroupListAdapter --> StudentGroup
+GroupListAdapter --> GroupMembership
+GroupListAdapter --> Request
+
+GroupDashboardActivity --> RoleNavigator : chooses dashboard
+RoleNavigator --> UserDashboardFragment
+RoleNavigator --> AdminDashboardFragment
+UserDashboardFragment --> GroupMembershipRepository
+UserDashboardFragment --> GroupTasksRepository
+UserDashboardFragment --> GroupEventsRepository
+UserDashboardFragment --> GroupAnnouncementsRepository
+UserDashboardFragment --> MarketauxNewsRepository
+AdminDashboardFragment --> DashboardRepository
+AdminDashboardFragment --> GroupAdminRepository
+AdminDashboardFragment --> AdminAccessRequestRepository
+
+MembershipManagementActivity --> GroupAdminRepository
+MembershipManagementActivity --> GroupMembershipRepository
+MembershipManagementActivity --> AdminAccessRequestRepository
+MembershipManagementActivity --> GroupMemberAdapter
+MembershipManagementActivity --> AdminAccessRequestAdapter
+
+GroupTasksActivity --> GroupTasksRepository
+GroupTasksActivity --> GroupTaskAdapter
+GroupEventsActivity --> GroupEventsRepository
+GroupEventsActivity --> GroupEventAdapter
+GroupAnnouncementsActivity --> GroupAnnouncementsRepository
+GroupAnnouncementsActivity --> GroupAnnouncementAdapter
+GroupBudgetActivity --> BudgetDashboardFragment
+BudgetDashboardFragment --> CreateBudgetUseCase
+BudgetDashboardFragment --> PredictTaskCostUseCase
+BudgetDashboardFragment --> BudgetRepository
+CreateBudgetUseCase --> BudgetRepositoryContract
+PredictTaskCostUseCase --> MlPredictionRepositoryContract
+BudgetRepositoryContract <|.. BudgetRepository
+MlPredictionRepositoryContract <|.. MlPredictionRepository
+
+AdminAccessRequestRepositoryContract <|.. AdminAccessRequestRepository
+AuthRepository ..> RepositoryCallback
+BudgetRepository ..> RepositoryCallback
+GroupMembershipRepository ..> RepositoryCallback
+AdminAccessRequestRepository ..> RepositoryCallback
+MlPredictionRepository ..> RepositoryCallback
+
+ApiClient --> ApiService
+StudentGroupRepository --> ApiClient
+GroupMembershipRepository --> ApiClient
+AdminAccessRequestRepository --> ApiClient
+GroupAdminRepository --> ApiClient
+GroupTasksRepository --> ApiClient
+GroupEventsRepository --> ApiClient
+GroupAnnouncementsRepository --> ApiClient
+BudgetRepository --> ApiClient
+DashboardRepository --> ApiClient
+ApiService --> StudEV_SQL_API
+
+MarketauxNewsRepository --> MarketauxApiClient
+MarketauxApiClient --> MarketauxApiService
+MarketauxApiService --> Marketaux_News_API
+MlPredictionRepository --> MlBackendApiClient
+MlBackendApiClient --> MlBackendApiService
+MlBackendApiService --> MlPredictionController : HTTP POST /api/ml/predict-task-cost
+
+MlPredictionController --> AzureMlPredictionService
+MlPredictionController --> BackendPredictTaskCostRequest
+MlPredictionController --> BackendPredictTaskCostResponse
+AzureMlPredictionService --> Azure_ML_Endpoint
+ApiExceptionHandler ..> MlPredictionController : handles errors
+
+AuthRepository --> User
+StudentGroupRepository --> StudentGroup
+GroupMembershipRepository --> GroupMembership
+AdminAccessRequestRepository --> Request
+GroupTasksRepository --> Task
+GroupEventsRepository --> Event
+GroupAnnouncementsRepository --> Announcement
+BudgetRepository --> Budget
+BudgetRepository --> BudgetCategory
+BudgetRepository --> BudgetOverview
+BudgetRepository --> TaskBudget
+BudgetRepository --> Expense
+MarketauxNewsRepository --> MarketauxArticle
+MlPredictionRepository --> PredictTaskCostRequest
+MlPredictionRepository --> PredictTaskCostResponse
+GroupMembership --> Role
+GroupMember --> Role
+
+note right of RoleNavigator
+Routes users to AdminDashboardFragment
+or UserDashboardFragment based on Role.
+end note
+
+note bottom of AppContainer
+Centralized object creation keeps
+repository/use-case wiring out of UI classes.
+end note
+
+@enduml
