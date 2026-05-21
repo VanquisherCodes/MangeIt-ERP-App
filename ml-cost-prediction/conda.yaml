@@ -1,0 +1,12 @@
+name: task-cost-env
+channels:
+  - conda-forge
+dependencies:
+  - python=3.10
+  - pip
+  - pip:
+      - pandas
+      - numpy
+      - scikit-learn
+      - joblib
+      - azureml-inference-server-http

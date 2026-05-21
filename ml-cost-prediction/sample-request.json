@@ -1,0 +1,8 @@
+{
+  "groupId": 1,
+  "categoryName": "equipment",
+  "priority": "HIGH",
+  "estimatedHours": 10,
+  "teamSize": 3,
+  "allocatedAmount": 350
+}

@@ -16,3 +16,6 @@
 .cxx
 local.properties
 .agents
+ml-cost-prediction/.venv/
+ml-cost-prediction/.idea/
+ml-cost-prediction/**/.ipynb_checkpoints/

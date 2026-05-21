@@ -1,0 +1,13 @@
+$schema: https://azuremlschemas.azureedge.net/latest/managedOnlineDeployment.schema.json
+name: blue
+endpoint_name: task-cost-endpoint-v4
+model:
+  path: ./models/task_cost_linear_regression.joblib
+code_configuration:
+  code: .
+  scoring_script: score.py
+environment:
+  conda_file: conda.yaml
+  image: mcr.microsoft.com/azureml/openmpi4.1.0-ubuntu22.04:latest
+instance_type: Standard_DS1_v2
+instance_count: 1
